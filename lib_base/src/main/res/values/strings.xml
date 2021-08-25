@@ -1,0 +1,39 @@
+<resources>
+
+    <string name="app_name">BaseApp</string>
+
+    <!--首页文本-->
+    <string name="main_navigation_main">Home</string>
+    <string name="main_navigation_second">News</string>
+    <string name="main_navigation_third">Msg</string>
+    <string name="main_navigation_four">Profile</string>
+
+    <string name="main_beauty_title">Beauty map area</string>
+
+    <string name="main_news_top">Top</string>
+    <string name="main_news_technology">Technology</string>
+    <string name="main_news_entertainment">Entertainment</string>
+    <string name="main_news_internationality">Internationality</string>
+
+    <string name="main_search">Search</string>
+    <string name="main_search_history">Search records</string>
+    <string name="main_search_delete_all">Are you sure to delete all history?\n</string>
+
+    <!--Toast弹窗文本-->
+    <string name="main_finish">Click back again to exit</string>
+    <string name="main_ok">OK</string>
+    <string name="main_confirm">Confirm</string>
+    <string name="main_cancel">Cancel</string>
+    <string name="main_is_loading">Loading</string>
+    <string name="main_see_more">See More</string>
+    <string name="main_release_view">Release View</string>
+
+    <!--权限相关-->
+    <string name="main_scan_permissions_success">All permissions are granted</string>
+    <string name="main_scan_permissions_fail">These permissions are denied</string>
+    <string name="main_scan_permissions_tips">You need to allow necessary permissions</string>
+    <string name="main_scan_fail_tips">Scan code failed</string>
+
+    <string name="main_people_reading">%s People browsing</string>
+
+</resources>

@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.android.applicationId
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+        multiDexEnabled rootProject.android.multiDexEnabled
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86_64", "x86"
+        }
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        buildFeatures {
+            dataBinding = true
+        }
+
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+}
+
+dependencies {
+
+    //官方基础库
+    implementation rootProject.depsLibs.kotlinStdlib
+    implementation rootProject.depsLibs.coreKtx
+    implementation rootProject.depsLibs.appcompat
+    implementation rootProject.depsLibs.material
+    implementation rootProject.depsLibs.constraintlayout
+    testImplementation rootProject.depsLibs.junit
+    androidTestImplementation rootProject.depsLibs.junitTest
+    androidTestImplementation rootProject.depsLibs.espressoCore
+
+
+    //本地库
+    implementation project(path: ':lib_base')
+    implementation project(path: ':lib_main')
+
+    //第三方库
+    implementation rootProject.depsLibs.lottie
+    kapt rootProject.depsLibs.arouter_compiler
+}

@@ -1,0 +1,39 @@
+<resources>
+
+    <string name="app_name">BaseApp</string>
+
+    <!--首页文本-->
+    <string name="main_navigation_main">首页</string>
+    <string name="main_navigation_second">发现</string>
+    <string name="main_navigation_third">消息</string>
+    <string name="main_navigation_four">我的</string>
+
+    <string name="main_beauty_title">妹子图区</string>
+
+    <string name="main_news_top">推荐</string>
+    <string name="main_news_technology">科技</string>
+    <string name="main_news_entertainment">娱乐</string>
+    <string name="main_news_internationality">国际</string>
+
+    <string name="main_search">搜索</string>
+    <string name="main_search_history">搜索记录</string>
+    <string name="main_search_delete_all">确定删除所有历史记录吗？\n</string>
+
+    <!--Toast弹窗文本-->
+    <string name="main_finish">再次点击退出应用</string>
+    <string name="main_ok">同意</string>
+    <string name="main_confirm">确定</string>
+    <string name="main_cancel">取消</string>
+    <string name="main_is_loading">加载中</string>
+    <string name="main_see_more">查看更多</string>
+    <string name="main_release_view">释放查看</string>
+
+    <!--权限相关-->
+    <string name="main_scan_permissions_success">已获取所有权限</string>
+    <string name="main_scan_permissions_fail">这些权限被拒绝</string>
+    <string name="main_scan_permissions_tips">您需要授予必要的权限</string>
+    <string name="main_scan_fail_tips">扫码失败</string>
+
+    <string name="main_people_reading">%s 人浏览</string>
+
+</resources>
