@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="vm"
+            type="com.example.lib_main.viewmodel.SearchViewModel" />
+        <variable
+            name="click"
+            type="com.example.lib_main.ui.activity.SearchActivity.ProxyClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.SearchActivity">
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rightColor="@color/color_black"
+            app:rightSize="12sp"
+            app:rightTitle="@string/main_search">
+
+            <com.hjq.shape.layout.ShapeConstraintLayout
+                android:id="@+id/clSearch"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shape="rectangle"
+                app:shape_radius="16dp"
+                app:shape_solidColor="@color/color_white"
+                app:shape_strokeColor="@color/color_refresh_text"
+                app:shape_strokeWidth="1dp">
+
+
+                <ImageView
+                    android:id="@+id/ivSearch"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:imeOptions="actionSearch"
+                    android:maxLength="18"
+                    android:paddingStart="8dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="6dp"
+                    android:lines="1"
+                    android:text="@{vm.searchContent}"
+                    style="@style/text_black_14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivDeleteContent"
+                    app:layout_constraintStart_toEndOf="@+id/ivSearch"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivDeleteContent"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="4dp"
+                    android:padding="4dp"
+                    android:visibility="@{vm.isShowDeleteSearchContent?View.VISIBLE:View.GONE}"
+                    android:onClick="@{()->click.toDeleteContent()}"
+                    android:src="@drawable/ic_delete"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </com.hjq.shape.layout.ShapeConstraintLayout>
+
+        </com.hjq.bar.TitleBar>
+
+        <!--        搜索历史记录-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSearchHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{vm.isShowSearchHistory?View.VISIBLE:View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBar">
+
+            <TextView
+                android:id="@+id/tvSearchRecord"
+                style="@style/text_black_14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:text="@string/main_search_history"
+                app:layout_constraintEnd_toStartOf="@+id/ivDeleteALLSearch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivDeleteALLSearch"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_delete_all"
+                android:onClick="@{()->click.toDeleteAllHistory()}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvSearchRecord"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvSearchRecord" />
+
+            <com.donkingliang.labels.LabelsView
+                android:id="@+id/labels_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:labelBackground="@drawable/search_label_bg"
+                app:labelTextColor="#333333"
+                app:labelTextPaddingBottom="6dp"
+                app:labelTextPaddingLeft="16dp"
+                app:labelTextPaddingRight="16dp"
+                app:labelTextPaddingTop="6dp"
+                app:labelTextSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/ivDeleteALLSearch"
+                app:layout_constraintStart_toStartOf="@+id/tvSearchRecord"
+                app:layout_constraintTop_toBottomOf="@+id/tvSearchRecord"
+                app:lineMargin="10dp"
+                app:wordMargin="10dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSearchResult"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{vm.isShowSearchHistory?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

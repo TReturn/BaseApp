@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.lib_main.viewmodel.MainViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.lib_main.ui.fragment.MainFragment.ProxyClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hjq.shape.layout.ShapeConstraintLayout
+            android:id="@+id/clWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shape="rectangle"
+            app:shape_radius="16dp"
+            app:shape_solidColor="@color/gray_bg_color"
+            app:shape_strokeColor="@color/gray_bg_color"
+            app:shape_strokeWidth="1dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ltCloud"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
+
+            <LinearLayout
+                android:id="@+id/llTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ltCloud">
+
+                <TextView
+                    android:id="@+id/tvCloudInfo"
+                    style="@style/text_black_12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.weatherSky}"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ltCloud"
+                    app:layout_constraintTop_toTopOf="@+id/ltCloud"
+                    tools:text="多云" />
+
+                <TextView
+                    android:id="@+id/tvTemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.weatherTemp}"
+                    android:textColor="@color/color_black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvCloudInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCloudInfo"
+                    tools:text="28℃" />
+
+            </LinearLayout>
+
+
+
+
+        </com.hjq.shape.layout.ShapeConstraintLayout>
+
+
+        <com.hjq.shape.layout.ShapeConstraintLayout
+            android:id="@+id/clSearch"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/clWeather"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/clWeather"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shape="rectangle"
+            app:shape_radius="16dp"
+            app:shape_solidColor="@color/color_white"
+            app:shape_strokeColor="@color/color_refresh_text"
+            app:shape_strokeWidth="1dp">
+
+
+            <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:background="@null"
+                android:maxLength="18"
+                android:onClick="@{()->click.toSearch()}"
+                android:paddingStart="8dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:textColor="#C2C2C2"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivScan"
+                app:layout_constraintStart_toEndOf="@+id/ivSearch"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivScan"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="4dp"
+                android:onClick="@{()->click.toScan()}"
+                android:padding="2dp"
+                android:src="@drawable/ic_scan"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </com.hjq.shape.layout.ShapeConstraintLayout>
+
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clWeather"
+            app:srlEnableLoadMore="false">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/include"
+                        layout="@layout/include_fragment_main" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

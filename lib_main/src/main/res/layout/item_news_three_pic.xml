@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingBottom="8dp">
+
+
+        <TextView
+            android:id="@+id/tvNewsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="2"
+            android:textStyle="bold"
+            android:orientation="vertical"
+            android:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→"
+            style="@style/text_black_14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/llPic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle">
+
+            <ImageView
+                android:id="@+id/ivNewsPic"
+                android:layout_width="0dp"
+                android:layout_height="66dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_list_check" />
+
+            <ImageView
+                android:id="@+id/ivNewsPic2"
+                android:layout_width="0dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_list_check" />
+
+            <ImageView
+                android:id="@+id/ivNewsPic3"
+                android:layout_width="0dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_list_check" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNewsSource"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="点点医讯"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
+            app:layout_constraintStart_toStartOf="@+id/llPic"
+            app:layout_constraintTop_toBottomOf="@+id/llPic" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/color_gray"
+            android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsSource" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

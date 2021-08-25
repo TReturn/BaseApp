@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <ImageView
+            android:id="@+id/ivPic"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_list_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/text_black_12sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            app:layout_constraintEnd_toEndOf="@+id/ivPic"
+            app:layout_constraintStart_toStartOf="@+id/ivPic"
+            app:layout_constraintTop_toBottomOf="@+id/ivPic"
+            tools:text="第92期" />
+
+
+        <TextView
+            android:id="@+id/tvRead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:gravity="start"
+            app:layout_constraintEnd_toEndOf="@+id/ivPic"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="7822人浏览" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,197 @@
+ext {
+    android = [
+            applicationId    : "com.example.baseapp",
+            compileSdkVersion: 30,
+            buildToolsVersion: "30.0.2",
+            minSdkVersion    : 21,
+            targetSdkVersion : 30,
+            versionCode      : 1,
+            versionName      : "1.0",
+            multiDexEnabled  : false
+
+    ]
+
+    depsVersion = [
+            //官方基础库
+            kotlinStdlib        : '1.5.20',
+            coreKtx             : '1.3.2',
+            appcompat           : '1.3.0',
+            material            : '1.2.1',
+            constraintlayout    : '2.0.4',
+            junit               : '4.13.1',
+            junitTest           : '1.1.2',
+            espressoCore        : '3.3.0',
+
+            //官方拓展库
+            recyclerview        : '1.1.0',
+            coroutines_core     : '1.5.1',
+
+            //Jetpack库
+            livedata            : '2.3.1',
+
+            //第三方库
+            autosize            : "1.2.1",
+            smartrefresh        : '2.0.3',
+            xpopup              : '2.5.8',
+            mmkv                : '1.2.10',
+            luBan               : '1.1.8',
+            bugly               : '3.4.4',
+            buglyndk            : '3.9.2',
+            permissionx         : '1.5.0',
+            arouter             : '1.5.2',
+            eventbus            : '3.2.0',
+            magicindicator      : '1.7.0',
+            recyclerviewadapter : '3.0.6',
+            xbanner             : '1.2.0',
+            glide               : '4.12.0',
+            glidetransformations: '4.3.0',
+            lottie              : '4.0.0',
+            bigimageview        : '6.1.6',
+            pictureselector     : '2.7.3-rc06',
+            labelsview          : '1.6.5',
+            titlebar            : '8.6',
+            toastutils          : '9.2',
+            jetpackmvvm         : '1.2.5',
+            circleimageview     : '3.1.0',
+            marqueeview         : '1.4.1',
+            okhttp              : '4.9.1',
+            net                 : '3.0.19',
+            serialization       : '1.2.2',
+            agentweb            : '4.1.9',
+            logger              : '2.2.0',
+            shapeview           : '3.3',
+            qrcode              : '1.1.0',
+            stream              : '1.2.1',
+    ]
+
+
+    depsLibs = [
+            //官方基础库
+            kotlinStdlib        : "org.jetbrains.kotlin:kotlin-stdlib:${depsVersion.kotlinStdlib}",
+            coreKtx             : "androidx.core:core-ktx:${depsVersion.coreKtx}",
+            appcompat           : "androidx.appcompat:appcompat:${depsVersion.appcompat}",
+            material            : "com.google.android.material:material:${depsVersion.material}",
+            constraintlayout    : "androidx.constraintlayout:constraintlayout:${depsVersion.constraintlayout}",
+            junit               : "junit:junit:${depsVersion.junit}",
+            junitTest           : "androidx.test.ext:junit:${depsVersion.junitTest}",
+            espressoCore        : "androidx.test.espresso:espresso-core:${depsVersion.espressoCore}",
+
+            //官方拓展库
+            recyclerview        : "androidx.recyclerview:recyclerview:${depsVersion.recyclerview}",
+            //协程
+            coroutines_core     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${depsVersion.coroutines_core}",
+            coroutines_android  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${depsVersion.coroutines_core}",
+
+            // LiveData
+            livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:${depsVersion.livedata}",
+
+            //第三方库
+
+            //今日头条屏幕适配方案
+            autosize            : "com.github.JessYanCoding:AndroidAutoSize:v${depsVersion.autosize}",
+
+            //下拉刷新核心
+            smartrefresh        : "com.scwang.smart:refresh-layout-kernel:${depsVersion.smartrefresh}",
+            //经典刷新头
+            smartrefreshclassics: "com.scwang.smart:refresh-header-classics:${depsVersion.smartrefresh}",
+            //雷达刷新头
+            smartrefreshradar   : "com.scwang.smart:refresh-header-radar:${depsVersion.smartrefresh}",
+            //虚拟刷新头
+            smartrefreshfalsify : "com.scwang.smart:refresh-header-falsify:${depsVersion.smartrefresh}",
+            //谷歌刷新头
+            smartrefreshmaterial: "com.scwang.smart:refresh-header-material:${depsVersion.smartrefresh}",
+            //二级刷新头
+            smartrefreshtwolevel: "com.scwang.smart:refresh-header-two-level:${depsVersion.smartrefresh}",
+            //球脉冲加载
+            smartrefreshball    : "com.scwang.smart:refresh-footer-ball:${depsVersion.smartrefresh}",
+            //经典加载更多
+            smartrefreshfooter  : "com.scwang.smart:refresh-footer-classics:${depsVersion.smartrefresh}",
+
+            //弹窗
+            xpopup              : "com.github.li-xiaojun:XPopup:${depsVersion.xpopup}",
+
+            //键值对存储
+            mmkv                : "com.tencent:mmkv-static:${depsVersion.mmkv}",
+
+            //图片压缩
+            luBan               : "top.zibin:Luban:${depsVersion.luBan}",
+
+            //Bugly崩溃上报
+            bugly               : "com.tencent.bugly:crashreport:${depsVersion.bugly}",
+            buglyndk            : "com.tencent.bugly:nativecrashreport:${depsVersion.buglyndk}",
+
+            //权限请求
+            permissionx         : "com.guolindev.permissionx:permissionx:${depsVersion.permissionx}",
+
+            //阿里路由
+            arouter             : "com.alibaba:arouter-api:${depsVersion.arouter}",
+            arouter_compiler    : "com.alibaba:arouter-compiler:${depsVersion.arouter}",
+
+            //EventBus消息传递
+            eventbus            : "org.greenrobot:eventbus:${depsVersion.eventbus}",
+
+            //TabLayout
+            magicindicator      : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator}",
+
+            //RecyclerView 适配器
+            recyclerviewadapter : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${depsVersion.recyclerviewadapter}",
+
+            //轮播图
+            xbanner             : "com.github.xiaohaibin:XBanner:androidx_v${depsVersion.xbanner}",
+
+            //Glide图片加载，图形变换
+            glide               : "com.github.bumptech.glide:glide:${depsVersion.glide}",
+            glidecompiler       : "com.github.bumptech.glide:compiler:${depsVersion.glide}",
+            glidetransformations: "jp.wasabeef:glide-transformations:${depsVersion.glidetransformations}",
+
+            //Lottie动画
+            lottie              : "com.airbnb.android:lottie:${depsVersion.lottie}",
+
+            //大图浏览
+            bigimageview        : "com.github.SherlockGougou:BigImageViewPager:androidx-${depsVersion.bigimageview}",
+
+            //图片选择（包含拍照按钮）
+            pictureselector     : "com.github.LuckSiege.PictureSelector:picture_library:v${depsVersion.pictureselector}",
+
+            //标签列表
+            labelsview          : "com.github.donkingliang:LabelsView:${depsVersion.labelsview}",
+
+            //导航栏
+            titlebar            : "com.github.getActivity:TitleBar:${depsVersion.titlebar}",
+
+            //自定义Toast
+            toastutils          : "com.github.getActivity:ToastUtils:${depsVersion.toastutils}",
+
+            //MVVM快速开发框架
+            jetpackmvvm         : "com.github.hegaojian:JetpackMvvm:${depsVersion.jetpackmvvm}",
+
+            //圆角头像
+            circleimageview     : "de.hdodenhof:circleimageview:${depsVersion.circleimageview}",
+
+            //文本跑马灯
+            marqueeview         : "com.sunfusheng:MarqueeView:${depsVersion.marqueeview}",
+
+            //日志打印
+            logger              : "com.orhanobut:logger:${depsVersion.logger}",
+
+            //OkHttp网络请求
+            okhttp              : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp}",
+            //Kotlin协程网络请求
+            net                 : "com.github.liangjingkanji:Net:${depsVersion.net}",
+            //Kotlin系列化Json
+            serialization       : "org.jetbrains.kotlinx:kotlinx-serialization-json:${depsVersion.serialization}",
+
+            //Web交互
+            agentweb            : "com.github.Justson.AgentWeb:agentweb-core:v${depsVersion.agentweb}-androidx",
+
+            //控件定义ShapeView
+            shapeview           : "com.github.getActivity:ShapeView:${depsVersion.shapeview}",
+
+            //二维码扫描
+            qrcode              : "com.github.xuexiangjys:XQRCode:${depsVersion.qrcode}",
+
+            //Java8 Stream写法
+            stream              : "com.annimon:stream:${depsVersion.stream}",
+    ]
+
+}
