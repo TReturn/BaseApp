@@ -3,6 +3,7 @@ package com.example.lib_main.ui.fragment
 import android.os.Bundle
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_main.R
+import com.example.lib_main.databinding.FragmentFourBinding
 import com.example.lib_main.databinding.FragmentThirdBinding
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -11,10 +12,10 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
  * @Author : 青柠
  * @Description :
  */
-class FourFragment : BaseFragment<BaseViewModel, FragmentThirdBinding>() {
+class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
 
     override fun layoutId(): Int {
-        return R.layout.fragment_third
+        return R.layout.fragment_four
     }
 
     override fun initView(savedInstanceState: Bundle?) {

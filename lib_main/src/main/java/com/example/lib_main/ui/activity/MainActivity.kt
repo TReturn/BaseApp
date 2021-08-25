@@ -2,11 +2,13 @@ package com.example.lib_main.ui.activity
 
 import android.os.Bundle
 import android.view.KeyEvent
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.interceptLongClick
+import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.ext.initMain
@@ -31,7 +33,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        mDatabind.click = ProxyClick()
+        mDatabind.vm = mViewModel
         mDatabind.bottomNavigation.itemIconTintList = null
 
         //初始化显示内容
@@ -46,18 +49,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         //初始化viewpager2
         mDatabind.viewPager.initMain(this)
 
-        //当 ViewPager 滑动后设置BottomNavigationView 选中相应选项
-//        mDatabind.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//
-//                mDatabind.bottomNavigation.menu.getItem(position).isChecked = true
-//            }
-//
-//            override fun onPageScrolled(i: Int, v: Float, i1: Int) {}
-//            override fun onPageScrollStateChanged(state: Int) {}
-//        })
-
-
         //给底部导航栏菜单项添加点击事件
         mDatabind.bottomNavigation.setOnNavigationItemSelectedListener(
             mOnNavigationItemSelectedListener
@@ -70,6 +61,14 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             R.id.navigation_third,
             R.id.navigation_four
         )
+
+        mDatabind.slFruitImage.setOnDragViewClickListener(object :
+            SlideImageView.OnDrawViewClickListener {
+            override fun onDragViewClick() {
+                ProxyClick().toFruit()
+            }
+        })
+
     }
 
     private val mOnNavigationItemSelectedListener =
@@ -96,6 +95,17 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
             false
         }
+
+
+    inner class ProxyClick {
+        fun toFruit() {
+            ToastUtils.show("Lemon")
+        }
+
+        fun toFruitDel() {
+            mViewModel.isShowFruitView.value = false
+        }
+    }
 
     /**
      * 主页按两次返回键退出应用

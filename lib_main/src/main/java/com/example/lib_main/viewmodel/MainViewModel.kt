@@ -42,6 +42,9 @@ class MainViewModel : BaseViewModel() {
 
     val isShowWeather = MutableLiveData<Boolean>()
 
+    //是否显示右下角可移动贴边View
+    val isShowFruitView= MutableLiveData<Boolean>()
+
     /**
      * 获取妹子列表
      * @param isRefresh 是否刷新
@@ -134,6 +137,7 @@ class MainViewModel : BaseViewModel() {
 
     init {
         weatherSky.value = ResourceUtils.getString(R.string.main_is_loading)
+        isShowFruitView.value = true
     }
 
 }

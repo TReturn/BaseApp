@@ -39,7 +39,7 @@ class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>() {
     @DelicateCoroutinesApi
     private fun toMainActivity() {
 
-        val waitTime: Long = if (BuildConfig.DEBUG) 3000L else MMKVKeys.SPLASH_TIME
+        val waitTime: Long = if (BuildConfig.DEBUG) 0L else MMKVKeys.SPLASH_TIME
         GlobalScope.launch(Dispatchers.Main) {
             delay(waitTime)
             RouterUtils.intent(RouterUrls.ROUTER_URL_MAIN)
