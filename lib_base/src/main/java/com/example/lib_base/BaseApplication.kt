@@ -110,5 +110,5 @@ open class BaseApplication : Application() {
             ClassicsFooter(context).setDrawableSize(20f)
         }
     }
-    
+
 }
