@@ -39,7 +39,6 @@ ext {
             buglyndk            : '3.9.2',
             permissionx         : '1.5.0',
             arouter             : '1.5.2',
-            eventbus            : '3.2.0',
             magicindicator      : '1.7.0',
             recyclerviewadapter : '3.0.6',
             xbanner             : '1.2.0',
@@ -59,7 +58,7 @@ ext {
             serialization       : '1.2.2',
             agentweb            : '4.1.9',
             logger              : '2.2.0',
-            shapeview           : '3.3',
+            shapeview           : '5.2',
             qrcode              : '1.1.0',
             stream              : '1.2.1',
     ]
@@ -126,9 +125,6 @@ ext {
             //阿里路由
             arouter             : "com.alibaba:arouter-api:${depsVersion.arouter}",
             arouter_compiler    : "com.alibaba:arouter-compiler:${depsVersion.arouter}",
-
-            //EventBus消息传递
-            eventbus            : "org.greenrobot:eventbus:${depsVersion.eventbus}",
 
             //TabLayout
             magicindicator      : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator}",

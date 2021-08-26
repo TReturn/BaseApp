@@ -36,16 +36,14 @@ class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>() {
     /**
      * 跳转到主页逻辑
      */
-    @DelicateCoroutinesApi
-    private fun toMainActivity() {
 
+    private fun toMainActivity() {
         val waitTime: Long = if (BuildConfig.DEBUG) 0L else MMKVKeys.SPLASH_TIME
-        GlobalScope.launch(Dispatchers.Main) {
+        CoroutineScope(Job()).launch {
             delay(waitTime)
             RouterUtils.intent(RouterUrls.ROUTER_URL_MAIN)
             finish()
         }
-
     }
 
     /**
