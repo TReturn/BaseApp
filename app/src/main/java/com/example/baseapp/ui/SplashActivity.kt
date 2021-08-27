@@ -2,6 +2,7 @@ package com.example.baseapp.ui
 
 import android.os.Bundle
 import android.view.KeyEvent
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.baseapp.BuildConfig
 import com.example.baseapp.R
@@ -39,7 +40,8 @@ class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>() {
 
     private fun toMainActivity() {
         val waitTime: Long = if (BuildConfig.DEBUG) 0L else MMKVKeys.SPLASH_TIME
-        CoroutineScope(Job()).launch {
+        //绑定lifecycle的协程
+        lifecycleScope.launch {
             delay(waitTime)
             RouterUtils.intent(RouterUrls.ROUTER_URL_MAIN)
             finish()

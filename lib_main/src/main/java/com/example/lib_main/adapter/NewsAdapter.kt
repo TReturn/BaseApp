@@ -4,7 +4,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.lib_base.utils.image.GlideUtils
 import com.example.lib_main.R
-import com.example.lib_main.model.NewsDataBean
+import com.example.lib_main.model.GankCategoryTypeBean
 
 /**
  * @CreateDate : 2021/8/1 1:49
@@ -12,22 +12,31 @@ import com.example.lib_main.model.NewsDataBean
  * @Description :
  */
 class NewsAdapter :
-    BaseMultiItemQuickAdapter<NewsDataBean.Result.Data, BaseViewHolder>() {
+    BaseMultiItemQuickAdapter<GankCategoryTypeBean.Data, BaseViewHolder>() {
 
-    override fun convert(holder: BaseViewHolder, item: NewsDataBean.Result.Data) {
+    override fun convert(holder: BaseViewHolder, item: GankCategoryTypeBean.Data) {
 
         holder.setText(R.id.tvNewsTitle, item.title)
-        holder.setText(R.id.tvNewsSource, item.authorName)
-        GlideUtils.loadRoundImageTransform(item.thumbnailPicS, holder.getView(R.id.ivNewsPic), 12)
+        holder.setText(R.id.tvNewsSource, item.author)
+
         when (holder.itemViewType) {
+            0 -> {
+                holder.setText(R.id.tvNewsDesc, item.desc)
+            }
+            1 -> {
+                GlideUtils.loadRoundImageTransform(item.images[0], holder.getView(R.id.ivNewsPic), 12)
+                holder.setText(R.id.tvNewsDesc, item.desc)
+            }
             2 -> {
-                GlideUtils.loadRoundImageTransform(item.thumbnailPicS02, holder.getView(R.id.ivNewsPic2), 12)
-                GlideUtils.loadRoundImageTransform(item.thumbnailPicS03, holder.getView(R.id.ivNewsPic3), 12)
+                GlideUtils.loadRoundImageTransform(item.images[0], holder.getView(R.id.ivNewsPic), 12)
+                GlideUtils.loadRoundImageTransform(item.images[1], holder.getView(R.id.ivNewsPic2), 12)
+                GlideUtils.loadRoundImageTransform(item.images[2], holder.getView(R.id.ivNewsPic3), 12)
             }
         }
     }
 
     init {
+        addItemType(0, R.layout.item_news_no_pic)
         addItemType(1, R.layout.item_news_one_pic)
         addItemType(2, R.layout.item_news_three_pic)
     }

@@ -5,33 +5,42 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="vm"
             type="com.example.lib_main.viewmodel.NewsViewModel" />
     </data>
 
-
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srlEnableLoadMore="true">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.example.lib_base.magic.RefreshSlideLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvNews"
+            <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srlEnableLoadMore="true">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNews"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+        </com.example.lib_base.magic.RefreshSlideLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </layout>

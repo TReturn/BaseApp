@@ -26,16 +26,7 @@ class MyClipPagerTitleView(context: Context) : View(context),
     private var mClipPercent = 0f
     private lateinit var mPaint: Paint
     private val mTextBounds = Rect()
-    private fun init(context: Context) {
-        val textSize = UIUtil.dip2px(context, 14.0)
-        mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mPaint.textSize = textSize.toFloat()
-        //设置粗体
-        mPaint.isFakeBoldText = true
-        mPaint.typeface = TextFontUtils.getTypeFace()
-        val padding = UIUtil.dip2px(context, 10.0)
-        setPadding(padding, 0, padding, 0)
-    }
+
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         measureTextBounds()
@@ -101,12 +92,14 @@ class MyClipPagerTitleView(context: Context) : View(context),
     override fun onSelected(index: Int, totalCount: Int) {
         mPaint.textSize = UIUtil.dip2px(context, 16.0).toFloat()
     }
+
     /**
      * 未选中状态默认字体大小
      */
     override fun onDeselected(index: Int, totalCount: Int) {
         mPaint.textSize = UIUtil.dip2px(context, 14.0).toFloat()
     }
+
     override fun onLeave(index: Int, totalCount: Int, leavePercent: Float, leftToRight: Boolean) {
         mLeftToRight = !leftToRight
         mClipPercent = 1.0f - leavePercent
@@ -171,6 +164,13 @@ class MyClipPagerTitleView(context: Context) : View(context),
     }
 
     init {
-        init(context)
+        val textSize = UIUtil.dip2px(context, 14.0)
+        mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        mPaint.textSize = textSize.toFloat()
+        //设置粗体
+        mPaint.isFakeBoldText = true
+        mPaint.typeface = TextFontUtils.getTypeFace()
+        val padding = UIUtil.dip2px(context, 10.0)
+        setPadding(padding, 0, padding, 0)
     }
 }

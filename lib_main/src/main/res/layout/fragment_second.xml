@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.example.lib_main.viewmodel.SecondViewModel" />
     </data>
 
 
@@ -23,7 +24,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.viewpager.widget.ViewPager
+
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpNews"
             android:layout_width="match_parent"
             android:layout_height="0dp"

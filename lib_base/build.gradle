@@ -59,6 +59,11 @@ dependencies {
     androidTestImplementation rootProject.depsLibs.espressoCore
 
     //官方拓展库
+    api rootProject.depsLibs.recyclerview
+    implementation (rootProject.depsLibs.viewpager2,{
+        exclude module: 'recyclerview'
+    })
+    api rootProject.depsLibs.viewpager2
     api rootProject.depsLibs.coroutines_core
     api rootProject.depsLibs.coroutines_android
     api rootProject.depsLibs.livedata

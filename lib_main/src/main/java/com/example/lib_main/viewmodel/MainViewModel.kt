@@ -56,7 +56,6 @@ class MainViewModel : BaseViewModel() {
 
         scopeNetLife {
             val data = Get<BeautyBean>(ApiUrls.getGankBeauty(pageNo,pageSize)) {
-                converter = GankSerializationConverter()
             }.await().data
 
             //请求成功
@@ -92,7 +91,6 @@ class MainViewModel : BaseViewModel() {
     fun getBannerData() {
         scopeNetLife {
             val data = Get<GankBannerBean>(ApiUrls.GANK_CAROUSEL) {
-                converter = GankSerializationConverter()
             }.await().data
 
             val outData: MutableList<BaseBannerData> = ArrayList<BaseBannerData>()

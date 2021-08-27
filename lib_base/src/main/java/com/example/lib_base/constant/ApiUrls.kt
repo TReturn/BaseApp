@@ -21,9 +21,6 @@ object ApiUrls {
     //聚合图书电商数据
     const val JVHE_BOOKS = "http://apis.juhe.cn/goodbook/query"
 
-    //干货集中营轮播API
-    const val GANK_CAROUSEL = "/banners"
-
 
     //彩云天气API
     const val CAIYUN_WEATHER_REALTIME =
@@ -34,9 +31,34 @@ object ApiUrls {
         return "${CAIYUN_WEATHER_REALTIME}/${lng},${lat}/realtime.json"
     }
 
-    //干货集中营妹子API
-    fun getGankBeauty(pageNo:Int = 1,pageSize:Int = 10):String{
+    /**
+     * 干货集中营提供的API
+     */
+
+    //轮播
+    const val GANK_CAROUSEL = "/banners"
+
+    /**
+     * 妹子图列表
+     * @param pageNo Int
+     * @param pageSize Int
+     * @return String
+     */
+    fun getGankBeauty(pageNo: Int = 1, pageSize: Int = 10): String {
         return "/data/category/Girl/type/Girl/page/$pageNo/count/$pageSize"
     }
 
+    //文章所有子分类
+    const val GANK_CATEGORY = "/categories/GanHuo"
+
+    /**
+     * 具体子分类下的列表
+     * @param type 类型：“Android”
+     * @param pageNo Int
+     * @param pageSize Int
+     * @return String
+     */
+    fun getGankCategoryType(type: String, pageNo: Int = 1, pageSize: Int = 10): String {
+        return "/data/category/GanHuo/type/$type/page/$pageNo/count/$pageSize"
+    }
 }

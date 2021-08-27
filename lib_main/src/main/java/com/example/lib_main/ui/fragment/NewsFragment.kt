@@ -28,9 +28,9 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        mDatabind.viewmodel = mViewModel
+        mDatabind.vm = mViewModel
         arguments?.run {
-            newsType = getString(TYPE, "top")
+            newsType = getString(TYPE, "Android")
         }
         initAdapter()
 
@@ -40,13 +40,13 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     }
 
     override fun createObserver() {
-        mViewModel.newsDataState.observe(viewLifecycleOwner, {
+        mViewModel.categoryTypeDataState.observe(viewLifecycleOwner, {
             loadListData(it,newsAdapter,mDatabind.refreshLayout)
         })
     }
 
     private fun refreshData(isRefresh:Boolean){
-        mViewModel.getNewsData(isRefresh,newsType,10)
+        mViewModel.getCategoryTypeData(isRefresh,newsType)
     }
 
     private fun initAdapter() {

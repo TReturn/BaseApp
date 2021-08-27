@@ -13,4 +13,10 @@
         <attr name="textColor" format="reference|color" />
         <attr name="overScrollColor" format="reference|color" />
     </declare-styleable>
+
+    <!--values/attrs.xml-->
+    <declare-styleable name="FixDragLayout">
+        <attr name="android:orientation" />
+    </declare-styleable>
+
 </resources>

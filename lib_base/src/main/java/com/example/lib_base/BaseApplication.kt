@@ -13,7 +13,9 @@ import com.drake.net.okhttp.*
 import com.drake.net.request.BaseRequest
 import com.example.lib_base.constant.ApiUrls
 import com.example.lib_base.constant.SdkKeys
+import com.example.lib_base.net.GankSerializationConverter
 import com.example.lib_base.net.SerializationConverter
+import com.example.lib_base.utils.log.LogUtils
 import com.hjq.toast.ToastUtils
 import com.hjq.toast.style.WhiteToastStyle
 import com.orhanobut.logger.AndroidLogAdapter
@@ -67,7 +69,7 @@ open class BaseApplication : Application() {
         //协程网络请求库初始化
         NetConfig.init(ApiUrls.BASE_GANK_URL) {
 
-            setConverter(SerializationConverter())
+            setConverter(GankSerializationConverter())
 
             // 超时设置
             connectTimeout(2, TimeUnit.MINUTES)
@@ -86,6 +88,7 @@ open class BaseApplication : Application() {
             setErrorHandler(object : NetErrorHandler {
                 override fun onError(e: Throwable) {
                     ToastUtils.show(e.message)
+                    LogUtils.d("请求出错：\nMESSAGE:${e.message}\nURL:${e.localizedMessage}")
                 }
             })
 

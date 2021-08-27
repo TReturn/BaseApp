@@ -13,17 +13,18 @@ ext {
 
     depsVersion = [
             //官方基础库
-            kotlinStdlib        : '1.5.20',
+            kotlinStdlib        : '1.5.30',
             coreKtx             : '1.3.2',
             appcompat           : '1.3.0',
-            material            : '1.2.1',
+            material            : '1.3.0',
             constraintlayout    : '2.0.4',
             junit               : '4.13.1',
             junitTest           : '1.1.2',
             espressoCore        : '3.3.0',
 
             //官方拓展库
-            recyclerview        : '1.1.0',
+            recyclerview        : '1.2.1',
+            viewpager2          : '1.1.0-beta01',
             coroutines_core     : '1.5.1',
 
             //Jetpack库
@@ -77,6 +78,7 @@ ext {
 
             //官方拓展库
             recyclerview        : "androidx.recyclerview:recyclerview:${depsVersion.recyclerview}",
+            viewpager2          : "androidx.viewpager2:viewpager2:${depsVersion.viewpager2}",
             //协程
             coroutines_core     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${depsVersion.coroutines_core}",
             coroutines_android  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${depsVersion.coroutines_core}",

@@ -287,5 +287,27 @@
 -dontwarn com.just.agentweb.**
 -keepclassmembers class com.just.agentweb.sample.common.AndroidInterface{ *; }
 
+#Serialization Json实例化混淆
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt # core serialization annotations
+
+# kotlinx-serialization-json specific. Add this if you have java.lang.NoClassDefFoundError kotlinx.serialization.json.JsonObjectSerializer
+-keepclassmembers class kotlinx.serialization.json.** {
+    *** Companion;
+}
+-keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+# Change here com.yourcompany.yourpackage
+-keep,includedescriptorclasses class com.example.baseapp.**$$serializer { *; } # <-- change package name to your app's
+-keepclassmembers class com.example.baseapp.** { # <-- change package name to your app's
+    *** Companion;
+}
+-keepclasseswithmembers class com.example.baseapp.** { # <-- change package name to your app's
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+
 
 
