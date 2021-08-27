@@ -2,6 +2,7 @@ package com.example.lib_main.ui.fragment
 
 import android.os.Bundle
 import com.example.lib_base.base.BaseFragment
+import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentFourBinding
 import com.example.lib_main.databinding.FragmentThirdBinding
@@ -19,7 +20,6 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-
     }
 
     override fun initData() {

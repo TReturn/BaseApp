@@ -20,6 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/flTranslucent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.hjq.shape.layout.ShapeConstraintLayout
             android:id="@+id/clWeather"
             android:layout_width="wrap_content"
@@ -28,7 +36,7 @@
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent"
             app:shape="rectangle"
             app:shape_radius="16dp"
             app:shape_solidColor="@color/gray_bg_color"
@@ -83,8 +91,6 @@
             </LinearLayout>
 
 
-
-
         </com.hjq.shape.layout.ShapeConstraintLayout>
 
 
@@ -96,10 +102,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/clWeather"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/clWeather"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent"
             app:shape="rectangle"
             app:shape_radius="16dp"
             app:shape_solidColor="@color/color_white"

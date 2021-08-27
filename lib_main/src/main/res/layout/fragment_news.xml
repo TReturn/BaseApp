@@ -15,17 +15,17 @@
 
         <com.example.lib_base.magic.RefreshSlideLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.scwang.smart.refresh.layout.SmartRefreshLayout
                 android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srlEnableLoadMore="true">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -37,10 +37,7 @@
         </com.example.lib_base.magic.RefreshSlideLayout>
 
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </layout>

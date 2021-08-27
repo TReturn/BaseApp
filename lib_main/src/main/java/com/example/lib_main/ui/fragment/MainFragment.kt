@@ -16,6 +16,8 @@ import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.banner.BaseBannerData
 import com.example.lib_base.utils.image.BigImageUtils
 import com.example.lib_base.utils.image.GlideUtils
+import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
+import com.example.lib_base.utils.ui.ViewLayoutUtils
 import com.example.lib_main.R
 import com.example.lib_main.adapter.BeautyAdapter
 import com.example.lib_main.databinding.FragmentMainBinding
@@ -45,8 +47,9 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
-        initAdapter()
 
+        ViewLayoutUtils.setHeight(mDatabind.flTranslucent,QMUIStatusBarHelper.getStatusbarHeight(activity))
+        initAdapter()
         mDatabind.refreshLayout.autoRefresh()
         mDatabind.refreshLayout.setOnRefreshListener { refreshData(true) }
         mDatabind.refreshLayout.setOnLoadMoreListener { refreshData(false) }

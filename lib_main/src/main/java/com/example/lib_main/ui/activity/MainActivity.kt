@@ -2,12 +2,13 @@ package com.example.lib_main.ui.activity
 
 import android.os.Bundle
 import android.view.KeyEvent
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.interceptLongClick
+import com.example.lib_base.utils.qmui.QMUIDisplayHelper.getStatusBarHeight
+import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.databinding.ActivityMainBinding
@@ -26,7 +27,7 @@ import java.util.*
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private var firstTime = 0L
     private var delayTime = 2000L
-
+    private var toolBarViewHeight = 0
 
     override fun layoutId(): Int {
         return R.layout.activity_main
@@ -35,11 +36,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
+        toolBarViewHeight = QMUIStatusBarHelper.getStatusbarHeight(this)
+        //修复切换底部导航栏时Icon未改变
         mDatabind.bottomNavigation.itemIconTintList = null
 
         //初始化显示内容
         val fragmentList: MutableList<Fragment> = ArrayList()
-        val titleList: MutableList<String> = ArrayList()
 
         fragmentList.add(MainFragment())
         fragmentList.add(SecondFragment())
@@ -62,6 +64,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             R.id.navigation_four
         )
 
+        //沉浸状态栏
+        QMUIStatusBarHelper.translucent(this)
+
+        //首页自动贴边View点击事件
         mDatabind.slFruitImage.setOnDragViewClickListener(object :
             SlideImageView.OnDrawViewClickListener {
             override fun onDragViewClick() {

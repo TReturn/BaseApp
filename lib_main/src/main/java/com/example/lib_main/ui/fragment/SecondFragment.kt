@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.ext.bindViewPager2
 import com.example.lib_base.ext.init
+import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
+import com.example.lib_base.utils.ui.ViewLayoutUtils
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentSecondBinding
 import com.example.lib_main.viewmodel.SecondViewModel
@@ -28,6 +30,7 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
+        ViewLayoutUtils.setHeight(  mDatabind.flTranslucent, QMUIStatusBarHelper.getStatusbarHeight(activity))
         activity?.let {
             //初始化viewpager2
             mDatabind.vpNews.init(it, fragmentList)

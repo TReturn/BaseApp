@@ -10,8 +10,4 @@ object StaticConstants {
     //扫描二维码回调
     const val SCAN_REQUEST_CODE = 1001
 
-    const val NEWS_TOP = "top"
-    const val NEWS_TECHNOLOGY = "keji"
-    const val NEWS_ENTERTAINMENT = "yule"
-    const val NEWS_INTERNATIONALITY = "guoji"
 }

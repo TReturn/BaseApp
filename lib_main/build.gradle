@@ -69,5 +69,6 @@ dependencies {
     implementation rootProject.depsLibs.qrcode
     implementation rootProject.depsLibs.labelsview
     implementation rootProject.depsLibs.lottie
+    implementation rootProject.depsLibs.circleimageview
 
 }

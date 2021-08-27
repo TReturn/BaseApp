@@ -6,6 +6,8 @@ import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.router.RouterUtils
+import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
+import com.example.lib_base.utils.ui.ViewLayoutUtils
 import com.example.lib_main.R
 import com.example.lib_main.adapter.NewsAdapter
 import com.example.lib_main.databinding.FragmentNewsBinding

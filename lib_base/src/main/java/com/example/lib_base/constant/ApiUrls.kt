@@ -12,15 +12,16 @@ object ApiUrls {
     //百度搜索
     const val BAIDU_SEARCH_URL = "https://www.baidu.com/s?ie=UTF-8&wd="
 
-    //百度搜索
+    //百度IP地址定位
     const val BAIDU_IP_LOCATION_URL = "https://api.map.baidu.com/location/ip"
 
-    //聚合头条新闻
-    const val JVHE_NEWS = "http://v.juhe.cn/toutiao/index"
+    //必应每日一图
+    const val BING_PICTURE = "http://guolin.tech/api/bing_pic"
 
-    //聚合图书电商数据
-    const val JVHE_BOOKS = "http://apis.juhe.cn/goodbook/query"
 
+    /**
+     * 彩云天气相关API
+     */
 
     //彩云天气API
     const val CAIYUN_WEATHER_REALTIME =
@@ -31,8 +32,9 @@ object ApiUrls {
         return "${CAIYUN_WEATHER_REALTIME}/${lng},${lat}/realtime.json"
     }
 
+
     /**
-     * 干货集中营提供的API
+     * 干货集中营相关API
      */
 
     //轮播
