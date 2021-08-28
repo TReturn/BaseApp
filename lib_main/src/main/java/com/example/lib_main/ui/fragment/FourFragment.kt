@@ -1,12 +1,16 @@
 package com.example.lib_main.ui.fragment
 
 import android.os.Bundle
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentFourBinding
-import com.example.lib_main.databinding.FragmentThirdBinding
+import com.hjq.toast.ToastUtils
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+
 
 /**
  * @CreateDate : 2020/12/31
@@ -20,11 +24,38 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        //沉浸状态栏
+        QMUIStatusBarHelper.translucent(activity)
+        mDatabind.toolbar.inflateMenu(R.menu.setting_menu)
+
+        //设置渐变监听
+        mDatabind.collapseLayout.setOnScrimsListener { layout, shown ->
+
+        }
+
+        //标题栏菜单监听
+        mDatabind.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.ivDarkSwitch -> ProxyClick().toSwitch()
+                R.id.ivSetting -> ProxyClick().toSetting()
+            }
+            true
+        }
+
     }
 
     override fun initData() {
 
     }
 
+    inner class ProxyClick {
+        fun toSwitch() {
+
+        }
+
+        fun toSetting() {
+
+        }
+    }
 
 }

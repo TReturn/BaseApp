@@ -11,6 +11,7 @@ import com.example.lib_base.R
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.databinding.ActivityWebBinding
+import com.example.lib_base.utils.log.LogUtils
 import com.hjq.bar.OnTitleBarListener
 import com.just.agentweb.AgentWeb
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -56,5 +57,7 @@ class WebActivity : BaseActivity<BaseViewModel, ActivityWebBinding>() {
             .createAgentWeb()
             .ready()
             .go(webUrl)
+
+        LogUtils.d("WEB:$webUrl")
     }
 }

@@ -9,9 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:paddingBottom="8dp">
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -24,7 +22,7 @@
             android:maxLines="2"
             android:textStyle="bold"
             android:orientation="vertical"
-            android:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→"
+            tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→"
             style="@style/text_black_14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:maxLines="4"
             android:src="@drawable/ic_list_check"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
@@ -48,22 +46,33 @@
             android:id="@+id/tvNewsSource"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="点点医讯"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvNewsTime"
+            app:layout_constraintStart_toStartOf="@+id/tvNewsDesc"
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc"
+            tools:text="点点医讯" />
+
+        <TextView
+            android:id="@+id/tvNewsTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="2021-8-29"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
-            app:layout_constraintStart_toStartOf="@+id/tvNewsDesc"
             app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc" />
 
         <View
-            android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1px"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/color_gray"
-            android:layout_marginTop="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
-            app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNewsSource" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

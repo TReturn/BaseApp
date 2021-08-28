@@ -18,14 +18,15 @@ class NewsAdapter :
 
         holder.setText(R.id.tvNewsTitle, item.title)
         holder.setText(R.id.tvNewsSource, item.author)
+        holder.setText(R.id.tvNewsTime, item.publishedAt)
+        holder.setText(R.id.tvNewsDesc, item.desc)
 
         when (holder.itemViewType) {
             0 -> {
-                holder.setText(R.id.tvNewsDesc, item.desc)
+
             }
             1 -> {
                 GlideUtils.loadRoundImageTransform(item.images[0], holder.getView(R.id.ivNewsPic), 12)
-                holder.setText(R.id.tvNewsDesc, item.desc)
             }
             2 -> {
                 GlideUtils.loadRoundImageTransform(item.images[0], holder.getView(R.id.ivNewsPic), 12)

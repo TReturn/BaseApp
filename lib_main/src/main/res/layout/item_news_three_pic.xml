@@ -9,9 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:paddingBottom="8dp">
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -30,38 +28,53 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tvNewsDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="13sp"
+            android:maxLines="2"
+            android:src="@drawable/ic_list_check"
+            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"/>
+
 
         <LinearLayout
             android:id="@+id/llPic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
             app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle">
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivNewsPic"
                 android:layout_width="0dp"
-                android:layout_height="66dp"
+                android:layout_height="72dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_list_check" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivNewsPic2"
                 android:layout_width="0dp"
-                android:layout_height="66dp"
+                android:layout_height="72dp"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_list_check" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivNewsPic3"
                 android:layout_width="0dp"
-                android:layout_height="66dp"
+                android:layout_height="72dp"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_list_check" />
         </LinearLayout>
 
@@ -69,22 +82,32 @@
             android:id="@+id/tvNewsSource"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="点点医讯"
             android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
-            app:layout_constraintStart_toStartOf="@+id/llPic"
+            app:layout_constraintEnd_toStartOf="@+id/tvNewsTime"
+            app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
             app:layout_constraintTop_toBottomOf="@+id/llPic" />
 
+        <TextView
+            android:id="@+id/tvNewsTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
+            app:layout_constraintTop_toTopOf="@+id/tvNewsSource"
+            tools:text="2021-8-29" />
+
         <View
-            android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1px"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/color_gray"
-            android:layout_marginTop="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
-            app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNewsSource" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

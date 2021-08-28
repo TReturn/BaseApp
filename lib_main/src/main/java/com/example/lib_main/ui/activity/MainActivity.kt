@@ -64,8 +64,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             R.id.navigation_four
         )
 
-        //沉浸状态栏
-        QMUIStatusBarHelper.translucent(this)
 
         //首页自动贴边View点击事件
         mDatabind.slFruitImage.setOnDragViewClickListener(object :

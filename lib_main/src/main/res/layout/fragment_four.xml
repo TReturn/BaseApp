@@ -16,41 +16,44 @@
             android:id="@+id/appbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="#FFC671"
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay">
 
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapse_layout"
+            <com.example.lib_base.widget.XCollapsingToolbarLayout
+                android:id="@+id/collapseLayout"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="250dp"
                 android:fitsSystemWindows="true"
+                app:expandedTitleGravity="left|top"
                 app:collapsedTitleTextAppearance="@style/TextAppearance_CollapsedTitle"
-                app:contentScrim="@color/white"
+                app:contentScrim="#FFC671"
+                app:title="青柠"
+                app:expandedTitleMarginStart="114dp"
+                app:expandedTitleMarginTop="56dp"
                 app:expandedTitleTextAppearance="@style/TextAppearance_ExpandedTitle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <ImageView
+                <com.hjq.shape.view.ShapeImageView
                     android:id="@+id/ivProfileBg"
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:background="@color/white"
+                    android:layout_height="250dp"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    app:shape_endColor="#FFC671"
+                    app:shape_gradientType="linear"
+                    app:shape_angle="270"
+                    app:shape_startColor="#FFD697" />
 
 
-                <com.hjq.shape.layout.ShapeConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="64dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
                     android:layout_marginEnd="16dp"
-                    app:shape="rectangle"
-                    app:shape_radius="16dp"
-                    app:shape_solidColor="@color/color_white"
-                    app:shape_strokeColor="@color/color_refresh_text"
-                    app:shape_strokeWidth="1dp">
+                    android:fitsSystemWindows="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clUserDetail"
@@ -71,13 +74,13 @@
 
                         <TextView
                             android:id="@+id/textView"
-                            style="@style/text_black_20sp"
+                            style="@style/text_white_20sp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
-                            android:text="青柠"
+                            tools:text="青柠"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toStartOf="@+id/ivUserMore"
                             app:layout_constraintHorizontal_bias="0.501"
@@ -85,7 +88,7 @@
                             app:layout_constraintTop_toTopOf="@+id/ivProfile" />
 
                         <TextView
-                            style="@style/text_black_14sp"
+                            style="@style/text_white_14sp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -99,7 +102,7 @@
                             android:layout_width="12dp"
                             android:layout_height="12dp"
                             android:layout_marginEnd="16dp"
-                            android:src="@drawable/ic_default_more"
+                            android:src="@drawable/ic_more_white"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -128,14 +131,14 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                style="@style/text_black_16sp"
+                                style="@style/text_white_16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="230"
                                 android:textStyle="bold" />
 
                             <TextView
-                                style="@style/text_black_12sp"
+                                style="@style/text_white_12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="收藏" />
@@ -155,14 +158,14 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                style="@style/text_black_16sp"
+                                style="@style/text_white_16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="130"
                                 android:textStyle="bold" />
 
                             <TextView
-                                style="@style/text_black_12sp"
+                                style="@style/text_white_12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="关注" />
@@ -170,31 +173,76 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:id="@+id/llFans"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                style="@style/text_white_16sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2130"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/text_white_12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="粉丝" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llDynamic"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                style="@style/text_white_16sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/text_white_12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="动态" />
+
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
 
-
-                </com.hjq.shape.layout.ShapeConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/appbar_layout_toolbar"
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.PopupOverlay"
-                    app:titleTextColor="@color/color_white">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="青柠"
-                        android:textColor="@color/black" />
-
-                </androidx.appcompat.widget.Toolbar>
+                    app:titleTextColor="@color/color_white"/>
 
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.example.lib_base.widget.XCollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 

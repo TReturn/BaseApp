@@ -135,7 +135,7 @@ class MainViewModel : BaseViewModel() {
 
     init {
         weatherSky.value = ResourceUtils.getString(R.string.main_is_loading)
-        isShowFruitView.value = true
+        isShowFruitView.value = false
     }
 
 }
