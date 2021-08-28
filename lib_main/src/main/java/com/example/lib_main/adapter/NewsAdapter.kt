@@ -1,5 +1,6 @@
 package com.example.lib_main.adapter
 
+import com.blankj.utilcode.util.TimeUtils
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.lib_base.utils.image.GlideUtils
@@ -18,7 +19,7 @@ class NewsAdapter :
 
         holder.setText(R.id.tvNewsTitle, item.title)
         holder.setText(R.id.tvNewsSource, item.author)
-        holder.setText(R.id.tvNewsTime, item.publishedAt)
+        holder.setText(R.id.tvNewsTime, TimeUtils.getFriendlyTimeSpanByNow(item.publishedAt))
         holder.setText(R.id.tvNewsDesc, item.desc)
 
         when (holder.itemViewType) {

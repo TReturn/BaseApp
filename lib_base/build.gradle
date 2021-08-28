@@ -92,6 +92,8 @@ dependencies {
     api rootProject.depsLibs.xpopup
     api rootProject.depsLibs.logger
 
+    api rootProject.depsLibs.utilcodex
+
     //第三方库（implementation：模块内可调用）
     implementation rootProject.depsLibs.xbanner
     implementation rootProject.depsLibs.mmkv
