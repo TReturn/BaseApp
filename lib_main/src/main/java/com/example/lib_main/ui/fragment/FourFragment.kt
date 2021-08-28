@@ -24,8 +24,6 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        //沉浸状态栏
-        QMUIStatusBarHelper.translucent(activity)
         mDatabind.toolbar.inflateMenu(R.menu.setting_menu)
 
         //设置渐变监听
