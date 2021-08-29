@@ -18,4 +18,4 @@
 * 5.开发中常见功能实现：刷新、加载更多、RecyclerView多布局、轮播图、扫码、TabLayout、瀑布流、验证码等。
 * 6.自定义View思路和基本实现。
 * 7.各种嵌套带来的滑动冲突解决思路和基本实现。
-* 8.夜间模式、Material Design沉浸式，
+* 8.夜间模式、Material Design沉浸式。
