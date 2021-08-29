@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/item_white_bg">
 
 
         <TextView
@@ -23,7 +24,8 @@
             android:textStyle="bold"
             android:orientation="vertical"
             tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→"
-            style="@style/text_black_14sp"
+            android:textSize="14sp"
+            android:textColor="@color/text_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +38,7 @@
             android:layout_marginTop="6dp"
             android:textSize="13sp"
             android:maxLines="4"
+            android:textColor="@color/text_default"
             android:src="@drawable/ic_list_check"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
             app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
@@ -49,6 +52,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:textSize="10sp"
+            android:textColor="@color/text_default"
             app:layout_constraintEnd_toStartOf="@+id/tvNewsTime"
             app:layout_constraintStart_toStartOf="@+id/tvNewsDesc"
             app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc"
@@ -61,6 +65,7 @@
             android:layout_marginTop="16dp"
             tools:text="2021-8-29"
             android:textSize="10sp"
+            android:textColor="@color/text_default"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc" />
 

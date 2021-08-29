@@ -38,11 +38,11 @@ class WebActivity : BaseActivity<BaseViewModel, ActivityWebBinding>() {
         ARouter.getInstance().inject(this)
 
         if (!TextUtils.isEmpty(title)) {
-            mDatabind.titleBar.title = title
+            mDatabind.include.titleBar.title = title
         }
 
         //标题栏点击事件
-        mDatabind.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+        mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(view: View?) {
                 finish()
             }

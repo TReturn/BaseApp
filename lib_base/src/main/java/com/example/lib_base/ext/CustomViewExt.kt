@@ -6,18 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.example.lib_base.BaseApplication
 import com.example.lib_base.R
+import com.example.lib_base.constant.MMKVKeys
 import com.example.lib_base.list.ListDataUiState
 import com.example.lib_base.magic.ScaleTransitionPagerTitleView
+import com.example.lib_base.utils.data.MMKVUtils
+import com.example.lib_base.utils.ui.UiUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import me.hgj.jetpackmvvm.base.appContext
 import me.hgj.jetpackmvvm.ext.util.toHtml
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.buildins.UIUtil
@@ -34,7 +37,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
  */
 
 
-
 /**
  * MagicIndicator框架绑定ViewPager2
  * @receiver MagicIndicator
@@ -44,29 +46,39 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
  * @param action Function1<[@kotlin.ParameterName] Int, Unit>
  */
 fun MagicIndicator.bindViewPager2(
-    context:FragmentActivity,
     viewPager: ViewPager2,
     mStringList: List<String> = arrayListOf(),
     type: Int,
-    action: (index: Int) -> Unit = {}) {
-    val commonNavigator = CommonNavigator(context)
+    action: (index: Int) -> Unit = {}
+) {
+    val commonNavigator = CommonNavigator(BaseApplication.context)
     commonNavigator.isAdjustMode = type == 2
     commonNavigator.isReselectWhenLayout = false
     commonNavigator.adapter = object : CommonNavigatorAdapter() {
 
         override fun getCount(): Int {
-            return  mStringList.size
+            return mStringList.size
         }
+
         override fun getTitleView(context: Context, index: Int): IPagerTitleView {
-            return ScaleTransitionPagerTitleView(appContext).apply {
+            return ScaleTransitionPagerTitleView(BaseApplication.context).apply {
                 //设置文本
                 text = mStringList[index].toHtml()
                 //字体大小
                 textSize = 18f
-                //未选中颜色
-                normalColor = Color.parseColor("#000000")
-                //选中颜色
-                selectedColor = Color.parseColor("#070639")
+                //无法正确加载夜间主题，加个判断切换。
+                when (MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1)) {
+                    AppCompatDelegate.MODE_NIGHT_NO -> {
+                        //未选中颜色
+                        normalColor = UiUtils.getColor(R.color.tab_layout_day_normal)
+                        //选中颜色
+                        selectedColor = UiUtils.getColor(R.color.tab_layout_day_selected)
+                    }
+                    AppCompatDelegate.MODE_NIGHT_YES -> {
+                        normalColor = UiUtils.getColor(R.color.tab_layout_night_normal)
+                        selectedColor = UiUtils.getColor(R.color.tab_layout_night_selected)
+                    }
+                }
                 //点击事件
                 setOnClickListener {
                     viewPager.currentItem = index
@@ -74,14 +86,15 @@ fun MagicIndicator.bindViewPager2(
                 }
             }
         }
+
         override fun getIndicator(context: Context): IPagerIndicator {
             return LinePagerIndicator(context).apply {
                 mode = LinePagerIndicator.MODE_EXACTLY
                 //线条的宽高度
-                lineHeight = UIUtil.dip2px(appContext, 3.0).toFloat()
-                lineWidth = UIUtil.dip2px(appContext, 30.0).toFloat()
+                lineHeight = UIUtil.dip2px(BaseApplication.context, 3.0).toFloat()
+                lineWidth = UIUtil.dip2px(BaseApplication.context, 30.0).toFloat()
                 //线条的圆角
-                roundRadius = UIUtil.dip2px(appContext, 6.0).toFloat()
+                roundRadius = UIUtil.dip2px(BaseApplication.context, 6.0).toFloat()
                 startInterpolator = AccelerateInterpolator()
                 endInterpolator = DecelerateInterpolator(2.0f)
                 //线条的颜色
@@ -123,7 +136,7 @@ fun MagicIndicator.bindViewPager2(
  * @return ViewPager2
  */
 fun ViewPager2.init(
-    context: FragmentActivity,
+    context: Fragment,
     fragments: ArrayList<Fragment>,
     isUserInputEnabled: Boolean = true
 ): ViewPager2 {

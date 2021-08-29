@@ -44,8 +44,8 @@ object MMKVUtils {
         kv?.encode(key, value)
     }
 
-    fun getInt(key: String): Int {
-        return kv.decodeInt(key, 0)
+    fun getInt(key: String, defaultValue: Int = 0): Int {
+        return kv.decodeInt(key, defaultValue)
     }
 
     /**

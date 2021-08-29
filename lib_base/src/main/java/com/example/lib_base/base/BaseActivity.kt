@@ -1,8 +1,12 @@
 package com.example.lib_base.base
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
+import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
+import com.example.lib_base.utils.ui.UiUtils
 import me.hgj.jetpackmvvm.base.activity.BaseVmDbActivity
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -19,7 +23,18 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        QMUIStatusBarHelper.setStatusBarLightMode(this)
+
+        //白天、夜间模式下设置对应状态栏颜色
+        when (MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1) ){
+            AppCompatDelegate.MODE_NIGHT_NO ->{
+                //设置状态栏黑色字体图标
+                QMUIStatusBarHelper.setStatusBarLightMode(this)
+            }
+            AppCompatDelegate.MODE_NIGHT_YES ->{
+                //设置状态栏白色字体图标
+                QMUIStatusBarHelper.setStatusBarDarkMode(this)
+            }
+        }
     }
 
     /**

@@ -11,16 +11,16 @@
 
 
     <!--文本颜色-->
-    <color name="text_black">#000000</color>
-    <color name="text_default">#8A000000</color>
+    <color name="text_black">#d1d1d1</color>
+    <color name="text_default">#7b7e87</color>
     <color name="text_white">#FFFFFF</color>
 
     <!--Item颜色-->
-    <color name="item_white_bg">#FFFFFF</color>
+    <color name="item_white_bg">#191919</color>
 
     <!--底部导航栏背景颜色-->
-    <color name="bottom_navigation_bg">#FFFFFF</color>
-    <color name="bottom_navigation_title">#3F51B5</color>
+    <color name="bottom_navigation_bg">#1e1e1e</color>
+    <color name="bottom_navigation_title">#2e65c9</color>
 
     <!--Tab_layout文本颜色-->
     <color name="tab_layout_day_normal">#8A000000</color>
@@ -29,15 +29,14 @@
     <color name="tab_layout_night_selected">#d1d1d1</color>
 
     <!--Toolbar颜色-->
-    <color name="title_bar_bg">#FFFFFF</color>
-    <color name="title_bar_text">#000000</color>
-    <color name="title_bar_line">#FFFFFF</color>
+    <color name="title_bar_bg">#111111</color>
+    <color name="title_bar_text">#cfcfcf</color>
 
     <!--搜索框颜色-->
-    <color name="search_bg">#f2f2f2</color>
+    <color name="search_bg">#494949</color>
 
     <!--“我的”界面渐变色-->
     <color name="profile_start_bg">#2e65c9</color>
-    <color name="profile_end_bg">#d0dff6</color>
-    <color name="profile_center_bg">#5b89d7</color>
+    <color name="profile_end_bg">#263548</color>
+    <color name="profile_center_bg">#2b4a80</color>
 </resources>

@@ -10,6 +10,7 @@ import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
 import com.example.lib_base.utils.image.BigImageUtils
+import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
 import com.example.lib_main.adapter.BeautyAdapter
 import com.example.lib_main.adapter.BeautyDetailAdapter
@@ -36,7 +37,8 @@ class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
         mDatabind.vm = mViewModel
         initAdapter()
 
-        mDatabind.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+        mDatabind.include.titleBar.title = UiUtils.getString(R.string.main_beauty_title)
+        mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(view: View?) {
                 finish()
             }

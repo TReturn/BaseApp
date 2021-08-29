@@ -25,8 +25,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:rightColor="@color/color_black"
+            app:rightColor="@color/text_black"
+            android:background="@color/title_bar_bg"
+            app:titleColor="@color/title_bar_text"
+            app:leftIcon="@drawable/ic_finish"
             app:rightSize="12sp"
+            app:lineVisible="false"
             app:rightTitle="@string/main_search">
 
             <com.hjq.shape.layout.ShapeConstraintLayout
@@ -42,9 +46,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:shape="rectangle"
                 app:shape_radius="16dp"
-                app:shape_solidColor="@color/color_white"
-                app:shape_strokeColor="@color/color_refresh_text"
-                app:shape_strokeWidth="1dp">
+                app:shape_solidColor="@color/search_bg">
 
 
                 <ImageView
@@ -69,13 +71,15 @@
                     android:singleLine="true"
                     android:imeOptions="actionSearch"
                     android:maxLength="18"
+                    android:textCursorDrawable="@drawable/shape_color_edittext"
                     android:paddingStart="8dp"
                     android:paddingTop="6dp"
                     android:paddingEnd="8dp"
                     android:paddingBottom="6dp"
                     android:lines="1"
                     android:text="@{vm.searchContent}"
-                    style="@style/text_black_14sp"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/ivDeleteContent"
                     app:layout_constraintStart_toEndOf="@+id/ivSearch"
@@ -115,7 +119,8 @@
 
             <TextView
                 android:id="@+id/tvSearchRecord"
-                style="@style/text_black_14sp"
+                android:textSize="14sp"
+                android:textColor="@color/text_default"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

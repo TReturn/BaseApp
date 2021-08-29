@@ -15,7 +15,6 @@
             android:id="@+id/appbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFC671"
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -27,7 +26,7 @@
                 android:fitsSystemWindows="true"
                 app:expandedTitleGravity="left|top"
                 app:collapsedTitleTextAppearance="@style/TextAppearance_CollapsedTitle"
-                app:contentScrim="#FFC671"
+                app:contentScrim="@color/profile_center_bg"
                 app:title="青柠"
                 app:expandedTitleMarginStart="114dp"
                 app:expandedTitleMarginTop="56dp"
@@ -40,10 +39,10 @@
                     android:layout_height="250dp"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:shape_endColor="#FFC671"
+                    app:shape_endColor="@color/profile_end_bg"
                     app:shape_gradientType="linear"
-                    app:shape_angle="270"
-                    app:shape_startColor="#FFD697" />
+                    app:shape_angle="90"
+                    app:shape_startColor="@color/profile_start_bg" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,7 +72,8 @@
 
                         <TextView
                             android:id="@+id/textView"
-                            style="@style/text_white_20sp"
+                            android:textColor="@color/text_white"
+                            android:textSize="20sp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -87,7 +87,8 @@
                             app:layout_constraintTop_toTopOf="@+id/ivProfile" />
 
                         <TextView
-                            style="@style/text_white_14sp"
+                            android:textColor="@color/text_white"
+                            android:textSize="14sp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -130,14 +131,16 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                style="@style/text_white_16sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="230"
                                 android:textStyle="bold" />
 
                             <TextView
-                                style="@style/text_white_12sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="收藏" />
@@ -157,14 +160,16 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                style="@style/text_white_16sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="130"
                                 android:textStyle="bold" />
 
                             <TextView
-                                style="@style/text_white_12sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="关注" />
@@ -184,14 +189,16 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                style="@style/text_white_16sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2130"
                                 android:textStyle="bold" />
 
                             <TextView
-                                style="@style/text_white_12sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="粉丝" />
@@ -211,14 +218,16 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                style="@style/text_white_16sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="1"
                                 android:textStyle="bold" />
 
                             <TextView
-                                style="@style/text_white_12sp"
+                                android:textColor="@color/text_white"
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="动态" />

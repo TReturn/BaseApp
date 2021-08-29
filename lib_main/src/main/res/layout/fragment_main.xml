@@ -33,15 +33,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/flTranslucent"
             app:shape="rectangle"
             app:shape_radius="16dp"
-            app:shape_solidColor="@color/gray_bg_color"
-            app:shape_strokeColor="@color/gray_bg_color"
-            app:shape_strokeWidth="1dp">
+            app:shape_solidColor="@color/search_bg">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/ltCloud"
@@ -65,10 +64,11 @@
 
                 <TextView
                     android:id="@+id/tvCloudInfo"
-                    style="@style/text_black_12sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{vm.weatherSky}"
+                    android:textColor="@color/text_black"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ltCloud"
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{vm.weatherTemp}"
-                    android:textColor="@color/color_black"
+                    android:textColor="@color/text_black"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -100,17 +100,15 @@
             android:layout_height="34dp"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:orientation="horizontal"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/clWeather"
             app:layout_constraintTop_toBottomOf="@+id/flTranslucent"
             app:shape="rectangle"
             app:shape_radius="16dp"
-            app:shape_solidColor="@color/color_white"
-            app:shape_strokeColor="@color/color_refresh_text"
-            app:shape_strokeWidth="1dp">
+            app:shape_solidColor="@color/search_bg">
 
 
             <ImageView

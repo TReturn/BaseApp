@@ -1,57 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!--默认TextView风格-->
-
-    <style name="text_white_12sp">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/color_white</item>
-    </style>
-    <style name="text_white_14sp">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/color_white</item>
-    </style>
-    <style name="text_white_16sp">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/color_white</item>
-    </style>
-    <style name="text_white_18sp">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/color_white</item>
-    </style>
-    <style name="text_white_20sp">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/color_white</item>
-    </style>
-
-    <style name="text_black_12sp">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/color_black</item>
-    </style>
-    <style name="text_black_14sp">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/color_black</item>
-    </style>
-    <style name="text_black_16sp">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/color_black</item>
-    </style>
-    <style name="text_black_18sp">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/color_black</item>
-    </style>
-    <style name="text_black_20sp">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/color_black</item>
-    </style>
-
-    <style name="text_bold">
-        <item name="android:textStyle">bold</item>
-    </style>
 
     <!--    沉浸相关-->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-        <item name="colorPrimaryDark">#FFC671</item>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimaryDark">@color/profile_center_bg</item>
     </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--沉浸展开-->
@@ -66,5 +20,27 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#ffffff</item>
     </style>
+
+    <!--淡入淡出动画-->
+    <style name="NormalTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/OutInAnimation</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+    </style>
+
+    <style name="OutInAnimation" parent="android:Animation" tools:ignore="ResourceName">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_out</item>
+
+    </style>
+
+    <!--底部导航栏颜色-->
+    <style name="BottomNavigation" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/bottom_navigation_title</item>
+        <item name="android:textColorSecondary">@color/text_default</item>
+    </style>
+
 
 </resources>

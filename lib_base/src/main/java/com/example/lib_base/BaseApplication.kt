@@ -4,6 +4,8 @@ import android.app.Application
 import android.app.ProgressDialog
 import android.content.Context
 import android.view.Gravity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat.recreate
 import com.alibaba.android.arouter.launcher.ARouter
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.LogRecordInterceptor
@@ -12,9 +14,10 @@ import com.drake.net.interfaces.NetErrorHandler
 import com.drake.net.okhttp.*
 import com.drake.net.request.BaseRequest
 import com.example.lib_base.constant.ApiUrls
+import com.example.lib_base.constant.MMKVKeys
 import com.example.lib_base.constant.SdkKeys
 import com.example.lib_base.net.GankSerializationConverter
-import com.example.lib_base.net.SerializationConverter
+import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.log.LogUtils
 import com.hjq.toast.ToastUtils
 import com.hjq.toast.style.WhiteToastStyle
@@ -47,6 +50,9 @@ open class BaseApplication : Application() {
 
         //MMKV键值对存储
         MMKV.initialize(this)
+
+        //1：日间模式，2：夜间模式，3：跟随系统。
+        AppCompatDelegate.setDefaultNightMode(MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1))
 
         //阿里路由
         if (BuildConfig.DEBUG) {

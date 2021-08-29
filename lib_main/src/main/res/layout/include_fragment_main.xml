@@ -44,7 +44,8 @@
 
         <TextView
             android:id="@+id/tvBeautyTitle"
-            style="@style/text_black_16sp"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

@@ -30,20 +30,21 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
-        ViewLayoutUtils.setHeight(  mDatabind.flTranslucent, QMUIStatusBarHelper.getStatusbarHeight(activity))
-        activity?.let {
-            //初始化viewpager2
-            mDatabind.vpNews.init(it, fragmentList)
-            //初始化magicIndicator
-            mDatabind.magicIndicator.bindViewPager2(it,mDatabind.vpNews, titleList, 1)
-        }
+        ViewLayoutUtils.setHeight(
+            mDatabind.flTranslucent,
+            QMUIStatusBarHelper.getStatusbarHeight(activity)
+        )
+        //初始化viewpager2
+        mDatabind.vpNews.init(this, fragmentList)
+        //初始化magicIndicator
+        mDatabind.magicIndicator.bindViewPager2(mDatabind.vpNews, titleList, 1)
     }
 
     override fun createObserver() {
         super.createObserver()
-        mViewModel.categoryDataState.observe(viewLifecycleOwner,{
+        mViewModel.categoryDataState.observe(viewLifecycleOwner, {
             //网络请求到数据再动态添加fragment
-            for (i in it.indices){
+            for (i in it.indices) {
                 titleList.add(it[i].type)
                 fragmentList.add(NewsFragment.newInstance(it[i].type))
             }
