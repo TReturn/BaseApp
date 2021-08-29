@@ -19,8 +19,10 @@
 * 7.各种嵌套带来的滑动冲突解决思路和基本实现。
 * 8.夜间模式、Material Design沉浸式。
 
-* APP下载体验：[蒲公英](https://www.pgyer.com/2qC1)。扫码下载：
+ APP下载体验：[蒲公英](https://www.pgyer.com/2qC1)。扫码下载：
+ 
 ![](picture/download_code.png)
+
 
 #### UI展示
 
