@@ -1,5 +1,4 @@
 # BaseApp 
-* APP下载体验：[蒲公英](https://www.pgyer.com/2qC1)
 
 #### MVVM+Kotlin+组件化的一套快速开发框架，解决以下开发痛点，提高开发效率，拒绝重复搬砖：
 
@@ -19,3 +18,13 @@
 * 6.自定义View思路和基本实现。
 * 7.各种嵌套带来的滑动冲突解决思路和基本实现。
 * 8.夜间模式、Material Design沉浸式。
+
+* APP下载体验：[蒲公英](https://www.pgyer.com/2qC1)。扫码下载：
+![](picture/download_code.png)
+
+#### UI展示
+
+![](picture/1.jpg) ![](picture/2.jpg) ![](picture/3.jpg)
+
+![](picture/4.jpg) ![](picture/5.jpg) ![](picture/6.jpg)
+
