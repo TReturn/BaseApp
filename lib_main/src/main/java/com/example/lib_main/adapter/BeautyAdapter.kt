@@ -3,7 +3,6 @@ package com.example.lib_main.adapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.lib_base.utils.image.GlideUtils
-import com.example.lib_base.utils.ui.ResourceUtils
 import com.example.lib_main.R
 import com.example.lib_main.model.BeautyBean
 
@@ -19,7 +18,7 @@ class BeautyAdapter :
 
         holder.setText(R.id.tvTitle, item.title)
         holder.setText(R.id.tvRead, context.getString(R.string.main_people_reading,item.views.toString()))
-        GlideUtils.loadRoundImage(item.images[0], holder.getView(R.id.ivPic), 12F)
+        GlideUtils.loadRoundImage(item.url, holder.getView(R.id.ivPic), 12F)
 
     }
 
