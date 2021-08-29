@@ -167,18 +167,6 @@
 -keep public class com.alibaba.android.arouter.facade.**{*;}
 -keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
 
-#Eventbus
--keepattributes *Annotation*
--keepclassmembers class * {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keep enum org.greenrobot.eventbus.ThreadMode { *; }
-
-# And if you use AsyncExecutor:
--keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
-    <init>(java.lang.Throwable);
-}
-
 #XBanner 图片轮播
 -keep class com.stx.xhb.xbanner.**{*;}
 
@@ -204,9 +192,6 @@
 -keep class com.yalantis.ucrop** { *; }
 -keep interface com.yalantis.ucrop** { *; }
 
-#Okio
--dontwarn org.codehaus.mojo.animal_sniffer.*
-
 
 #网络请求
 #okhttp
@@ -214,28 +199,10 @@
 -keep class com.squareup.okhttp3.** { *;}
 -dontwarn okio.**
 
-# Retrofit
--dontwarn retrofit2.**
--keep class retrofit2.** { *; }
--keepattributes Exceptions
 
 # Retrolambda
 -dontwarn java.lang.invoke.*
 
-# RxJava RxAndroid
--dontwarn sun.misc.**
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-    long producerIndex;
-    long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
-###rxandroid-1.2.1
--keepclassmembers class rx.android.**{*;}
 
 # Gson
 -keep class com.google.gson.stream.** { *; }
@@ -247,16 +214,6 @@
 -keep class com.google.gson.stream.** { *; }
 -keep class com.google.gson.examples.android.model.** { *; }
 
-#RxEasyHttp
--keep class com.zhouyou.http.model.** {*;}
--keep class com.zhouyou.http.cache.model.** {*;}
--keep class com.zhouyou.http.cache.stategy.**{*;}
-
-#DataBinding
--keepclassmembers class ** implements androidx.viewbinding.ViewBinding {
-    public static ** bind(***);
-    public static ** inflate(***);
-}
 
 #TitleBar
 -keep class com.hjq.bar.** {*;}

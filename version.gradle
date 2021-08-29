@@ -55,14 +55,14 @@ ext {
             circleimageview     : '3.1.0',
             marqueeview         : '1.4.1',
             okhttp              : '4.9.1',
-            net                 : '3.0.19',
+            net                 : '3.0.20',
             serialization       : '1.2.2',
             agentweb            : '4.1.9',
             logger              : '2.2.0',
             shapeview           : '5.2',
             qrcode              : '1.1.0',
             stream              : '1.2.1',
-            utilcodex: '1.30.6',
+            utilcodex           : '1.30.6',
     ]
 
 
@@ -193,7 +193,7 @@ ext {
             stream              : "com.annimon:stream:${depsVersion.stream}",
 
             //工具类集合
-            utilcodex : "com.blankj:utilcodex:${depsVersion.utilcodex}",
+            utilcodex           : "com.blankj:utilcodex:${depsVersion.utilcodex}",
     ]
 
 }
