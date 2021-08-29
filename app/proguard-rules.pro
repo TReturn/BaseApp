@@ -35,10 +35,6 @@
 -keepattributes Signature                   # 避免混淆泛型 如果混淆报错建议关掉
 -keepattributes SourceFile,LineNumberTable  # 抛出异常时保留代码行号
 
-#-repackageclasses
--obfuscationdictionary obfuscation-dictionary.txt
--classobfuscationdictionary class-obfuscation-dictionary.txt
--packageobfuscationdictionary package-obfuscation-dictionary.txt
 
 #输出文件记录控制，默认会在build/outputs/mapping/release生成
 #dump.txt,mapping.txt,resources.txt,seeds.txt,usage.txt
@@ -199,8 +195,6 @@
   *** rewind();
 }
 
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 #PictureSelector 2.0
 -keep class com.luck.picture.lib.** { *; }

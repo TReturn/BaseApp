@@ -53,6 +53,31 @@ android {
         jvmTarget = '1.8'
     }
 
+    // 签名配置
+    signingConfigs {
+        release {
+            try {
+                storeFile file("./jdkjapp.jks")
+                storePassword "jdkj2018"
+                keyAlias "key"
+                keyPassword "jdkj2018"
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+
+        debug {
+            try {
+                storeFile file("./jdkjapp.jks")
+                storePassword "jdkj2018"
+                keyAlias "key"
+                keyPassword "jdkj2018"
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+    }
+
 }
 
 dependencies {
