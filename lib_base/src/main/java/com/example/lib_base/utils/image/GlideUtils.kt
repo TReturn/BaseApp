@@ -19,10 +19,10 @@ import com.example.lib_base.utils.calculate.DensityUtils.dip2px
 object GlideUtils {
 
     private var requestOptions: RequestOptions = RequestOptions()
-        .placeholder(R.drawable.ic_no_picture)
-        .error(R.drawable.ic_no_picture)
-        .fallback(R.drawable.ic_no_picture)
-        .centerCrop()
+        //设置预加载图、错误图
+        .placeholder(R.color.color_gray)
+        .error(R.color.color_gray)
+        .fallback(R.color.color_gray)
 
     /**
      * 带占位图的加载图片方式，适合加载网络图片
@@ -55,6 +55,9 @@ object GlideUtils {
         //设置图片圆角角度
         val roundedCorners = RoundedCorners(dip2px(radius))
         val options = RequestOptions.bitmapTransform(roundedCorners)
+            .placeholder(R.color.color_gray)
+            .error(R.color.color_gray)
+            .fallback(R.color.color_gray)
 
         Glide.with(BaseApplication.context).load(url)
             .apply(options)
@@ -62,7 +65,7 @@ object GlideUtils {
     }
 
     /**
-     *Transform加载圆角
+     *Transform方式加载圆角
      * @param url Any
      * @param imageView ImageView
      * @param radius 圆角半径
@@ -84,7 +87,7 @@ object GlideUtils {
     @SuppressLint("CheckResult")
     fun loadRoundOverrideImage(url: Any, imageView: ImageView, width: Int, height: Int) {
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
-        requestOptions.override(160, 90)
+        requestOptions.override(width, height)
         Glide.with(BaseApplication.context).load(url)
             .apply(requestOptions)
             .into(imageView)

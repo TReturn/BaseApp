@@ -2,10 +2,8 @@ package com.example.lib_base
 
 import android.app.Application
 import android.app.ProgressDialog
-import android.content.Context
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import com.alibaba.android.arouter.launcher.ARouter
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.LogRecordInterceptor
