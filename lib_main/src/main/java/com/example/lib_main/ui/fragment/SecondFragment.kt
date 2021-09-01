@@ -60,7 +60,6 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
     }
 
     override fun initData() {
-
     }
 
 }

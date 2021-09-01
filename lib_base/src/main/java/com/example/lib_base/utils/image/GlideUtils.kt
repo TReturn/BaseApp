@@ -1,13 +1,14 @@
 package com.example.lib_base.utils.image
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.widget.ImageView
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.lib_base.BaseApplication
 import com.example.lib_base.R
 import com.example.lib_base.utils.calculate.DensityUtils.dip2px
 
@@ -29,10 +30,13 @@ object GlideUtils {
      * @param url Any
      * @param imageView ImageView
      */
-    fun loadImage(url: Any, imageView: ImageView) {
-        Glide.with(BaseApplication.context).load(url)
-            .apply(requestOptions)
-            .into(imageView)
+    fun loadImage(context: Context?, url: Any, imageView: ImageView) {
+        context?.let {
+            Glide.with(context).load(url)
+                .apply(requestOptions)
+                .into(imageView)
+        }
+
     }
 
     /**
@@ -40,9 +44,12 @@ object GlideUtils {
      * @param url Any
      * @param imageView ImageView
      */
-    fun loadImageProtist(url: Any, imageView: ImageView) {
-        Glide.with(BaseApplication.context).load(url)
-            .into(imageView)
+    fun loadImageProtist(context: Context?, url: Any, imageView: ImageView) {
+        context?.let {
+            Glide.with(context).load(url)
+                .into(imageView)
+        }
+
     }
 
     /**
@@ -51,17 +58,20 @@ object GlideUtils {
      * @param imageView ImageView
      * @param radius 圆角半径
      */
-    fun loadRoundImage(url: Any, imageView: ImageView, radius: Float) {
-        //设置图片圆角角度
-        val roundedCorners = RoundedCorners(dip2px(radius))
-        val options = RequestOptions.bitmapTransform(roundedCorners)
-            .placeholder(R.color.color_gray)
-            .error(R.color.color_gray)
-            .fallback(R.color.color_gray)
+    fun loadRoundImage(context: Context?, url: Any, imageView: ImageView, radius: Float) {
+        context?.let {
+            //设置图片圆角角度
+            val roundedCorners = RoundedCorners(dip2px(radius))
+            val options = RequestOptions.bitmapTransform(roundedCorners)
+                .placeholder(R.color.color_gray)
+                .error(R.color.color_gray)
+                .fallback(R.color.color_gray)
 
-        Glide.with(BaseApplication.context).load(url)
-            .apply(options)
-            .into(imageView)
+            Glide.with(context).load(url)
+                .apply(options)
+                .into(imageView)
+        }
+
     }
 
     /**
@@ -70,11 +80,36 @@ object GlideUtils {
      * @param imageView ImageView
      * @param radius 圆角半径
      */
-    fun loadRoundImageTransform(url: Any, imageView: ImageView, radius: Int) {
-        Glide.with(BaseApplication.context).load(url)
-            .apply(requestOptions)
-            .transform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
-            .into(imageView)
+    fun loadRoundImageTransform(
+        context: Context?,
+        url: Any,
+        imageView: ImageView,
+        radius: Int
+    ) {
+        context?.let {
+            Glide.with(context).load(url)
+                .apply(requestOptions)
+                .transform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
+                .into(imageView)
+        }
+
+    }
+
+    fun loadRoundImageTransform(
+        activity: FragmentActivity?,
+        url: Any,
+        imageView: ImageView,
+        radius: Int
+    ) {
+        activity?.let {
+            if (!activity.isDestroyed) {
+                Glide.with(activity).load(url)
+                    .apply(requestOptions)
+                    .transform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
+                    .into(imageView)
+            }
+        }
+
     }
 
     /**
@@ -85,11 +120,14 @@ object GlideUtils {
      * @param height Int
      */
     @SuppressLint("CheckResult")
-    fun loadRoundOverrideImage(url: Any, imageView: ImageView, width: Int, height: Int) {
-        //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
-        requestOptions.override(width, height)
-        Glide.with(BaseApplication.context).load(url)
-            .apply(requestOptions)
-            .into(imageView)
+    fun loadRoundOverrideImage( context: Context?,url: Any, imageView: ImageView, width: Int, height: Int) {
+        context?.let {
+            //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
+            requestOptions.override(width, height)
+            Glide.with(context).load(url)
+                .apply(requestOptions)
+                .into(imageView)
+        }
+
     }
 }

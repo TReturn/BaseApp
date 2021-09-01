@@ -19,7 +19,7 @@ class BeautyDetailAdapter :
         holder.setText(R.id.tvDesc, item.desc)
         holder.setText(R.id.tvTitle, item.title)
         holder.setText(R.id.tvRead, context.getString(R.string.main_people_reading,item.views.toString()))
-        GlideUtils.loadRoundImageTransform(item.url, holder.getView(R.id.ivPic), 36)
+        GlideUtils.loadRoundImageTransform(context,item.url, holder.getView(R.id.ivPic), 36)
 
     }
 

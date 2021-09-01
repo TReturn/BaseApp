@@ -18,7 +18,7 @@ class BeautyAdapter :
 
         holder.setText(R.id.tvTitle, item.title)
         holder.setText(R.id.tvRead, context.getString(R.string.main_people_reading,item.views.toString()))
-        GlideUtils.loadRoundImage(item.url, holder.getView(R.id.ivPic), 12F)
+        GlideUtils.loadRoundImage(context,item.url, holder.getView(R.id.ivPic), 12F)
 
     }
 

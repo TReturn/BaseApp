@@ -121,7 +121,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             RouterUtils.web(data[position].getUrl(), data[position].getTitle())
         }
         mDatabind.include.xBanner.loadImage { _: XBanner?, _: Any?, view: View?, position: Int ->
-            GlideUtils.loadRoundImageTransform(data[position].getImage(), view as ImageView, 12)
+            GlideUtils.loadRoundImageTransform(activity,data[position].getImage(), view as ImageView, 12)
         }
         mDatabind.include.xBanner.setAutoPlayAble(data.size > 1)
         mDatabind.include.xBanner.setBannerData(data)

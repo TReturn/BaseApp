@@ -27,12 +27,12 @@ class NewsAdapter :
 
             }
             1 -> {
-                GlideUtils.loadRoundImageTransform(item.images[0], holder.getView(R.id.ivNewsPic), 12)
+                GlideUtils.loadRoundImageTransform(context,item.images[0], holder.getView(R.id.ivNewsPic), 12)
             }
             2 -> {
-                GlideUtils.loadRoundImageTransform(item.images[0], holder.getView(R.id.ivNewsPic), 12)
-                GlideUtils.loadRoundImageTransform(item.images[1], holder.getView(R.id.ivNewsPic2), 12)
-                GlideUtils.loadRoundImageTransform(item.images[2], holder.getView(R.id.ivNewsPic3), 12)
+                GlideUtils.loadRoundImageTransform(context,item.images[0], holder.getView(R.id.ivNewsPic), 12)
+                GlideUtils.loadRoundImageTransform(context,item.images[1], holder.getView(R.id.ivNewsPic2), 12)
+                GlideUtils.loadRoundImageTransform(context,item.images[2], holder.getView(R.id.ivNewsPic3), 12)
             }
         }
     }
