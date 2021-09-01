@@ -55,6 +55,7 @@ class RefreshSlideLayout @JvmOverloads constructor(
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 isDragged = false
+                //阻止父层的view获取touch事件
                 parent.requestDisallowInterceptTouchEvent(false)
             }
         }

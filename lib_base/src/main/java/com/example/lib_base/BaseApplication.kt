@@ -40,13 +40,13 @@ open class BaseApplication : Application() {
 
     //将Application 单例化，可供全局调用 Context
     companion object {
-        lateinit var context: Context
+        lateinit var context: BaseApplication
     }
 
     override fun onCreate() {
         super.onCreate()
 
-        context = applicationContext
+        context = this
 
         //MMKV键值对存储
         MMKV.initialize(this)
