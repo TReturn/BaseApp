@@ -61,21 +61,21 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
     override fun createObserver() {
         //妹子数据监听
-        mViewModel.beautyDataState.observe(viewLifecycleOwner, {
+        mViewModel.beautyDataState.observe(viewLifecycleOwner) {
             loadListData(it, beautyAdapter, mDatabind.refreshLayout)
             beautyImageList.clear()
             for (i in it.listData.indices) {
                 beautyImageList.add(it.listData[i].images[0])
             }
-        })
+        }
 
         //轮播图数据监听
-        mViewModel.bannerDataState.observe(viewLifecycleOwner, {
+        mViewModel.bannerDataState.observe(viewLifecycleOwner) {
             initBanner(it)
-        })
+        }
 
         //天气数据监听
-        mViewModel.weatherDataState.observe(viewLifecycleOwner, {
+        mViewModel.weatherDataState.observe(viewLifecycleOwner) {
             mViewModel.isShowWeather.value = true
             mViewModel.weatherTemp.value = "${it.realtime.temperature.toInt()}℃"
             mViewModel.weatherSky.value = getSky(it.realtime.skycon).info
@@ -85,7 +85,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             //执行动画
             mDatabind.ltCloud.playAnimation();
 
-        })
+        }
 
     }
 

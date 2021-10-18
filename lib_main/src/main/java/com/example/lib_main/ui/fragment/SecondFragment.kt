@@ -42,7 +42,7 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
     override fun createObserver() {
         super.createObserver()
-        mViewModel.categoryDataState.observe(viewLifecycleOwner, {
+        mViewModel.categoryDataState.observe(viewLifecycleOwner) {
             //网络请求到数据再动态添加fragment
             for (i in it.indices) {
                 titleList.add(it[i].type)
@@ -52,7 +52,7 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
             mDatabind.vpNews.adapter?.notifyDataSetChanged()
             //预加载
             mDatabind.vpNews.offscreenPageLimit = fragmentList.size - 1
-        })
+        }
     }
 
     override fun lazyLoadData() {

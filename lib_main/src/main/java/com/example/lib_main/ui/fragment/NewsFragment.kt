@@ -42,9 +42,9 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     }
 
     override fun createObserver() {
-        mViewModel.categoryTypeDataState.observe(viewLifecycleOwner, {
-            loadListData(it,newsAdapter,mDatabind.refreshLayout)
-        })
+        mViewModel.categoryTypeDataState.observe(viewLifecycleOwner) {
+            loadListData(it, newsAdapter, mDatabind.refreshLayout)
+        }
     }
 
     private fun refreshData(isRefresh:Boolean){
