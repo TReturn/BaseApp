@@ -55,7 +55,7 @@ ext {
             circleimageview     : '3.1.0',
             marqueeview         : '1.4.1',
             okhttp              : '4.9.1',
-            net                 : '3.0.20',
+            net                 : '3.0.25',
             serialization       : '1.2.2',
             agentweb            : '4.1.9',
             logger              : '2.2.0',

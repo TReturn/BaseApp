@@ -88,6 +88,10 @@ open class BaseApplication : Application() {
                 }
             })
 
+            if (BuildConfig.DEBUG) {
+                trustSSLCertificate() // 信任所有证书
+            }
+
             //全局请求错误处理
             setErrorHandler(object : NetErrorHandler {
                 override fun onError(e: Throwable) {
