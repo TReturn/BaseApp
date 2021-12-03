@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.baseapp.viewmodel.SplashViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4"
             app:lottie_autoPlay="true"
+            android:visibility="gone"
             app:lottie_fileName="splash.json"
             app:lottie_loop="true" />
 
