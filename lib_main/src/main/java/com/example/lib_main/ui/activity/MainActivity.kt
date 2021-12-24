@@ -2,21 +2,15 @@ package com.example.lib_main.ui.activity
 
 import android.os.Bundle
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.interceptLongClick
-import com.example.lib_base.utils.qmui.QMUIDisplayHelper.getStatusBarHeight
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.ext.initMain
-import com.example.lib_main.ui.fragment.FourFragment
-import com.example.lib_main.ui.fragment.MainFragment
-import com.example.lib_main.ui.fragment.SecondFragment
-import com.example.lib_main.ui.fragment.ThirdFragment
 import com.example.lib_main.viewmodel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hjq.toast.ToastUtils
@@ -39,14 +33,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         toolBarViewHeight = QMUIStatusBarHelper.getStatusbarHeight(this)
         //修复切换底部导航栏时Icon未改变
         mDatabind.bottomNavigation.itemIconTintList = null
-
-        //初始化显示内容
-        val fragmentList: MutableList<Fragment> = ArrayList()
-
-        fragmentList.add(MainFragment())
-        fragmentList.add(SecondFragment())
-        fragmentList.add(ThirdFragment())
-        fragmentList.add(FourFragment())
 
         //初始化viewpager2
         mDatabind.viewPager.initMain(this)
@@ -132,6 +118,5 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
         return super.onKeyUp(keyCode, event)
     }
-
 
 }
