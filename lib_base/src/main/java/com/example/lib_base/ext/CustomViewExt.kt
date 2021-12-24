@@ -42,17 +42,17 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
  * @receiver MagicIndicator
  * @param viewPager ViewPager2
  * @param mStringList List<String>
- * @param type type = 1,均分，适用3个以内Title。 type = 2，自适应，可滑动。
+ * @param isAdjustMode 是否均分Tab
  * @param action Function1<[@kotlin.ParameterName] Int, Unit>
  */
 fun MagicIndicator.bindViewPager2(
     viewPager: ViewPager2,
     mStringList: List<String> = arrayListOf(),
-    type: Int,
+    isAdjustMode: Boolean,
     action: (index: Int) -> Unit = {}
 ) {
     val commonNavigator = CommonNavigator(BaseApplication.context)
-    commonNavigator.isAdjustMode = type == 2
+    commonNavigator.isAdjustMode = isAdjustMode
     commonNavigator.isReselectWhenLayout = false
     commonNavigator.adapter = object : CommonNavigatorAdapter() {
 

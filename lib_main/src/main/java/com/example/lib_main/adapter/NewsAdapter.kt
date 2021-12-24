@@ -41,6 +41,7 @@ class NewsAdapter :
         addItemType(0, R.layout.item_news_no_pic)
         addItemType(1, R.layout.item_news_one_pic)
         addItemType(2, R.layout.item_news_three_pic)
+        addChildClickViewIds()
     }
 
 }

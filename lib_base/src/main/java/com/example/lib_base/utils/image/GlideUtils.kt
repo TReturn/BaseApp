@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.lib_base.R
@@ -110,6 +111,26 @@ object GlideUtils {
             }
         }
 
+    }
+
+    /**
+     * 加载圆形图片
+     * @param activity FragmentActivity?
+     * @param url Any
+     * @param imageView ImageView
+     */
+    fun loadCircleImage(
+        activity: FragmentActivity?,
+        url: Any,
+        imageView: ImageView,
+    ){
+        activity?.let {
+            if (!activity.isDestroyed) {
+                Glide.with(activity).load(url)
+                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                    .into(imageView)
+            }
+        }
     }
 
     /**
