@@ -169,7 +169,7 @@ class MyClipPagerTitleView(context: Context) : View(context),
         mPaint.textSize = textSize.toFloat()
         //设置粗体
         mPaint.isFakeBoldText = true
-        mPaint.typeface = TextFontUtils.getTypeFace()
+        mPaint.typeface = TextFontUtils.getDefaultTypeFace()
         val padding = UIUtil.dip2px(context, 10.0)
         setPadding(padding, 0, padding, 0)
     }

@@ -1,6 +1,7 @@
 package com.example.baseapp.ui
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.KeyEvent
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -11,11 +12,12 @@ import com.example.baseapp.viewmodel.SplashViewModel
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.MMKVKeys
 import com.example.lib_base.constant.RouterUrls
+import com.example.lib_base.ext.loadListData
 import com.example.lib_base.router.RouterUtils
+import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.utils.ui.TextFontUtils
 import kotlinx.coroutines.*
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 @Route(path = RouterUrls.ROUTER_URL_SPLASH)
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
@@ -31,11 +33,25 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
         //沉浸
         QMUIStatusBarHelper.translucent(this)
         //改变字体
-        TextFontUtils.load(mDatabind.tvSplash)
-
+        TextFontUtils.load(TextFontUtils.getDefaultTypeFace(),mDatabind.tvSplash)
+        initData()
         toMainActivity()
     }
 
+    private fun initData() {
+        if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))) {
+            mViewModel.getAncientChinesePoetryToken()
+        } else {
+            mViewModel.getAncientChinesePoetry()
+        }
+    }
+
+    override fun createObserver() {
+        super.createObserver()
+        mViewModel.poetryResultDataState.observe(this, {
+            mDatabind.tvVerticalText.setVerticalText(it.content)
+        })
+    }
 
     /**
      * 跳转到主页逻辑
