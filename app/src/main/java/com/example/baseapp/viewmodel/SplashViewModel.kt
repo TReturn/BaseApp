@@ -48,6 +48,7 @@ class SplashViewModel : BaseViewModel() {
                 converter = PoetrySerializationConverter()
                 setHeader("X-User-Token", MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))
             }.await().data
+            LogUtils.d(data)
             poetryResultDataState.value = data
         }
     }

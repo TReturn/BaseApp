@@ -10,48 +10,49 @@ import kotlinx.serialization.SerialName
  * @Description:
  */
 
+
  @Serializable
 data class AncientChinesePoetryBean(
     @SerialName("data")
-    var `data`: Data,
+    var `data`: Data = Data(),
     @SerialName("ipAddress")
-    var ipAddress: String,
+    var ipAddress: String = "",
     @SerialName("status")
-    var status: String,
+    var status: String = "",
     @SerialName("token")
-    var token: String,
+    var token: String = "",
     @SerialName("warning")
-    var warning: String
+    var warning: String = ""
 ) {
     @Serializable
     data class Data(
         @SerialName("cacheAt")
-        var cacheAt: String,
+        var cacheAt: String = "",
         @SerialName("content")
-        var content: String,
+        var content: String = "",
         @SerialName("id")
-        var id: String,
+        var id: String = "",
         @SerialName("matchTags")
-        var matchTags: List<String>,
+        var matchTags: List<String> = listOf(),
         @SerialName("origin")
-        var origin: Origin,
+        var origin: Origin = Origin(),
         @SerialName("popularity")
-        var popularity: Int,
+        var popularity: Int = 0,
         @SerialName("recommendedReason")
-        var recommendedReason: String
+        var recommendedReason: String = ""
     ) {
         @Serializable
         data class Origin(
             @SerialName("author")
-            var author: String,
+            var author: String = "",
             @SerialName("content")
-            var content: List<String>,
+            var content: List<String> = listOf(),
             @SerialName("dynasty")
-            var dynasty: String,
+            var dynasty: String = "",
             @SerialName("title")
-            var title: String,
+            var title: String = "",
             @SerialName("translate")
-            var translate: List<String>
+            var translate: List<String> = listOf()
         )
     }
 }

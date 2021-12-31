@@ -60,22 +60,15 @@
                 android:textSize="22sp" />
         </LinearLayout>
 
-
-        <com.example.lib_base.widget.VerticalTextView
-            android:id="@+id/tvVerticalText"
+        <com.sjtu.yifei.widget.VerticalTextView
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginEnd="64dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:layout_height="wrap_content"
+            app:columnLength="13"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:orientation="vertical"
-            app:textColorVertical="@color/color_black"
-            app:textSizeVertical="26sp"
-            app:textVertical="江天一色无纤尘，皎皎空中孤月轮。" />
+            app:text="江天一色无纤尘，皎皎空中孤月轮。" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

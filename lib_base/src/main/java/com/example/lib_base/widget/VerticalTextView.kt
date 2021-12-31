@@ -1,5 +1,6 @@
 package com.example.lib_base.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import com.example.lib_base.utils.ui.TextFontUtils.getLiuGQTypeFace
 import kotlin.jvm.JvmOverloads
@@ -40,6 +41,7 @@ class VerticalTextView @JvmOverloads constructor(
         mText = text
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         //获取宽高的模式
