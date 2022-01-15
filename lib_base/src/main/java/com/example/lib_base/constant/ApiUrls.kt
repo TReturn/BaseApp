@@ -7,7 +7,7 @@ package com.example.lib_base.constant
  */
 object ApiUrls {
 
-    const val BASE_GANK_URL = "https://gank.io/api/v2"
+    const val BASE_WAN_URL = "https://www.wanandroid.com/"
 
     //百度搜索
     const val BAIDU_SEARCH_URL = "https://www.baidu.com/s?ie=UTF-8&wd="
@@ -51,7 +51,7 @@ object ApiUrls {
     }
 
     //文章所有子分类
-    const val GANK_CATEGORY = "/categories/GanHuo"
+    const val WAN_CATEGORY = "project/tree/json"
 
     /**
      * 具体子分类下的列表
@@ -60,7 +60,7 @@ object ApiUrls {
      * @param pageSize Int
      * @return String
      */
-    fun getGankCategoryType(type: String, pageNo: Int = 1, pageSize: Int = 10): String {
-        return "/data/category/GanHuo/type/$type/page/$pageNo/count/$pageSize"
+    fun getWanCategoryType(pageNo: Int = 1): String {
+        return "project/list/$pageNo/json"
     }
 }

@@ -14,7 +14,7 @@ import com.drake.net.request.BaseRequest
 import com.example.lib_base.constant.ApiUrls
 import com.example.lib_base.constant.MMKVKeys
 import com.example.lib_base.constant.SdkKeys
-import com.example.lib_base.net.GankSerializationConverter
+import com.example.lib_base.net.WanSerializationConverter
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.log.LogUtils
 import com.hjq.toast.ToastUtils
@@ -71,9 +71,9 @@ open class BaseApplication : Application() {
         Logger.addLogAdapter(AndroidLogAdapter())
 
         //协程网络请求库初始化
-        NetConfig.init(ApiUrls.BASE_GANK_URL) {
+        NetConfig.init(ApiUrls.BASE_WAN_URL) {
 
-            setConverter(GankSerializationConverter())
+            setConverter(WanSerializationConverter())
 
             // 超时设置
             connectTimeout(2, TimeUnit.MINUTES)

@@ -6,8 +6,6 @@ import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.router.RouterUtils
-import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
-import com.example.lib_base.utils.ui.ViewLayoutUtils
 import com.example.lib_main.R
 import com.example.lib_main.adapter.NewsAdapter
 import com.example.lib_main.databinding.FragmentNewsBinding
@@ -32,7 +30,7 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
         arguments?.run {
-            newsType = getString(TYPE, "Android")
+            newsType = getString(TYPE, "294")
         }
         initAdapter()
 
@@ -55,7 +53,7 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
         mDatabind.rvNews.init(LinearLayoutManager(context), newsAdapter, false)
         newsAdapter.run {
             setOnItemClickListener { _, _, position ->
-                RouterUtils.web(data[position].url, data[position].title)
+                RouterUtils.web(data[position].link, data[position].title)
             }
         }
     }

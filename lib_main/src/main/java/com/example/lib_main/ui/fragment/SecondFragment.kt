@@ -1,12 +1,13 @@
 package com.example.lib_main.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.ext.bindViewPager2
 import com.example.lib_base.ext.init
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
-import com.example.lib_base.utils.ui.ViewLayoutUtils
+import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentSecondBinding
 import com.example.lib_main.viewmodel.SecondViewModel
@@ -30,7 +31,7 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
-        ViewLayoutUtils.setHeight(
+        LayoutParamsUtils.setHeight(
             mDatabind.flTranslucent,
             QMUIStatusBarHelper.getStatusbarHeight(activity)
         )
@@ -40,13 +41,14 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
         mDatabind.magicIndicator.bindViewPager2(mDatabind.vpNews, titleList, 1)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun createObserver() {
         super.createObserver()
         mViewModel.categoryDataState.observe(viewLifecycleOwner) {
             //网络请求到数据再动态添加fragment
             for (i in it.indices) {
-                titleList.add(it[i].type)
-                fragmentList.add(NewsFragment.newInstance(it[i].type))
+                titleList.add(it[i].name)
+                fragmentList.add(NewsFragment.newInstance(it[i].id.toString()))
             }
             mDatabind.magicIndicator.navigator.notifyDataSetChanged()
             mDatabind.vpNews.adapter?.notifyDataSetChanged()

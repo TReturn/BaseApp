@@ -13,13 +13,14 @@ import com.example.lib_main.model.GankCategoryTypeBean
  * @Description :
  */
 class NewsAdapter :
-    BaseMultiItemQuickAdapter<GankCategoryTypeBean.Data, BaseViewHolder>() {
+    BaseMultiItemQuickAdapter<GankCategoryTypeBean.Data.Data, BaseViewHolder>() {
 
-    override fun convert(holder: BaseViewHolder, item: GankCategoryTypeBean.Data) {
+    override fun convert(holder: BaseViewHolder, item: GankCategoryTypeBean.Data.Data) {
 
         holder.setText(R.id.tvNewsTitle, item.title)
         holder.setText(R.id.tvNewsSource, item.author)
-        holder.setText(R.id.tvNewsTime, TimeUtils.getFriendlyTimeSpanByNow(item.publishedAt))
+        holder.setText(R.id.tvNewsTime, item.niceDate)
+        //holder.setText(R.id.tvNewsTime, TimeUtils.getFriendlyTimeSpanByNow(item.niceDate))
         holder.setText(R.id.tvNewsDesc, item.desc)
 
         when (holder.itemViewType) {
@@ -27,12 +28,7 @@ class NewsAdapter :
 
             }
             1 -> {
-                GlideUtils.loadRoundImageTransform(context,item.images[0], holder.getView(R.id.ivNewsPic), 12)
-            }
-            2 -> {
-                GlideUtils.loadRoundImageTransform(context,item.images[0], holder.getView(R.id.ivNewsPic), 12)
-                GlideUtils.loadRoundImageTransform(context,item.images[1], holder.getView(R.id.ivNewsPic2), 12)
-                GlideUtils.loadRoundImageTransform(context,item.images[2], holder.getView(R.id.ivNewsPic3), 12)
+                GlideUtils.loadRoundImageTransform(context,item.envelopePic, holder.getView(R.id.ivNewsPic), 12)
             }
         }
     }
@@ -40,7 +36,6 @@ class NewsAdapter :
     init {
         addItemType(0, R.layout.item_news_no_pic)
         addItemType(1, R.layout.item_news_one_pic)
-        addItemType(2, R.layout.item_news_three_pic)
     }
 
 }

@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:textSize="13sp"
-            android:maxLines="4"
+            android:maxLines="3"
             android:textColor="@color/text_default"
             android:src="@drawable/ic_list_check"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"

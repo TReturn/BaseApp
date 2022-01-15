@@ -20,12 +20,12 @@ import kotlin.reflect.KType
 /**
  * @CreateDate : 2021/7/31
  * @Author : 青柠
- * @Description : Gank序列化转换器
+ * @Description : 玩安卓序列化转换器
  */
-class GankSerializationConverter(
-    val success: String = "100",
-    val code: String = "status",
-    val message: String = "msg"
+class WanSerializationConverter(
+    val success: String = "0",
+    val code: String = "errorCode",
+    val message: String = "errorMsg"
 ) : NetConverter {
 
     private val jsonDecoder = Json {

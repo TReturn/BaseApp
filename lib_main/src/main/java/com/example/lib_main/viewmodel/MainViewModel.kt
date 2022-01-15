@@ -6,8 +6,6 @@ import com.drake.net.Get
 import com.example.lib_base.constant.ApiUrls
 import com.example.lib_base.constant.SdkKeys
 import com.example.lib_base.list.ListDataUiState
-import com.example.lib_base.net.GankSerializationConverter
-import com.example.lib_base.net.JvHeSerializationConverter
 import com.example.lib_base.net.SerializationConverter
 import com.example.lib_base.net.WeatherSerializationConverter
 import com.example.lib_base.utils.banner.BaseBannerData

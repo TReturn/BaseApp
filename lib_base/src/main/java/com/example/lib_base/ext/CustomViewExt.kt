@@ -65,7 +65,7 @@ fun MagicIndicator.bindViewPager2(
                 //设置文本
                 text = mStringList[index].toHtml()
                 //字体大小
-                textSize = 18f
+                textSize = 16f
                 //无法正确加载夜间主题，加个判断切换。
                 when (MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1)) {
                     AppCompatDelegate.MODE_NIGHT_NO -> {

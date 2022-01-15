@@ -17,7 +17,7 @@ import com.example.lib_base.utils.banner.BaseBannerData
 import com.example.lib_base.utils.image.BigImageUtils
 import com.example.lib_base.utils.image.GlideUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
-import com.example.lib_base.utils.ui.ViewLayoutUtils
+import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_main.R
 import com.example.lib_main.adapter.BeautyAdapter
 import com.example.lib_main.databinding.FragmentMainBinding
@@ -27,7 +27,6 @@ import com.hjq.toast.ToastUtils
 import com.permissionx.guolindev.PermissionX
 import com.stx.xhb.androidx.XBanner
 import com.xuexiang.xqrcode.XQRCode
-import java.util.*
 
 
 /**
@@ -48,7 +47,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
 
-        ViewLayoutUtils.setHeight(mDatabind.flTranslucent,QMUIStatusBarHelper.getStatusbarHeight(activity))
+        LayoutParamsUtils.setHeight(mDatabind.flTranslucent,QMUIStatusBarHelper.getStatusbarHeight(activity))
         initAdapter()
         mDatabind.refreshLayout.autoRefresh()
         mDatabind.refreshLayout.setOnRefreshListener { refreshData(true) }

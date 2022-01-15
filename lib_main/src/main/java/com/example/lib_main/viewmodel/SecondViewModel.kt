@@ -4,9 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.scopeNetLife
 import com.drake.net.Get
 import com.example.lib_base.constant.ApiUrls
-import com.example.lib_base.net.GankSerializationConverter
-import com.example.lib_main.model.GankBannerBean
-import com.example.lib_main.model.GankCategoryBean
+import com.example.lib_main.model.WanCategoryBean
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**
@@ -17,11 +15,11 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 class SecondViewModel : BaseViewModel() {
 
     //文章所有子分类集合数据
-    var categoryDataState = MutableLiveData<List<GankCategoryBean.Data>>()
+    var categoryDataState = MutableLiveData<List<WanCategoryBean.Data>>()
 
     private fun getCategoryData(){
         scopeNetLife {
-            categoryDataState.value = Get<GankCategoryBean>(ApiUrls.GANK_CATEGORY) {
+            categoryDataState.value = Get<WanCategoryBean>(ApiUrls.WAN_CATEGORY) {
             }.await().data
         }
     }
