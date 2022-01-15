@@ -2,29 +2,24 @@ package com.example.lib_main.ui.activity
 
 import android.os.Bundle
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
+import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.interceptLongClick
-import com.example.lib_base.utils.qmui.QMUIDisplayHelper.getStatusBarHeight
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.ext.initMain
-import com.example.lib_main.ui.fragment.FourFragment
-import com.example.lib_main.ui.fragment.MainFragment
-import com.example.lib_main.ui.fragment.SecondFragment
-import com.example.lib_main.ui.fragment.ThirdFragment
 import com.example.lib_main.viewmodel.MainViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.hjq.toast.ToastUtils
-import java.util.*
 
 
 @Route(path = RouterUrls.ROUTER_URL_MAIN)
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
+    NavigationBarView.OnItemSelectedListener {
     private var firstTime = 0L
     private var delayTime = 2000L
     private var toolBarViewHeight = 0
@@ -40,21 +35,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         //修复切换底部导航栏时Icon未改变
         mDatabind.bottomNavigation.itemIconTintList = null
 
-        //初始化显示内容
-        val fragmentList: MutableList<Fragment> = ArrayList()
-
-        fragmentList.add(MainFragment())
-        fragmentList.add(SecondFragment())
-        fragmentList.add(ThirdFragment())
-        fragmentList.add(FourFragment())
-
         //初始化viewpager2
         mDatabind.viewPager.initMain(this)
 
         //给底部导航栏菜单项添加点击事件
-        mDatabind.bottomNavigation.setOnNavigationItemSelectedListener(
-            mOnNavigationItemSelectedListener
-        )
+        mDatabind.bottomNavigation.setOnItemSelectedListener(this)
 
         //拦截BottomNavigation长按事件 防止长按时出现Toast
         mDatabind.bottomNavigation.interceptLongClick(
@@ -74,34 +59,29 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 ProxyClick().toFruit()
             }
         })
-
     }
 
-    private val mOnNavigationItemSelectedListener =
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_main -> {
-                    mDatabind.viewPager.currentItem = 0
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.navigation_second -> {
-                    mDatabind.viewPager.currentItem = 1
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.navigation_third -> {
-                    mDatabind.viewPager.currentItem = 2
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.navigation_four -> {
-                    mDatabind.viewPager.currentItem = 3
-                    return@OnNavigationItemSelectedListener true
-                }
-                else -> {
-                }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navigation_main -> {
+                mDatabind.viewPager.currentItem = 0
+                return true
             }
-            false
+            R.id.navigation_second -> {
+                mDatabind.viewPager.currentItem = 1
+                return true
+            }
+            R.id.navigation_third -> {
+            mDatabind.viewPager.currentItem = 2
+            return true
         }
-
+            R.id.navigation_four -> {
+                mDatabind.viewPager.currentItem = 3
+                return true
+            }
+        }
+        return false
+    }
 
     inner class ProxyClick {
         fun toFruit() {
@@ -132,6 +112,5 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
         return super.onKeyUp(keyCode, event)
     }
-
 
 }

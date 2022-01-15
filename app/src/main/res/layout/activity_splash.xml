@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.baseapp.viewmodel.SplashViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +22,7 @@
             android:id="@+id/lottie_splash"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +33,7 @@
             app:lottie_loop="true" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -46,11 +54,21 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
-                android:textColor="@color/color_black"
-                android:textSize="22sp"
                 android:layout_marginTop="16dp"
-                android:text="@string/app_name" />
+                android:text="@string/app_name"
+                android:textColor="@color/color_black"
+                android:textSize="22sp" />
         </LinearLayout>
+
+        <com.sjtu.yifei.widget.VerticalTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:columnLength="13"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:text="江天一色无纤尘，皎皎空中孤月轮。" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

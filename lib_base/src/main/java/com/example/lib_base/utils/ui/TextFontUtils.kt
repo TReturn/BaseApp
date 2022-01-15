@@ -18,20 +18,24 @@ object TextFontUtils {
     //得到AssetManager
     private val mgr: AssetManager = BaseApplication.context.assets
 
-    //根据路径得到Typeface
-    private val tf = Typeface.createFromAsset(mgr, "fonts/Cathena.ttf")
 
-    fun getTypeFace(): Typeface {
-        return tf
+    //默认英文字体
+    fun getDefaultTypeFace(): Typeface {
+        return Typeface.createFromAsset(mgr, "fonts/Cathena.ttf")
+    }
+
+    //柳公权字体
+    fun getLiuGQTypeFace(): Typeface {
+        return Typeface.createFromAsset(mgr, "fonts/FZLiuGQKSJW.ttf")
     }
 
     /**
      * 改变 TextView 字体
      * @param text TextView控件ID
      */
-    fun load(vararg text: TextView) {
+    fun load(typeface: Typeface, vararg text: TextView) {
         text.forEach {
-            it.typeface = tf
+            it.typeface = typeface
         }
     }
 
@@ -39,9 +43,9 @@ object TextFontUtils {
      * 改变 Button 字体
      * @param button Button控件ID
      */
-    fun load(vararg button: Button) {
+    fun load(typeface: Typeface,vararg button: Button) {
         button.forEach {
-            it.typeface = tf
+            it.typeface = typeface
         }
     }
 

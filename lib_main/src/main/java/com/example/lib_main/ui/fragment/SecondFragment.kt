@@ -38,7 +38,7 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
         //初始化viewpager2
         mDatabind.vpNews.init(this, fragmentList)
         //初始化magicIndicator
-        mDatabind.magicIndicator.bindViewPager2(mDatabind.vpNews, titleList, 1)
+        mDatabind.magicIndicator.bindViewPager2(mDatabind.vpNews, titleList, false)
     }
 
     @SuppressLint("NotifyDataSetChanged")

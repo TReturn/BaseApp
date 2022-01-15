@@ -25,5 +25,8 @@ object MMKVKeys {
     //夜间模式
     const val NIGHT_MODE = "NIGHT_MODE"
 
+    //诗词Token
+    const val POETRY_TOKEN = "POETRY_TOKEN"
+
 
 }

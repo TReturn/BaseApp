@@ -18,6 +18,12 @@ object ApiUrls {
     //必应每日一图
     const val BING_PICTURE = "http://guolin.tech/api/bing_pic"
 
+    //古诗Token,只需获取一次
+    const val ANCIENT_CHINESE_POETRY_TOKEN = "https://v2.jinrishici.com/token"
+
+    //古诗
+    const val ANCIENT_CHINESE_POETRY = "https://v2.jinrishici.com/sentence"
+
 
     /**
      * 彩云天气相关API

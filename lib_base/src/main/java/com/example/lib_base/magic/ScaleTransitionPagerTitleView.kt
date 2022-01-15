@@ -12,7 +12,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
  */
 class ScaleTransitionPagerTitleView(context: Context) : ColorTransitionPagerTitleView(context) {
 
-    private var minScale = 0.85f
+    private var minScale = 0.7f
 
     override fun onEnter(index: Int, totalCount: Int, enterPercent: Float, leftToRight: Boolean) {
         super.onEnter(index, totalCount, enterPercent, leftToRight)    // 实现颜色渐变
@@ -33,7 +33,7 @@ class ScaleTransitionPagerTitleView(context: Context) : ColorTransitionPagerTitl
      */
     override fun onSelected(index: Int, totalCount: Int) {
         super.onSelected(index, totalCount)
-        setTextColor(mSelectedColor);
+        setTextColor(mSelectedColor)
         paint.isFakeBoldText = true
     }
 
@@ -44,7 +44,7 @@ class ScaleTransitionPagerTitleView(context: Context) : ColorTransitionPagerTitl
      */
     override fun onDeselected(index: Int, totalCount: Int) {
         super.onDeselected(index, totalCount)
-        setTextColor(mNormalColor);
+        setTextColor(mNormalColor)
         paint.isFakeBoldText = false
     }
 }
