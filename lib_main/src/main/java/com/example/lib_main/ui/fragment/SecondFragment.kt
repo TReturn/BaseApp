@@ -48,7 +48,7 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
             //网络请求到数据再动态添加fragment
             for (i in it.indices) {
                 titleList.add(it[i].name)
-                fragmentList.add(NewsFragment.newInstance(it[i].id.toString()))
+                fragmentList.add(ProjectsFragment.newInstance(it[i].id.toString()))
             }
             mDatabind.magicIndicator.navigator.notifyDataSetChanged()
             mDatabind.vpNews.adapter?.notifyDataSetChanged()

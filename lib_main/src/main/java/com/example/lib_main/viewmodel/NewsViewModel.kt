@@ -5,8 +5,7 @@ import androidx.lifecycle.scopeNetLife
 import com.drake.net.Get
 import com.example.lib_base.constant.ApiUrls
 import com.example.lib_base.list.ListDataUiState
-import com.example.lib_base.utils.calculate.RegexUtils
-import com.example.lib_main.model.GankCategoryTypeBean
+import com.example.lib_main.model.WanCategoryTypeBean
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**
@@ -21,7 +20,7 @@ class NewsViewModel : BaseViewModel() {
 
 
     //具体子分类下的列表
-    var categoryTypeDataState = MutableLiveData<ListDataUiState<GankCategoryTypeBean.Data.Data>>()
+    var categoryTypeDataState = MutableLiveData<ListDataUiState<WanCategoryTypeBean.Data.Data>>()
 
 
     /**
@@ -36,7 +35,7 @@ class NewsViewModel : BaseViewModel() {
 
         scopeNetLife {
             val data =
-                Get<GankCategoryTypeBean>(ApiUrls.getWanCategoryType(pageNo)) {
+                Get<WanCategoryTypeBean>(ApiUrls.getWanCategoryType(pageNo)) {
                     param("cid", cid)
                     param("page_size ", pageSize.toString())
                 }.await().data.datas
@@ -76,7 +75,7 @@ class NewsViewModel : BaseViewModel() {
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isFirstEmpty = false,
-                    listData = arrayListOf<GankCategoryTypeBean.Data.Data>()
+                    listData = arrayListOf<WanCategoryTypeBean.Data.Data>()
                 )
             categoryTypeDataState.value = listDataUiState
         }

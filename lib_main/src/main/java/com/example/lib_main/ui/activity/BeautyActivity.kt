@@ -37,7 +37,7 @@ class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
         mDatabind.vm = mViewModel
         initAdapter()
 
-        mDatabind.include.titleBar.title = UiUtils.getString(R.string.main_beauty_title)
+        mDatabind.include.titleBar.title = UiUtils.getString(R.string.main_article_title)
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(view: View?) {
                 finish()
@@ -50,19 +50,19 @@ class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
         mDatabind.refreshLayout.autoRefresh()
         mDatabind.refreshLayout.setOnRefreshListener {
             beautyImageList.clear()
-            mViewModel.getBeautyData(true)
+            //mViewModel.getBeautyData(true)
         }
-        mDatabind.refreshLayout.setOnLoadMoreListener { mViewModel.getBeautyData(false) }
+        //mDatabind.refreshLayout.setOnLoadMoreListener { mViewModel.getBeautyData(false) }
     }
 
     override fun createObserver() {
         //妹子数据监听
-        mViewModel.beautyDataState.observe(this, {
-            loadListData(it, beautyAdapter, mDatabind.refreshLayout)
-            for (i in it.listData.indices) {
-                beautyImageList.add(it.listData[i].images[0])
-            }
-        })
+//        mViewModel.beautyDataState.observe(this, {
+//            loadListData(it, beautyAdapter, mDatabind.refreshLayout)
+//            for (i in it.listData.indices) {
+//                beautyImageList.add(it.listData[i].images[0])
+//            }
+//        })
     }
 
     private fun initAdapter() {

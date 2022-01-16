@@ -1,33 +1,29 @@
 package com.example.lib_main.ui.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.get
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager.widget.ViewPager
+import androidx.recyclerview.widget.GridLayoutManager
+import com.chad.library.adapter.base.listener.GridSpanSizeLookup
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.constant.MMKVKeys
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.constant.StaticConstants
 import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
 import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.banner.BaseBannerData
-import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.image.BigImageUtils
 import com.example.lib_base.utils.image.GlideUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_base.utils.ui.TextFontUtils
 import com.example.lib_main.R
-import com.example.lib_main.adapter.BeautyAdapter
+import com.example.lib_main.adapter.ArticleAdapter
 import com.example.lib_main.databinding.FragmentMainBinding
 import com.example.lib_main.model.*
 import com.example.lib_main.viewmodel.MainViewModel
@@ -35,7 +31,6 @@ import com.hjq.toast.ToastUtils
 import com.permissionx.guolindev.PermissionX
 import com.stx.xhb.androidx.XBanner
 import com.xuexiang.xqrcode.XQRCode
-import kotlin.collections.ArrayList
 
 
 /**
@@ -45,8 +40,7 @@ import kotlin.collections.ArrayList
  */
 class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
-    private val beautyAdapter: BeautyAdapter by lazy { BeautyAdapter() }
-    private var beautyImageList = arrayListOf<String>()
+    private val articleAdapter: ArticleAdapter by lazy { ArticleAdapter() }
 
     private val bannerData: MutableList<BaseBannerData> = ArrayList<BaseBannerData>()
 
@@ -67,9 +61,9 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.refreshLayout.setOnRefreshListener { refreshData(true) }
         mDatabind.refreshLayout.setOnLoadMoreListener { refreshData(false) }
 
-        mDatabind.include.scrollLayout.setOnOverScrollReleaseListener {
-            RouterUtils.intent(RouterUrls.ROUTER_URL_BEAUTY)
-        }
+//        mDatabind.include.scrollLayout.setOnOverScrollReleaseListener {
+//            RouterUtils.intent(RouterUrls.ROUTER_URL_BEAUTY)
+//        }
     }
 
     override fun initData() {
@@ -86,19 +80,27 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             inData.setImage(imageList[i])
             bannerData.add(inData)
         }
-
-        mViewModel.getPoetry()
-
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun createObserver() {
-        //妹子数据监听
-        mViewModel.beautyDataState.observe(viewLifecycleOwner) {
-            loadListData(it, beautyAdapter, mDatabind.refreshLayout)
-            beautyImageList.clear()
-            for (i in it.listData.indices) {
-                beautyImageList.add(it.listData[i].images[0])
+        //首页文章列表监听
+        mViewModel.articleDataState.observe(viewLifecycleOwner) {
+            loadListData(it, articleAdapter, mDatabind.refreshLayout)
+            articleAdapter.data.run {
+                for (i in 1 until this.size) {
+                    if ((0..2).random() == 1 && get(i - 1).spanSize != 2) {
+                        get(i).spanSize = 2
+                        get(i - 1).spanSize = 2
+                        get(i).itemType = 1
+                        get(i - 1).itemType = 1
+                    } else {
+                        get(i).spanSize = 4
+                    }
+                }
+                articleAdapter.notifyDataSetChanged()
             }
+
         }
 
         //古诗词数据监听
@@ -118,14 +120,15 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             mDatabind.ltCloud.playAnimation();
 
         }
-
     }
 
     private fun refreshData(isRefresh: Boolean) {
         if (isRefresh) {
             mViewModel.getPoetry()
             mViewModel.getIPLocation()
-            mViewModel.getBeautyData(isRefresh)
+            mViewModel.getArticleData(isRefresh)
+        } else {
+            mViewModel.getArticleData(isRefresh)
         }
 
     }
@@ -134,14 +137,15 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
      * 初始化适配器和点击事件
      */
     private fun initAdapter() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        mDatabind.include.rvBeauty.init(layoutManager, beautyAdapter, false)
-        beautyAdapter.run {
+        mDatabind.include.rvArticle.init(GridLayoutManager(activity, 4), articleAdapter, false)
+        articleAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-                activity?.let { BigImageUtils.show(it, beautyImageList, position) }
+                RouterUtils.web(data[position].link, data[position].title)
             }
         }
+        articleAdapter.setGridSpanSizeLookup(GridSpanSizeLookup { gridLayoutManager, viewType, position ->
+            articleAdapter.data[position].spanSize
+        })
     }
 
     /**
@@ -164,7 +168,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                 val tvAuthor = view.findViewById<View>(R.id.tvAuthor) as TextView
                 val ivBanner = view.findViewById<View>(R.id.ivBanner) as ImageView
                 if (position == 0) {
-                    TextFontUtils.load(TextFontUtils.getLiuGQTypeFace(), tvContent,tvAuthor)
+                    TextFontUtils.load(TextFontUtils.getLiuGQTypeFace(), tvContent, tvAuthor)
                     tvContent.text = poetry
                     tvAuthor.text = author
                     tvContent.visibility = View.VISIBLE

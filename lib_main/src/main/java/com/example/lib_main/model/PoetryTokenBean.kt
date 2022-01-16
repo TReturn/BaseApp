@@ -10,7 +10,7 @@ import kotlinx.serialization.SerialName
  * @Description:
  */
 @Serializable
- data class AncientChinesePoetryTokenBean(
+ data class PoetryTokenBean(
     @SerialName("data")
     var `data`: String = "",
     @SerialName("status")

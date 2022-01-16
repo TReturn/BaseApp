@@ -16,12 +16,12 @@ import com.example.lib_main.viewmodel.NewsViewModel
  * @Author : 青柠
  * @Description :
  */
-class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
+class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
 
     private val newsAdapter: NewsAdapter by lazy { NewsAdapter() }
 
-    //新闻类型
-    private lateinit var newsType: String
+    //项目类型
+    private lateinit var projectsType: String
 
     override fun layoutId(): Int {
         return R.layout.fragment_news
@@ -30,7 +30,7 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
         arguments?.run {
-            newsType = getString(TYPE, "294")
+            projectsType = getString(TYPE, "294")
         }
         initAdapter()
 
@@ -45,8 +45,8 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
         }
     }
 
-    private fun refreshData(isRefresh:Boolean){
-        mViewModel.getCategoryTypeData(isRefresh,newsType)
+    private fun refreshData(isRefresh: Boolean) {
+        mViewModel.getCategoryTypeData(isRefresh, projectsType)
     }
 
     private fun initAdapter() {
@@ -60,9 +60,9 @@ class NewsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
 
     companion object {
         private const val TYPE = "TYPE"
-        fun newInstance(type: String): NewsFragment {
+        fun newInstance(type: String): ProjectsFragment {
             val bundle = Bundle()
-            val fragment = NewsFragment()
+            val fragment = ProjectsFragment()
             bundle.putString(TYPE, type)
             fragment.arguments = bundle
             return fragment

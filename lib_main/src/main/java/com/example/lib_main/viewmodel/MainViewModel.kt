@@ -11,14 +11,12 @@ import com.example.lib_base.list.ListDataUiState
 import com.example.lib_base.net.PoetrySerializationConverter
 import com.example.lib_base.net.SerializationConverter
 import com.example.lib_base.net.WeatherSerializationConverter
-import com.example.lib_base.utils.banner.BaseBannerData
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.log.LogUtils
 import com.example.lib_base.utils.ui.ResourceUtils
 import com.example.lib_main.R
 import com.example.lib_main.model.*
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import java.util.ArrayList
 
 /**
  * @CreateDate : 2021/7/29
@@ -27,11 +25,11 @@ import java.util.ArrayList
  */
 class MainViewModel : BaseViewModel() {
 
-    private var pageNo = 1
+    private var pageNo = 0
     private var isFirstEmpty = false
 
-    //妹子列表集合数据
-    var beautyDataState = MutableLiveData<ListDataUiState<BeautyBean.Data>>()
+    //首页文章列表集合数据
+    var articleDataState = MutableLiveData<ListDataUiState<ArticleBean.Data.Data>>()
 
     //天气集合数据
     val weatherDataState = MutableLiveData<WeatherBean.Result>()
@@ -43,27 +41,28 @@ class MainViewModel : BaseViewModel() {
     val isShowWeather = MutableLiveData<Boolean>()
 
     //是否显示右下角可移动贴边View
-    val isShowFruitView= MutableLiveData<Boolean>()
+    val isShowFruitView = MutableLiveData<Boolean>()
 
     //古诗返回结果
-    val poetryResultDataState = MutableLiveData<AncientChinesePoetryBean.Data>()
+    val poetryResultDataState = MutableLiveData<PoetryBean.Data>()
     val poetryResult = MutableLiveData<String>()
 
     /**
-     * 获取妹子列表
+     * 获取首页文章列表
      * @param isRefresh 是否刷新
      */
-    fun getBeautyData(isRefresh: Boolean,pageSize:Int = 10) {
+    fun getArticleData(isRefresh: Boolean, pageSize: Int = 10) {
         if (isRefresh) {
-            pageNo = 1
+            pageNo = 0
         }
 
         scopeNetLife {
-            val data = Get<BeautyBean>(ApiUrls.getGankBeauty(pageNo,pageSize)) {
-            }.await().data
+            val data = Get<ArticleBean>(ApiUrls.getMainArticle(pageNo)) {
+                param("page_size ", pageSize.toString())
+            }.await().data.datas
 
             //请求成功
-            isFirstEmpty = data.isEmpty() && pageNo == 1
+            isFirstEmpty = data.isEmpty() && pageNo == 0
             val listDataUiState =
                 ListDataUiState(
                     isSuccess = true,
@@ -73,7 +72,7 @@ class MainViewModel : BaseViewModel() {
                 )
 
             pageNo++
-            beautyDataState.value = listDataUiState
+            articleDataState.value = listDataUiState
         }.catch {
             // 协程内部发生错误回调, it为异常
             handleError(it)
@@ -82,9 +81,9 @@ class MainViewModel : BaseViewModel() {
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isFirstEmpty = false,
-                    listData = arrayListOf<BeautyBean.Data>()
+                    listData = arrayListOf<ArticleBean.Data.Data>()
                 )
-            beautyDataState.value = listDataUiState
+            articleDataState.value = listDataUiState
         }
     }
 
@@ -117,7 +116,10 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
-    fun getPoetry(){
+    /**
+     * 有TOKEN直接请求古诗内容，无TOKEN请求TOKEN
+     */
+    fun getPoetry() {
         if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))) {
             getAncientChinesePoetryToken()
         } else {
@@ -128,9 +130,9 @@ class MainViewModel : BaseViewModel() {
     /**
      * 获取古诗Token
      */
-    fun getAncientChinesePoetryToken() {
+    private fun getAncientChinesePoetryToken() {
         scopeNetLife {
-            val data = Get<AncientChinesePoetryTokenBean>(ApiUrls.ANCIENT_CHINESE_POETRY_TOKEN) {
+            val data = Get<PoetryTokenBean>(ApiUrls.ANCIENT_CHINESE_POETRY_TOKEN) {
                 converter = PoetrySerializationConverter()
 
             }.await().data
@@ -143,9 +145,9 @@ class MainViewModel : BaseViewModel() {
     /**
      * 获取古诗
      */
-    fun getAncientChinesePoetry() {
+    private fun getAncientChinesePoetry() {
         scopeNetLife {
-            val data = Get<AncientChinesePoetryBean>(ApiUrls.ANCIENT_CHINESE_POETRY) {
+            val data = Get<PoetryBean>(ApiUrls.ANCIENT_CHINESE_POETRY) {
                 converter = PoetrySerializationConverter()
                 setHeader("X-User-Token", MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))
             }.await().data

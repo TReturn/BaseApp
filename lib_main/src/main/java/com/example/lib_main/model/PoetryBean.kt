@@ -12,7 +12,7 @@ import kotlinx.serialization.SerialName
 
 
  @Serializable
-data class AncientChinesePoetryBean(
+data class PoetryBean(
     @SerialName("data")
     var `data`: Data = Data(),
     @SerialName("ipAddress")

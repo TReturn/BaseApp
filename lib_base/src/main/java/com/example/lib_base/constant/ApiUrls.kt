@@ -47,13 +47,12 @@ object ApiUrls {
     const val GANK_CAROUSEL = "/banners"
 
     /**
-     * 妹子图列表
+     * 首页文章列表
      * @param pageNo Int
-     * @param pageSize Int
      * @return String
      */
-    fun getGankBeauty(pageNo: Int = 1, pageSize: Int = 10): String {
-        return "/data/category/Girl/type/Girl/page/$pageNo/count/$pageSize"
+    fun getMainArticle(pageNo: Int = 0): String {
+        return "article/list/$pageNo/json"
     }
 
     //文章所有子分类

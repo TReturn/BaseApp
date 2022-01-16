@@ -14,7 +14,7 @@ import kotlinx.serialization.SerialName
 
 
 @Serializable
-data class GankCategoryTypeBean(
+data class WanCategoryTypeBean(
     @SerialName("data")
     var `data`: Data = Data(),
     @SerialName("errorCode")
