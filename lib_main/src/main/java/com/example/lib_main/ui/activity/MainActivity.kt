@@ -13,13 +13,13 @@ import com.example.lib_main.R
 import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.ext.initMain
 import com.example.lib_main.viewmodel.MainViewModel
-import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hjq.toast.ToastUtils
 
 
 @Route(path = RouterUrls.ROUTER_URL_MAIN)
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
-    NavigationBarView.OnItemSelectedListener {
+    BottomNavigationView.OnNavigationItemSelectedListener {
     private var firstTime = 0L
     private var delayTime = 2000L
     private var toolBarViewHeight = 0
@@ -39,7 +39,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         mDatabind.viewPager.initMain(this)
 
         //给底部导航栏菜单项添加点击事件
-        mDatabind.bottomNavigation.setOnItemSelectedListener(this)
+        mDatabind.bottomNavigation.setOnNavigationItemSelectedListener(this)
 
         //拦截BottomNavigation长按事件 防止长按时出现Toast
         mDatabind.bottomNavigation.interceptLongClick(

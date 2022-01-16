@@ -1,14 +1,19 @@
 package com.example.lib_main.viewmodel
 
+import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.scopeNetLife
 import com.drake.net.Get
 import com.example.lib_base.constant.ApiUrls
+import com.example.lib_base.constant.MMKVKeys
 import com.example.lib_base.constant.SdkKeys
 import com.example.lib_base.list.ListDataUiState
+import com.example.lib_base.net.PoetrySerializationConverter
 import com.example.lib_base.net.SerializationConverter
 import com.example.lib_base.net.WeatherSerializationConverter
 import com.example.lib_base.utils.banner.BaseBannerData
+import com.example.lib_base.utils.data.MMKVUtils
+import com.example.lib_base.utils.log.LogUtils
 import com.example.lib_base.utils.ui.ResourceUtils
 import com.example.lib_main.R
 import com.example.lib_main.model.*
@@ -28,9 +33,6 @@ class MainViewModel : BaseViewModel() {
     //妹子列表集合数据
     var beautyDataState = MutableLiveData<ListDataUiState<BeautyBean.Data>>()
 
-    //轮播图数据
-    val bannerDataState = MutableLiveData<List<BaseBannerData>>()
-
     //天气集合数据
     val weatherDataState = MutableLiveData<WeatherBean.Result>()
 
@@ -42,6 +44,10 @@ class MainViewModel : BaseViewModel() {
 
     //是否显示右下角可移动贴边View
     val isShowFruitView= MutableLiveData<Boolean>()
+
+    //古诗返回结果
+    val poetryResultDataState = MutableLiveData<AncientChinesePoetryBean.Data>()
+    val poetryResult = MutableLiveData<String>()
 
     /**
      * 获取妹子列表
@@ -84,26 +90,6 @@ class MainViewModel : BaseViewModel() {
 
 
     /**
-     * 获取Banner列表
-     */
-    fun getBannerData() {
-        scopeNetLife {
-            val data = Get<GankBannerBean>(ApiUrls.GANK_CAROUSEL) {
-            }.await().data
-
-            val outData: MutableList<BaseBannerData> = ArrayList<BaseBannerData>()
-            for (i in data.indices) {
-                val inData = BaseBannerData()
-                inData.setImage(data[i].image)
-                inData.setUrl(data[i].url)
-                inData.setTitle(data[i].title)
-                outData.add(inData)
-            }
-            bannerDataState.value = outData
-        }
-    }
-
-    /**
      * 获取天气
      */
     fun getWeather(lng: String = "121.6544", lat: String = "25.1552") {
@@ -128,6 +114,43 @@ class MainViewModel : BaseViewModel() {
             }.await().content
 
             getWeather(data.point.x, data.point.y)
+        }
+    }
+
+    fun getPoetry(){
+        if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))) {
+            getAncientChinesePoetryToken()
+        } else {
+            getAncientChinesePoetry()
+        }
+    }
+
+    /**
+     * 获取古诗Token
+     */
+    fun getAncientChinesePoetryToken() {
+        scopeNetLife {
+            val data = Get<AncientChinesePoetryTokenBean>(ApiUrls.ANCIENT_CHINESE_POETRY_TOKEN) {
+                converter = PoetrySerializationConverter()
+
+            }.await().data
+
+            MMKVUtils.set(MMKVKeys.POETRY_TOKEN, data)
+            getAncientChinesePoetry()
+        }
+    }
+
+    /**
+     * 获取古诗
+     */
+    fun getAncientChinesePoetry() {
+        scopeNetLife {
+            val data = Get<AncientChinesePoetryBean>(ApiUrls.ANCIENT_CHINESE_POETRY) {
+                converter = PoetrySerializationConverter()
+                setHeader("X-User-Token", MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))
+            }.await().data
+            LogUtils.d(data)
+            poetryResultDataState.value = data
         }
     }
 

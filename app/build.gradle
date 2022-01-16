@@ -133,6 +133,6 @@ dependencies {
     //第三方库
     implementation rootProject.depsLibs.lottie
     kapt rootProject.depsLibs.arouter_compiler
-    implementation rootProject.depsLibs.verticaltextview
-    implementation "com.sjtu.yifei:vertical-textview:1.4.1"
+    //implementation rootProject.depsLibs.verticaltextview
+    //implementation "com.sjtu.yifei:vertical-textview:1.4.1"
 }

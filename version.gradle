@@ -63,6 +63,7 @@ ext {
             qrcode              : '1.1.0',
             stream              : '1.2.1',
             utilcodex           : '1.30.6',
+            verticaltextview    : '1.4.1',
     ]
 
 
@@ -194,6 +195,9 @@ ext {
 
             //工具类集合
             utilcodex           : "com.blankj:utilcodex:${depsVersion.utilcodex}",
+
+            //工具类集合
+            verticaltextview    : "com.sjtu.yifei:vertical-textview:${depsVersion.verticaltextview}",
     ]
 
 }

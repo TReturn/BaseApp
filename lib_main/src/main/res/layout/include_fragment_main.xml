@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:pageChangeDuration="800"
             app:pointsContainerBackground="@android:color/transparent"
-            app:pointsPosition="RIGHT"
+            app:pointsPosition="LEFT"
             app:tipTextSize="12sp" />
 
         <TextView

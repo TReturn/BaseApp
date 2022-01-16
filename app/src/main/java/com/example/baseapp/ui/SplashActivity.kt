@@ -34,23 +34,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
         QMUIStatusBarHelper.translucent(this)
         //改变字体
         TextFontUtils.load(TextFontUtils.getDefaultTypeFace(),mDatabind.tvSplash)
-        initData()
         toMainActivity()
-    }
-
-    private fun initData() {
-        if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))) {
-            mViewModel.getAncientChinesePoetryToken()
-        } else {
-            mViewModel.getAncientChinesePoetry()
-        }
-    }
-
-    override fun createObserver() {
-        super.createObserver()
-        mViewModel.poetryResultDataState.observe(this, {
-            mDatabind.tvVerticalText.setVerticalText(it.content)
-        })
     }
 
     /**
@@ -58,7 +42,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
      */
 
     private fun toMainActivity() {
-        val waitTime: Long = if (BuildConfig.DEBUG) 3000L else MMKVKeys.SPLASH_TIME
+        val waitTime: Long = if (BuildConfig.DEBUG) 0L else MMKVKeys.SPLASH_TIME
         //绑定lifecycle的协程
         lifecycleScope.launch {
             delay(waitTime)
