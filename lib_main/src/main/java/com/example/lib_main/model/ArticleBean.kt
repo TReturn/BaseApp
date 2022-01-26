@@ -105,9 +105,7 @@ data class ArticleBean(
             var visible: Int = 0,
             @SerialName("zan")
             var zan: Int = 0,
-            override var itemType: Int = 0,
-            var spanSize: Int = 4
-        ) : MultiItemEntity {
+        ) {
             @Serializable
             data class Tag(
                 @SerialName("name")

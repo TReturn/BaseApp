@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.lib_main.model.ArticleBean.Data.Data" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp">
 
 
         <TextView
@@ -23,22 +27,34 @@
             android:textColor="@color/text_black"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:text="@{data.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→" />
 
+        <TextView
+            android:id="@+id/tvSource"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/text_default"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvTime"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="点点医讯" />
 
         <TextView
             android:id="@+id/tvAuthor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:textColor="@color/text_default"
             android:textSize="10sp"
-            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvSource"
             tools:text="点点医讯" />
 
         <TextView
@@ -49,8 +65,17 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvAuthor"
             app:layout_constraintEnd_toEndOf="@+id/tvTitle"
-            app:layout_constraintTop_toTopOf="@+id/tvAuthor"
+            app:layout_constraintTop_toTopOf="@+id/tvSource"
             tools:text="2021-8-29" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</layout>

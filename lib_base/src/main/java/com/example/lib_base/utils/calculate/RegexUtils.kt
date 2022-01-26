@@ -8,6 +8,18 @@ import java.util.regex.Pattern
  * @Description : 正则表达式校验
  */
 object RegexUtils {
+
+    /**
+     * 中国手机号校验
+     * @param word 密码
+     * @return Boolean
+     */
+    fun isChinaPhone(phone: String): Boolean {
+        val regex = "^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}\$"
+        val pattern = Pattern.compile(regex)
+        return pattern.matcher(phone).matches()
+    }
+
     /**
      * 密码校验，必须包含数字和字母，8-20位
      * @param word 密码

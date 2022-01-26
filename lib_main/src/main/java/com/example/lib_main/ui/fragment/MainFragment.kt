@@ -24,6 +24,7 @@ import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_base.utils.ui.TextFontUtils
 import com.example.lib_main.R
 import com.example.lib_main.adapter.ArticleAdapter
+import com.example.lib_main.adapter.DataBindingAdapter
 import com.example.lib_main.databinding.FragmentMainBinding
 import com.example.lib_main.model.*
 import com.example.lib_main.viewmodel.MainViewModel
@@ -40,9 +41,10 @@ import com.xuexiang.xqrcode.XQRCode
  */
 class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
-    private val articleAdapter: ArticleAdapter by lazy { ArticleAdapter() }
+    //private val articleAdapter: ArticleAdapter by lazy { ArticleAdapter() }
+    private val articleAdapter: DataBindingAdapter by lazy { DataBindingAdapter() }
 
-    private val bannerData: MutableList<BaseBannerData> = ArrayList<BaseBannerData>()
+    private val bannerData: MutableList<BaseBannerData> = ArrayList()
 
     override fun layoutId(): Int {
         return R.layout.fragment_main
@@ -87,19 +89,6 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         //首页文章列表监听
         mViewModel.articleDataState.observe(viewLifecycleOwner) {
             loadListData(it, articleAdapter, mDatabind.refreshLayout)
-            articleAdapter.data.run {
-                for (i in 1 until this.size) {
-                    if ((0..2).random() == 1 && get(i - 1).spanSize != 2) {
-                        get(i).spanSize = 2
-                        get(i - 1).spanSize = 2
-                        get(i).itemType = 1
-                        get(i - 1).itemType = 1
-                    } else {
-                        get(i).spanSize = 4
-                    }
-                }
-                articleAdapter.notifyDataSetChanged()
-            }
 
         }
 
@@ -137,15 +126,12 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
      * 初始化适配器和点击事件
      */
     private fun initAdapter() {
-        mDatabind.include.rvArticle.init(GridLayoutManager(activity, 4), articleAdapter, false)
+        mDatabind.include.rvArticle.init(GridLayoutManager(activity, 1), articleAdapter, false)
         articleAdapter.run {
             setOnItemClickListener { adapter, view, position ->
                 RouterUtils.web(data[position].link, data[position].title)
             }
         }
-        articleAdapter.setGridSpanSizeLookup(GridSpanSizeLookup { gridLayoutManager, viewType, position ->
-            articleAdapter.data[position].spanSize
-        })
     }
 
     /**
