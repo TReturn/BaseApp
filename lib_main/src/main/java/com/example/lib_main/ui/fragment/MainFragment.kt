@@ -159,20 +159,29 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                     tvAuthor.text = author
                     tvContent.visibility = View.VISIBLE
                     tvAuthor.visibility = View.VISIBLE
-                    GlideUtils.loadRoundImageTransform(
-                        activity,
-                        R.drawable.banner_poetry_bg,
-                        ivBanner,
-                        12
-                    )
+                    activity?.let {
+                        if (!it.isDestroyed){
+                            GlideUtils.loadRoundImageTransform(
+                                it,
+                                R.drawable.banner_poetry_bg,
+                                ivBanner,
+                                12
+                            )
+                        }
+                    }
+
                 } else {
                     tvContent.visibility = View.GONE
-                    GlideUtils.loadRoundImageTransform(
-                        activity,
-                        bannerData[position].getImage(),
-                        ivBanner,
-                        12
-                    )
+                    activity?.let {
+                        if (!it.isDestroyed){
+                            GlideUtils.loadRoundImageTransform(
+                                it,
+                                bannerData[position].getImage(),
+                                ivBanner,
+                                12
+                            )
+                        }
+                    }
                 }
             }
             setAutoPlayAble(bannerData.size > 1)

@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -17,9 +18,19 @@ import com.example.lib_base.utils.calculate.DensityUtils.dip2px
  * @CreateDate : 2021/7/30
  * @Author : 青柠
  * @Description : Glide工具类
+ * 1.带占位图的加载图片方式，适合加载网络图片: loadImage()
+ * 2.直接加载，适合加载本地资源: loadImageProtist()
+ * 3.加载圆角图片，解决设置CenterCroup设置圆角不生效的问题: loadRoundImage()
+ * 4.Transform方式加载圆角: loadRoundImageTransform()
+ * 5.加载圆形图片:加载圆形图片: loadCircleImage()
+ * 6.压缩加载图片: loadRoundOverrideImage()
+ * 7.预加载图片，先缓存到磁盘中: loadPreload()
  */
 object GlideUtils {
 
+    /**
+     * 默认配置
+     */
     private var requestOptions: RequestOptions = RequestOptions()
         //设置预加载图、错误图
         .placeholder(R.color.color_gray)
@@ -27,7 +38,7 @@ object GlideUtils {
         .fallback(R.color.color_gray)
 
     /**
-     * 带占位图的加载图片方式，适合加载网络图片
+     * 1.带占位图的加载图片方式，适合加载网络图片
      * @param url Any
      * @param imageView ImageView
      */
@@ -41,7 +52,7 @@ object GlideUtils {
     }
 
     /**
-     * 直接加载，适合加载本地资源
+     * 2.直接加载，适合加载本地资源
      * @param url Any
      * @param imageView ImageView
      */
@@ -54,7 +65,7 @@ object GlideUtils {
     }
 
     /**
-     *加载圆角图片，解决设置CenterCroup设置圆角不生效的问题。
+     * 3.加载圆角图片，解决设置CenterCroup设置圆角不生效的问题。
      * @param url Any
      * @param imageView ImageView
      * @param radius 圆角半径
@@ -76,7 +87,7 @@ object GlideUtils {
     }
 
     /**
-     *Transform方式加载圆角
+     * 4.Transform方式加载圆角
      * @param url Any
      * @param imageView ImageView
      * @param radius 圆角半径
@@ -96,25 +107,8 @@ object GlideUtils {
 
     }
 
-    fun loadRoundImageTransform(
-        activity: FragmentActivity?,
-        url: Any,
-        imageView: ImageView,
-        radius: Int
-    ) {
-        activity?.let {
-            if (!activity.isDestroyed) {
-                Glide.with(activity).load(url)
-                    .apply(requestOptions)
-                    .transform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
-                    .into(imageView)
-            }
-        }
-
-    }
-
     /**
-     * 加载圆形图片
+     * 5.加载圆形图片
      * @param activity FragmentActivity?
      * @param url Any
      * @param imageView ImageView
@@ -123,7 +117,7 @@ object GlideUtils {
         activity: FragmentActivity?,
         url: Any,
         imageView: ImageView,
-    ){
+    ) {
         activity?.let {
             if (!activity.isDestroyed) {
                 Glide.with(activity).load(url)
@@ -134,14 +128,20 @@ object GlideUtils {
     }
 
     /**
-     * 压缩加载图片
+     * 6.压缩加载图片
      * @param url Any
      * @param imageView ImageView
      * @param width Int
      * @param height Int
      */
     @SuppressLint("CheckResult")
-    fun loadRoundOverrideImage( context: Context?,url: Any, imageView: ImageView, width: Int, height: Int) {
+    fun loadRoundOverrideImage(
+        context: Context?,
+        url: Any,
+        imageView: ImageView,
+        width: Int,
+        height: Int
+    ) {
         context?.let {
             //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
             requestOptions.override(width, height)
@@ -150,5 +150,20 @@ object GlideUtils {
                 .into(imageView)
         }
 
+    }
+
+    /**
+     * 7.预加载图片，先缓存到磁盘中
+     * @param context Context?
+     * @param url Any
+     * @param width Int
+     * @param height Int
+     */
+    fun loadPreload(context: Context?, url: Any, width: Int, height: Int) {
+        context?.let {
+            Glide.with(it).load(url)
+                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.RESOURCE))
+                .preload(width, height)
+        }
     }
 }
