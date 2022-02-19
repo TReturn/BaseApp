@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.text.TextUtils"/>
         <variable
             name="data"
-            type="com.example.lib_main.model.ArticleBean.Data.Data" />
+            type="com.example.lib_main.model.ArticleDetail" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +41,7 @@
             android:layout_marginTop="12dp"
             android:textColor="@color/text_default"
             android:textSize="10sp"
+            android:text="@{TextUtils.isEmpty(data.superChapterName)?``:data.superChapterName}"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
@@ -52,6 +54,7 @@
             android:layout_marginTop="2dp"
             android:textColor="@color/text_default"
             android:textSize="10sp"
+            android:text="@{TextUtils.isEmpty(data.author)?data.shareUser:data.author}"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvSource"

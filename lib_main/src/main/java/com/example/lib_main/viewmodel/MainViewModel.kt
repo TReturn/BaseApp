@@ -29,7 +29,7 @@ class MainViewModel : BaseViewModel() {
     private var isFirstEmpty = false
 
     //首页文章列表集合数据
-    var articleDataState = MutableLiveData<ListDataUiState<ArticleBean.Data.Data>>()
+    var articleDataState = MutableLiveData<ListDataUiState<ArticleDetail>>()
 
     //天气集合数据
     val weatherDataState = MutableLiveData<WeatherBean.Result>()
@@ -57,7 +57,7 @@ class MainViewModel : BaseViewModel() {
         }
 
         scopeNetLife {
-            val data = Get<ArticleBean>(ApiUrls.getMainArticle(pageNo)) {
+            val data = Get<ArticleModel>(ApiUrls.getMainArticle(pageNo)) {
                 param("page_size ", pageSize.toString())
             }.await().data.datas
 
@@ -81,7 +81,7 @@ class MainViewModel : BaseViewModel() {
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isFirstEmpty = false,
-                    listData = arrayListOf<ArticleBean.Data.Data>()
+                    listData = arrayListOf<ArticleDetail>()
                 )
             articleDataState.value = listDataUiState
         }

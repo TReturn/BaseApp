@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import com.chad.library.adapter.base.listener.GridSpanSizeLookup
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.constant.StaticConstants
@@ -24,7 +23,6 @@ import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_base.utils.ui.TextFontUtils
 import com.example.lib_main.R
 import com.example.lib_main.adapter.ArticleAdapter
-import com.example.lib_main.adapter.DataBindingAdapter
 import com.example.lib_main.databinding.FragmentMainBinding
 import com.example.lib_main.model.*
 import com.example.lib_main.viewmodel.MainViewModel
@@ -42,7 +40,7 @@ import com.xuexiang.xqrcode.XQRCode
 class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
     //private val articleAdapter: ArticleAdapter by lazy { ArticleAdapter() }
-    private val articleAdapter: DataBindingAdapter by lazy { DataBindingAdapter() }
+    private val articleAdapter: ArticleAdapter by lazy { ArticleAdapter() }
 
     private val bannerData: MutableList<BaseBannerData> = ArrayList()
 

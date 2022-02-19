@@ -29,6 +29,8 @@ fun ViewPager2.initMain(
     isUserInputEnabled: Boolean
 ): ViewPager2 {
     //是否可滑动
+    this.isUserInputEnabled  =isUserInputEnabled
+    //预加载
     this.offscreenPageLimit = 4
     //设置适配器
     adapter = object : FragmentStateAdapter(fragment) {

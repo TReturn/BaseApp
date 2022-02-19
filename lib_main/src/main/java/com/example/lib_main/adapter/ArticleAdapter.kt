@@ -1,10 +1,10 @@
 package com.example.lib_main.adapter
 
-import android.text.TextUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 import com.example.lib_main.R
-import com.example.lib_main.model.ArticleBean
+import com.example.lib_main.databinding.ItemArticleLayoutBinding
+import com.example.lib_main.model.ArticleDetail
 
 /**
  * @CreateDate: 2022/1/16 18:33
@@ -12,26 +12,14 @@ import com.example.lib_main.model.ArticleBean
  * @Description:
  */
 class ArticleAdapter :
-    BaseQuickAdapter<ArticleBean.Data.Data, BaseViewHolder>(R.layout.item_article_layout) {
-
-    override fun convert(holder: BaseViewHolder, item: ArticleBean.Data.Data) {
-        holder.run {
-            item.run {
-                setText(R.id.tvTitle, item.title)
-                setText(R.id.tvTime, item.niceDate)
-                val author = if (!TextUtils.isEmpty(item.author)) {
-                    item.author
-                } else {
-                    item.shareUser
-                }
-
-                if (!TextUtils.isEmpty(item.superChapterName)) {
-                    setText(R.id.tvSource, "《${item.superChapterName}》")
-                }
-                setText(R.id.tvAuthor, "——${author}")
-            }
+    BaseQuickAdapter<ArticleDetail, BaseDataBindingHolder<ItemArticleLayoutBinding>>(R.layout.item_article_layout) {
+    override fun convert(
+        holder: BaseDataBindingHolder<ItemArticleLayoutBinding>,
+        item: ArticleDetail
+    ) {
+        holder.dataBinding?.let {
+            it.data = item
+            it.executePendingBindings()
         }
     }
-
-
 }
