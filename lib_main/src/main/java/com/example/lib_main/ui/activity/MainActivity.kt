@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         mDatabind.bottomNavigation.itemIconTintList = null
 
         //初始化viewpager2
-        mDatabind.viewPager.initMain(this)
+        mDatabind.viewPager.initMain(this, mDatabind.bottomNavigation, false)
 
         //给底部导航栏菜单项添加点击事件
         mDatabind.bottomNavigation.setOnNavigationItemSelectedListener(this)
@@ -72,9 +72,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
                 return true
             }
             R.id.navigation_third -> {
-            mDatabind.viewPager.currentItem = 2
-            return true
-        }
+                mDatabind.viewPager.currentItem = 2
+                return true
+            }
             R.id.navigation_four -> {
                 mDatabind.viewPager.currentItem = 3
                 return true

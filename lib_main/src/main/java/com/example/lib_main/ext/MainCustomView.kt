@@ -4,10 +4,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.lib_main.R
 import com.example.lib_main.ui.fragment.FourFragment
 import com.example.lib_main.ui.fragment.MainFragment
 import com.example.lib_main.ui.fragment.SecondFragment
 import com.example.lib_main.ui.fragment.ThirdFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
  * @CreateDate : 2021/8/8 0:18
@@ -21,9 +23,12 @@ import com.example.lib_main.ui.fragment.ThirdFragment
  * @param fragment FragmentActivity
  * @return ViewPager2
  */
-fun ViewPager2.initMain(fragment: FragmentActivity): ViewPager2 {
+fun ViewPager2.initMain(
+    fragment: FragmentActivity,
+    bottomNavigationView: BottomNavigationView,
+    isUserInputEnabled: Boolean
+): ViewPager2 {
     //是否可滑动
-    this.isUserInputEnabled = false
     this.offscreenPageLimit = 4
     //设置适配器
     adapter = object : FragmentStateAdapter(fragment) {
@@ -46,7 +51,29 @@ fun ViewPager2.initMain(fragment: FragmentActivity): ViewPager2 {
                 }
             }
         }
+
         override fun getItemCount() = 4
+    }
+    if (isUserInputEnabled) {
+        registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when (position) {
+                    0 -> {
+                        bottomNavigationView.selectedItemId = R.id.navigation_main
+                    }
+                    1 -> {
+                        bottomNavigationView.selectedItemId = R.id.navigation_second
+                    }
+                    2 -> {
+                        bottomNavigationView.selectedItemId = R.id.navigation_third
+                    }
+                    else -> {
+                        bottomNavigationView.selectedItemId = R.id.navigation_four
+                    }
+                }
+            }
+        })
     }
     return this
 }
