@@ -1,9 +1,9 @@
 ext {
     android = [
             applicationId    : "com.example.baseapp",
-            compileSdkVersion: 30,
+            compileSdkVersion: 31,
             buildToolsVersion: "30.0.2",
-            minSdkVersion    : 21,
+            minSdkVersion    : 23,
             targetSdkVersion : 30,
             versionCode      : 1,
             versionName      : "1.0",
@@ -33,37 +33,38 @@ ext {
             //第三方库
             autosize            : "1.2.1",
             smartrefresh        : '2.0.3',
-            xpopup              : '2.5.8',
-            mmkv                : '1.2.10',
+            xpopup              : '2.8.3',
+            mmkv                : '1.2.13',
             luBan               : '1.1.8',
             bugly               : '3.4.4',
             buglyndk            : '3.9.2',
-            permissionx         : '1.6.0',
+            permissionx         : '1.6.4',
             arouter             : '1.5.2',
             magicindicator      : '1.7.0',
-            recyclerviewadapter : '3.0.6',
-            xbanner             : '1.2.0',
-            glide               : '4.12.0',
+            recyclerviewadapter : '3.0.7',
+            xbanner             : '1.2.8',
+            glide               : '4.13.2',
             glidetransformations: '4.3.0',
-            lottie              : '4.0.0',
-            bigimageview        : '6.1.6',
-            pictureselector     : '2.7.3-rc06',
+            lottie              : '5.2.0',
+            bigimageview        : '7.0.3',
+            pictureselector     : '3.10.2',
             labelsview          : '1.6.5',
-            titlebar            : '8.6',
+            titlebar            : '9.3',
             toastutils          : '9.2',
-            jetpackmvvm         : '1.2.5',
+            jetpackmvvm         : '1.2.7',
             circleimageview     : '3.1.0',
             marqueeview         : '1.4.1',
             okhttp              : '4.9.1',
-            net                 : '3.0.25',
-            serialization       : '1.2.2',
+            net                 : '3.4.10',
+            serialization       : '1.3.3',
             agentweb            : '4.1.9',
             logger              : '2.2.0',
-            shapeview           : '5.2',
+            shapeview           : '8.0',
             qrcode              : '1.1.0',
             stream              : '1.2.1',
             utilcodex           : '1.30.6',
             verticaltextview    : '1.4.1',
+            pickerlayoutmanager : '1.0.4',
     ]
 
 
@@ -198,6 +199,9 @@ ext {
 
             //工具类集合
             verticaltextview    : "com.sjtu.yifei:vertical-textview:${depsVersion.verticaltextview}",
+
+            //基于自定义LayoutManager的PickerView,滑动选择列表
+            pickerlayoutmanager : "com.github.simplepeng:PickerLayoutManager:v${depsVersion.pickerlayoutmanager}",
     ]
 
 }

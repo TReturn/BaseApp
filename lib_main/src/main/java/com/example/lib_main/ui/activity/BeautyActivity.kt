@@ -17,6 +17,7 @@ import com.example.lib_main.adapter.BeautyDetailAdapter
 import com.example.lib_main.databinding.ActivityBeautyBinding
 import com.example.lib_main.viewmodel.MainViewModel
 import com.hjq.bar.OnTitleBarListener
+import com.hjq.bar.TitleBar
 
 /**
  * @CreateDate : 2021/8/19 00:03
@@ -39,12 +40,9 @@ class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
 
         mDatabind.include.titleBar.title = UiUtils.getString(R.string.main_article_title)
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(view: View?) {
+            override fun onLeftClick(titleBar: TitleBar) {
                 finish()
             }
-
-            override fun onRightClick(view: View?) {}
-            override fun onTitleClick(view: View?) {}
         })
 
         mDatabind.refreshLayout.autoRefresh()

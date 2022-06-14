@@ -13,6 +13,7 @@ import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.databinding.ActivityWebBinding
 import com.example.lib_base.utils.log.LogUtils
 import com.hjq.bar.OnTitleBarListener
+import com.hjq.bar.TitleBar
 import com.just.agentweb.AgentWeb
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -43,12 +44,9 @@ class WebActivity : BaseActivity<BaseViewModel, ActivityWebBinding>() {
 
         //标题栏点击事件
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(view: View?) {
+            override fun onLeftClick(titleBar: TitleBar) {
                 finish()
             }
-
-            override fun onTitleClick(view: View?) {}
-            override fun onRightClick(view: View?) {}
         })
 
         AgentWeb.with(this)

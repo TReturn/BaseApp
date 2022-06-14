@@ -21,6 +21,7 @@ import com.example.lib_main.R
 import com.example.lib_main.databinding.ActivitySearchBinding
 import com.example.lib_main.viewmodel.SearchViewModel
 import com.hjq.bar.OnTitleBarListener
+import com.hjq.bar.TitleBar
 
 
 /**
@@ -45,15 +46,9 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
 
         //标题栏点击事件
         mDatabind.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(view: View?) {
+            override fun onLeftClick(titleBar: TitleBar) {
                 finish()
             }
-
-            override fun onRightClick(view: View?) {
-                toSearch(mDatabind.etSearch.text.toString())
-            }
-
-            override fun onTitleClick(view: View?) {}
         })
 
         //键盘搜索键点击事件

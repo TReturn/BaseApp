@@ -18,7 +18,7 @@ object BigImageUtils {
      */
     fun show(activity: FragmentActivity, imageList: MutableList<String>, index: Int = 0) {
         ImagePreview
-            .getInstance()
+            .instance
             // 上下文，必须是activity，不需要担心内存泄漏，本框架已经处理好；
             .setContext(activity)
             // 设置从第几张开始看（索引从0开始）
@@ -37,7 +37,7 @@ object BigImageUtils {
      */
     fun show(activity: FragmentActivity, image: String) {
         ImagePreview
-            .getInstance()
+            .instance
             // 上下文，必须是activity，不需要担心内存泄漏，本框架已经处理好；
             .setContext(activity)
             // 设置从第几张开始看（索引从0开始）
