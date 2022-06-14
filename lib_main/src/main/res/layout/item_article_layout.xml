@@ -13,72 +13,85 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="6dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivHead"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            tools:src="@drawable/ic_fruit_lemon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:maxLines="2"
             android:orientation="vertical"
-            android:textColor="@color/text_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             android:text="@{data.title}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/text_article_title"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvTime"
+            app:layout_constraintStart_toStartOf="@+id/tvSource"
+            app:layout_constraintTop_toBottomOf="@+id/ivHead"
             tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→" />
 
         <TextView
             android:id="@+id/tvSource"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/text_default"
+            android:layout_marginBottom="4dp"
+            android:text="@{TextUtils.isEmpty(data.superChapterName)?``:`#`+data.superChapterName}"
+            android:textColor="@color/text_article_source"
             android:textSize="10sp"
-            android:text="@{TextUtils.isEmpty(data.superChapterName)?``:data.superChapterName}"
-            app:layout_constraintEnd_toStartOf="@+id/tvTime"
-            app:layout_constraintStart_toStartOf="@+id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintBottom_toBottomOf="@+id/ivHead"
+            app:layout_constraintEnd_toEndOf="@+id/tvAuthor"
+            app:layout_constraintStart_toStartOf="@+id/tvAuthor"
             tools:text="点点医讯" />
 
         <TextView
             android:id="@+id/tvAuthor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textColor="@color/text_default"
-            android:textSize="10sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             android:text="@{TextUtils.isEmpty(data.author)?data.shareUser:data.author}"
+            android:textColor="@color/text_article_author"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
-            app:layout_constraintStart_toStartOf="@+id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvSource"
-            tools:text="点点医讯" />
+            app:layout_constraintStart_toEndOf="@+id/ivHead"
+            app:layout_constraintTop_toTopOf="@+id/ivHead"
+            tools:text="青柠" />
 
         <TextView
             android:id="@+id/tvTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{data.niceDate}"
             android:textColor="@color/text_default"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAuthor"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
-            app:layout_constraintTop_toTopOf="@+id/tvSource"
+            android:textSize="8sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="2021-8-29" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="@color/color_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
