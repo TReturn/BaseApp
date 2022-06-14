@@ -105,14 +105,14 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
         if (!TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.SEARCH_HISTORY))) {
             set.addAll(MMKVUtils.getStringSet(MMKVKeys.SEARCH_HISTORY))
         }
-        MMKVUtils.set(MMKVKeys.SEARCH_HISTORY, set)
+        MMKVUtils.put(MMKVKeys.SEARCH_HISTORY, set)
     }
 
     /**
      * 清空历史记录
      */
     private fun deleteAllSearchHistory() {
-        MMKVUtils.set(MMKVKeys.SEARCH_HISTORY, "")
+        MMKVUtils.put(MMKVKeys.SEARCH_HISTORY, "")
         searchLabel.clear()
         mDatabind.labelsView.setLabels(searchLabel)
     }

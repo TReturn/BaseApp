@@ -137,7 +137,7 @@ class MainViewModel : BaseViewModel() {
 
             }.await().data
 
-            MMKVUtils.set(MMKVKeys.POETRY_TOKEN, data)
+            MMKVUtils.put(MMKVKeys.POETRY_TOKEN, data)
             getAncientChinesePoetry()
         }
     }

@@ -62,12 +62,12 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
             when (MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1) ){
                 AppCompatDelegate.MODE_NIGHT_NO ->{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    MMKVUtils.set(MMKVKeys.NIGHT_MODE,AppCompatDelegate.MODE_NIGHT_YES)
+                    MMKVUtils.put(MMKVKeys.NIGHT_MODE,AppCompatDelegate.MODE_NIGHT_YES)
                     mDatabind.toolbar.menu.getItem(0).icon = UiUtils.getDrawable(R.drawable.ic_dark_themes)
                 }
                 AppCompatDelegate.MODE_NIGHT_YES ->{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    MMKVUtils.set(MMKVKeys.NIGHT_MODE,AppCompatDelegate.MODE_NIGHT_NO)
+                    MMKVUtils.put(MMKVKeys.NIGHT_MODE,AppCompatDelegate.MODE_NIGHT_NO)
                     mDatabind.toolbar.menu.getItem(0).icon = UiUtils.getDrawable(R.drawable.ic_day_themes)
                 }
             }
