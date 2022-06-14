@@ -4,6 +4,9 @@ import android.app.Application
 import android.app.ProgressDialog
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.LogRecordInterceptor
@@ -14,6 +17,7 @@ import com.drake.net.request.BaseRequest
 import com.example.lib_base.constant.ApiUrls
 import com.example.lib_base.constant.MMKVKeys
 import com.example.lib_base.constant.SdkKeys
+import com.example.lib_base.event.AppViewModel
 import com.example.lib_base.net.WanSerializationConverter
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.log.LogUtils
@@ -34,17 +38,28 @@ import java.util.concurrent.TimeUnit
  * @Author : 青柠
  * @Description :
  */
-open class BaseApplication : Application() {
+
+val appViewModel: AppViewModel by lazy { BaseApplication.appViewModelInstance }
+
+open class BaseApplication : Application(), ViewModelStoreOwner {
+
+
+    private var mFactory: ViewModelProvider.Factory? = null
+    private lateinit var mAppViewModelStore: ViewModelStore
 
     //将Application 单例化，可供全局调用 Context
     companion object {
         lateinit var context: BaseApplication
+        lateinit var appViewModelInstance: AppViewModel
     }
 
     override fun onCreate() {
         super.onCreate()
 
         context = this
+
+        mAppViewModelStore = ViewModelStore()
+        appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
 
         //MMKV键值对存储
         MMKV.initialize(this)
@@ -120,6 +135,24 @@ open class BaseApplication : Application() {
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> //指定为经典Footer，默认是 BallPulseFooter
             ClassicsFooter(context).setDrawableSize(20f)
         }
+    }
+
+    /**
+     * 获取一个全局的ViewModel
+     */
+    private fun getAppViewModelProvider(): ViewModelProvider {
+        return ViewModelProvider(this, this.getAppFactory())
+    }
+
+    private fun getAppFactory(): ViewModelProvider.Factory {
+        if (mFactory == null) {
+            mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this)
+        }
+        return mFactory as ViewModelProvider.Factory
+    }
+
+    override fun getViewModelStore(): ViewModelStore {
+        return mAppViewModelStore
     }
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.example.lib_base.appViewModel
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.interceptLongClick
@@ -59,6 +60,15 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
                 ProxyClick().toFruit()
             }
         })
+    }
+
+    override fun createObserver() {
+        super.createObserver()
+        //跳转到首页Tab
+        appViewModel.intentToMainTab.observeInActivity(this) {
+            mDatabind.viewPager.setCurrentItem(0, false)
+            mDatabind.bottomNavigation.selectedItemId = R.id.navigation_main
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
