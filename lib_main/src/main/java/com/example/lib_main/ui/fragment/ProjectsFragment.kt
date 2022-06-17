@@ -23,9 +23,6 @@ class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     //项目类型
     private lateinit var projectsType: String
 
-    override fun layoutId(): Int {
-        return R.layout.fragment_news
-    }
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel

@@ -4,8 +4,8 @@
 
     <!--首页文本-->
     <string name="main_navigation_main">Home</string>
-    <string name="main_navigation_second">Project</string>
-    <string name="main_navigation_third">Tool</string>
+    <string name="main_navigation_second">Square</string>
+    <string name="main_navigation_third">Project</string>
     <string name="main_navigation_four">Profile</string>
 
     <string name="main_article_title">Article</string>

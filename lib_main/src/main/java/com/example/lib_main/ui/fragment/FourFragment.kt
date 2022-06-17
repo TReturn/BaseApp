@@ -19,10 +19,6 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
  */
 class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
 
-    override fun layoutId(): Int {
-        return R.layout.fragment_four
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.toolbar.inflateMenu(R.menu.setting_menu)
 

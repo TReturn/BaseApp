@@ -35,21 +35,18 @@ fun ViewPager2.initMain(
     //设置适配器
     adapter = object : FragmentStateAdapter(fragment) {
         override fun createFragment(position: Int): Fragment {
-            when (position) {
+            return when (position) {
                 0 -> {
-                    return MainFragment()
+                    MainFragment()
                 }
                 1 -> {
-                    return SecondFragment()
+                    SecondFragment()
                 }
                 2 -> {
-                    return ThirdFragment()
-                }
-                3 -> {
-                    return FourFragment()
+                    ThirdFragment()
                 }
                 else -> {
-                    return MainFragment()
+                    FourFragment()
                 }
             }
         }

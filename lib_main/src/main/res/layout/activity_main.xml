@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.example.lib_main.viewmodel.MainViewModel" />
+            type="com.example.lib_main.viewmodel.SecondViewModel" />
 
         <variable
             name="click"

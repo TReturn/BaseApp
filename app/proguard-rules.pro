@@ -220,13 +220,12 @@
 
 #MVVM快速开发框架
 -keep class me.hgj.jetpackmvvm.**{*;}
--keep class com.google.android.material.** {*;}
--keep class androidx.** {*;}
--keep public class * extends androidx.**
--keep interface androidx.** {*;}
--dontwarn com.google.android.material.**
--dontnote com.google.android.material.**
--dontwarn androidx.**
+################ ViewBinding & DataBinding ###############
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+  public static * inflate(android.view.LayoutInflater);
+  public static * inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+  public static * bind(android.view.View);
+}
 
 #XBanner 图片轮播混淆配置
 -keep class com.stx.xhb.xbanner.**{*;}

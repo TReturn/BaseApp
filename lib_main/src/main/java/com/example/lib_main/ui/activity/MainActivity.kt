@@ -2,7 +2,6 @@ package com.example.lib_main.ui.activity
 
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.appViewModel
 import com.example.lib_base.base.BaseActivity
@@ -13,21 +12,16 @@ import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.ext.initMain
-import com.example.lib_main.viewmodel.MainViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.lib_main.viewmodel.SecondViewModel
+import com.google.android.material.navigation.NavigationBarView
 import com.hjq.toast.ToastUtils
 
 
 @Route(path = RouterUrls.ROUTER_URL_MAIN)
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
-    BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity<SecondViewModel, ActivityMainBinding>(){
     private var firstTime = 0L
     private var delayTime = 2000L
     private var toolBarViewHeight = 0
-
-    override fun layoutId(): Int {
-        return R.layout.activity_main
-    }
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
@@ -40,7 +34,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         mDatabind.viewPager.initMain(this, mDatabind.bottomNavigation, false)
 
         //给底部导航栏菜单项添加点击事件
-        mDatabind.bottomNavigation.setOnNavigationItemSelectedListener(this)
+        mDatabind.bottomNavigation.setOnItemSelectedListener(mItemSelectedListener)
 
         //拦截BottomNavigation长按事件 防止长按时出现Toast
         mDatabind.bottomNavigation.interceptLongClick(
@@ -71,26 +65,27 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    private val mItemSelectedListener: NavigationBarView.OnItemSelectedListener =
+        NavigationBarView.OnItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_main -> {
                 mDatabind.viewPager.currentItem = 0
-                return true
+                return@OnItemSelectedListener true
             }
             R.id.navigation_second -> {
                 mDatabind.viewPager.currentItem = 1
-                return true
+                return@OnItemSelectedListener true
             }
             R.id.navigation_third -> {
                 mDatabind.viewPager.currentItem = 2
-                return true
+                return@OnItemSelectedListener true
             }
             R.id.navigation_four -> {
                 mDatabind.viewPager.currentItem = 3
-                return true
+                return@OnItemSelectedListener true
             }
         }
-        return false
+            return@OnItemSelectedListener false
     }
 
     inner class ProxyClick {
