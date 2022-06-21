@@ -8,10 +8,6 @@ import com.treturn.lib_weather.viewmodel.WeatherViewModel
 
 class WeatherActivity : BaseActivity<WeatherViewModel, ActivityWeatherBinding>() {
 
-    override fun layoutId(): Int {
-        return R.layout.activity_weather
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
 
     }

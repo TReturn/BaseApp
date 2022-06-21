@@ -11,7 +11,7 @@ object RouterUrls {
     const val ROUTER_URL_SPLASH = "/app/splash"
 
     //主页
-    const val ROUTER_URL_MAIN = "/main/home"
+    const val ROUTER_URL_MAIN = "/app/home"
 
     //搜索页
     const val ROUTER_URL_SEARCH = "/search/search"

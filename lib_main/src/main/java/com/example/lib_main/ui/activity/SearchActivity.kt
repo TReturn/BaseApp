@@ -35,10 +35,6 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
     //搜索历史记录，填充到LabelView
     private var searchLabel: ArrayList<String> = ArrayList()
 
-    override fun layoutId(): Int {
-        return R.layout.activity_search
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel

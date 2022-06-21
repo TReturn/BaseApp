@@ -31,10 +31,6 @@ class WebActivity : BaseActivity<BaseViewModel, ActivityWebBinding>() {
     @Autowired
     lateinit var title: String
 
-    override fun layoutId(): Int {
-        return R.layout.activity_web
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
 

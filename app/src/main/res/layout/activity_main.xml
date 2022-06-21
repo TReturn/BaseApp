@@ -9,17 +9,17 @@
 
         <variable
             name="vm"
-            type="com.example.lib_main.viewmodel.SecondViewModel" />
+            type="com.example.baseapp.viewmodel.MainViewModel" />
 
         <variable
             name="click"
-            type="com.example.lib_main.ui.activity.MainActivity.ProxyClick" />
+            type="com.example.baseapp.ui.activity.MainActivity.ProxyClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activity.MainActivity">
+        tools:context="com.example.baseapp.ui.activity.MainActivity">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

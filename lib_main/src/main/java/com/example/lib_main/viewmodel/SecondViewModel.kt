@@ -40,9 +40,6 @@ class SecondViewModel : BaseViewModel() {
 
     val isShowWeather = MutableLiveData<Boolean>()
 
-    //是否显示右下角可移动贴边View
-    val isShowFruitView = MutableLiveData<Boolean>()
-
     //古诗返回结果
     val poetryResultDataState = MutableLiveData<PoetryBean.Data>()
     val poetryResult = MutableLiveData<String>()
@@ -158,6 +155,5 @@ class SecondViewModel : BaseViewModel() {
 
     init {
         weatherSky.value = ResourceUtils.getString(R.string.main_is_loading)
-        isShowFruitView.value = false
     }
 }

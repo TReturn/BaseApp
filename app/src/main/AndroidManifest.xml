@@ -38,7 +38,7 @@
             android:name="design_height_in_dp"
             android:value="640"/>
 
-        <activity android:name=".ui.SplashActivity"
+        <activity android:name=".ui.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +46,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="true"
+            android:theme="@style/NormalTheme" />
 
         <!-- 阿里路由配置 -->
         <activity android:name="com.example.lib_base.router.SchemeFilterActivity"
@@ -62,6 +67,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
+
 
     </application>
 

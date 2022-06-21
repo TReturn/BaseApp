@@ -30,10 +30,6 @@ class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
     private val beautyAdapter: BeautyDetailAdapter by lazy { BeautyDetailAdapter() }
     private var beautyImageList = arrayListOf<String>()
 
-    override fun layoutId(): Int {
-        return R.layout.activity_beauty
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
         initAdapter()

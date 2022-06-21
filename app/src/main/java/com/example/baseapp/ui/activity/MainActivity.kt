@@ -1,8 +1,10 @@
-package com.example.lib_main.ui.activity
+package com.example.baseapp.ui.activity
 
 import android.os.Bundle
 import android.view.KeyEvent
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.example.baseapp.databinding.ActivityMainBinding
+import com.example.baseapp.viewmodel.MainViewModel
 import com.example.lib_base.appViewModel
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
@@ -10,7 +12,6 @@ import com.example.lib_base.ext.interceptLongClick
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
-import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.ext.initMain
 import com.example.lib_main.viewmodel.SecondViewModel
 import com.google.android.material.navigation.NavigationBarView
@@ -18,7 +19,7 @@ import com.hjq.toast.ToastUtils
 
 
 @Route(path = RouterUrls.ROUTER_URL_MAIN)
-class MainActivity : BaseActivity<SecondViewModel, ActivityMainBinding>(){
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
     private var firstTime = 0L
     private var delayTime = 2000L
     private var toolBarViewHeight = 0
