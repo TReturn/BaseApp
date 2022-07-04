@@ -3,7 +3,6 @@ package com.example.lib_main.ui.fragment
 import android.annotation.SuppressLint
 import android.os.Bundle
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentMainBinding
 import com.example.lib_main.viewmodel.MainViewModel
 

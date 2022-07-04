@@ -16,12 +16,12 @@ object LanguageUtils {
      * 获取语言
      * @return 返回“zh”之类国家码
      */
-    fun getLanguage(): String {
+    private fun getLanguage(): String {
         return if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.LANGUAGE))) {
             //默认语言
             Locale.getDefault().language
         } else {
-            MMKVUtils.getString(MMKVKeys.LANGUAGE).toString()
+            MMKVUtils.getString(MMKVKeys.LANGUAGE)
         }
     }
 

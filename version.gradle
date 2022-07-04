@@ -65,6 +65,7 @@ ext {
             utilcodex           : '1.30.6',
             verticaltextview    : '1.4.1',
             pickerlayoutmanager : '1.0.4',
+            mpandroidchart      : '3.1.0',
     ]
 
 
@@ -202,6 +203,9 @@ ext {
 
             //基于自定义LayoutManager的PickerView,滑动选择列表
             pickerlayoutmanager : "com.github.simplepeng:PickerLayoutManager:v${depsVersion.pickerlayoutmanager}",
+
+            //安卓图表
+            mpandroidchart: "com.github.PhilJay:v${depsVersion.mpandroidchart}",
     ]
 
 }
