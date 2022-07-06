@@ -50,7 +50,7 @@ ext {
             pictureselector     : '3.10.2',
             labelsview          : '1.6.5',
             titlebar            : '9.3',
-            toastutils          : '9.2',
+            toastutils          : '10.5',
             jetpackmvvm         : '1.2.7',
             circleimageview     : '3.1.0',
             marqueeview         : '1.4.1',
@@ -205,7 +205,7 @@ ext {
             pickerlayoutmanager : "com.github.simplepeng:PickerLayoutManager:v${depsVersion.pickerlayoutmanager}",
 
             //安卓图表
-            mpandroidchart: "com.github.PhilJay:v${depsVersion.mpandroidchart}",
+            mpandroidchart: "com.github.PhilJay:MPAndroidChart:v${depsVersion.mpandroidchart}",
     ]
 
 }

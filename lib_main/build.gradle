@@ -70,5 +70,6 @@ dependencies {
     implementation rootProject.depsLibs.labelsview
     implementation rootProject.depsLibs.lottie
     implementation rootProject.depsLibs.circleimageview
+    implementation rootProject.depsLibs.mpandroidchart
 
 }
