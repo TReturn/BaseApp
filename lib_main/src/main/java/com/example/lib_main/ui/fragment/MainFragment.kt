@@ -4,14 +4,15 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import com.example.lib_base.base.BaseFragment
+import com.example.lib_base.utils.log.LogUtils
 import com.example.lib_main.databinding.FragmentMainBinding
 import com.example.lib_main.ui.widget.LastWeekFormattedValue
 import com.example.lib_main.viewmodel.MainViewModel
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.components.YAxis.AxisDependency
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
 
 
 /**
@@ -26,10 +27,25 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
 
+        //监听NestedScrollView滑动事件，自动隐藏、显示底部按钮
+        mDatabind.horizontalScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            val nestedM = mDatabind.horizontalScrollView.measuredWidth
+            val nestedCM = mDatabind.horizontalScrollView.getChildAt(0).measuredWidth
+            //计算滑动比例
+            val scrollProgress = scrollX / (nestedCM - nestedM).toFloat()
+
+            //使用ScrollView控制折线图的左右移动
+            mDatabind.lineChart.moveViewToX((scrollProgress * 100 * 0.24).toFloat())
+            LogUtils.d("$nestedM,$nestedCM ,$scrollProgress")
+        }
+
     }
 
     override fun initData() {
+        //柱状图数据
         setBarChatData()
+        //折线图数据
+        setLineChartData()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -37,6 +53,9 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
     }
 
+    /**
+     * 柱状图
+     */
     private fun setBarChatData() {
         //设置图表属性
         mDatabind.barChart.run {
@@ -76,29 +95,106 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             values.add(BarEntry(i.toFloat(), random.toFloat()))
         }
 
-        val set1: BarDataSet
+        val set: BarDataSet
 
         if (mDatabind.barChart.data != null &&
             mDatabind.barChart.data.dataSetCount > 0
         ) {
-            set1 = mDatabind.barChart.data.getDataSetByIndex(0) as BarDataSet
-            set1.values = values
+            set = mDatabind.barChart.data.getDataSetByIndex(0) as BarDataSet
+            set.values = values
             mDatabind.barChart.data.notifyDataChanged()
             mDatabind.barChart.notifyDataSetChanged()
         } else {
-            set1 = BarDataSet(values, "")
+            set = BarDataSet(values, "")
             //设置图表颜色
-            set1.setColors(Color.parseColor("#FD7622"))
+            set.setColors(Color.parseColor("#FD7622"))
             //是否绘制图表顶部数据
-            set1.setDrawValues(true)
+            set.setDrawValues(true)
             val dataSets = ArrayList<IBarDataSet>()
-            dataSets.add(set1)
+            dataSets.add(set)
             val data = BarData(dataSets)
             mDatabind.barChart.data = data
             mDatabind.barChart.setFitBars(true)
         }
 
         mDatabind.barChart.invalidate()
+    }
+
+
+    /**
+     * 折线图
+     */
+    private fun setLineChartData() {
+
+        mDatabind.lineChart.run {
+            //禁用所有交互
+            setTouchEnabled(false)
+
+            //隐藏左下角颜色指示器
+            legend.isEnabled = false
+
+            //隐藏右下角英文
+            description.isEnabled = false
+
+            // 隐藏右边 的坐标轴
+            axisRight.isEnabled = false
+            // 隐藏左边 的坐标轴
+            axisLeft.isEnabled = false
+
+            //设置X轴
+            xAxis.run {
+                //不设置竖型网格线
+                setDrawGridLines(false)
+                //不绘制标签的横线
+                setDrawAxisLine(false)
+                //不绘制底部标签
+                setDrawLabels(false)
+            }
+
+        }
+
+        val values = ArrayList<Entry>()
+        for (i in 0..23) {
+            val random = (22..35).random()
+            values.add(Entry(i.toFloat(), random.toFloat()))
+        }
+
+        val set: LineDataSet
+        if (mDatabind.lineChart.data != null &&
+            mDatabind.lineChart.data.dataSetCount > 0
+        ) {
+            set = mDatabind.lineChart.data.getDataSetByIndex(0) as LineDataSet
+            set.values = values
+            mDatabind.lineChart.data.notifyDataChanged()
+            mDatabind.lineChart.notifyDataSetChanged()
+        } else {
+            // create a dataset and give it a type
+            set = LineDataSet(values, "DataSet")
+            set.axisDependency = AxisDependency.LEFT
+            set.color = ColorTemplate.getHoloBlue()
+            set.setCircleColor(Color.parseColor("#7CB9FF"))
+            set.lineWidth = 2f
+            set.circleRadius = 3f
+            set.fillAlpha = 65
+            set.fillColor = Color.parseColor("#83BDFF")
+            set.setDrawCircleHole(false)
+
+            // create a data object with the data sets
+            val data = LineData(set)
+            data.setValueTextColor(Color.BLACK)
+            data.setValueTextSize(12f)
+
+            //弧度路径连接
+            set.mode = LineDataSet.Mode.CUBIC_BEZIER
+
+            //是否绘制图表顶部数据
+            set.setDrawValues(true)
+
+            // set data
+            mDatabind.lineChart.data = data
+            //设置x轴最多显示数据条数，（要在设置数据源后调用，否则是无效的）
+            mDatabind.lineChart.setVisibleXRangeMaximum(4F)
+        }
     }
 
     inner class ProxyClick {
