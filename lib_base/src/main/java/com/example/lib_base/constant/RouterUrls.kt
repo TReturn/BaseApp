@@ -22,5 +22,8 @@ object RouterUrls {
     //Web页
     const val ROUTER_URL_WEB = "/web/web"
 
+    //Compose页
+    const val ROUTER_URL_COMPOSE = "/compose/test"
+
 
 }

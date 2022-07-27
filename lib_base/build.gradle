@@ -28,6 +28,7 @@ android {
         buildFeatures {
             dataBinding = true
         }
+
     }
 
     buildTypes {
@@ -57,16 +58,25 @@ dependencies {
     testImplementation rootProject.depsLibs.junit
     androidTestImplementation rootProject.depsLibs.junitTest
     androidTestImplementation rootProject.depsLibs.espressoCore
+    androidTestImplementation rootProject.depsLibs.compose_ui_test
 
     //官方拓展库
     api rootProject.depsLibs.recyclerview
-    implementation (rootProject.depsLibs.viewpager2,{
+    implementation(rootProject.depsLibs.viewpager2, {
         exclude module: 'recyclerview'
     })
     api rootProject.depsLibs.viewpager2
     api rootProject.depsLibs.coroutines_core
     api rootProject.depsLibs.coroutines_android
     api rootProject.depsLibs.livedata
+
+    //compose
+    api rootProject.depsLibs.compose_activity
+    api rootProject.depsLibs.compose_viewmodel
+    api rootProject.depsLibs.compose_ui
+    api rootProject.depsLibs.compose_preview
+    api rootProject.depsLibs.compose_material
+    api rootProject.depsLibs.compose_animation
 
     //第三方库（api：全模块可调用）
     api rootProject.depsLibs.jetpackmvvm
@@ -106,7 +116,7 @@ dependencies {
     implementation rootProject.depsLibs.magicindicator
     implementation rootProject.depsLibs.lottie
     implementation rootProject.depsLibs.stream
-    implementation (rootProject.depsLibs.bigimageview,{
+    implementation(rootProject.depsLibs.bigimageview, {
         exclude group: 'com.davemorrissey.labs'
     })
 

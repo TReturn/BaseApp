@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import com.example.lib_base.base.BaseFragment
+import com.example.lib_base.constant.RouterUrls
+import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.log.LogUtils
 import com.example.lib_main.databinding.FragmentMainBinding
 import com.example.lib_main.ui.widget.LastWeekFormattedValue
+import com.example.lib_main.ui.widget.TempValueFormatter
 import com.example.lib_main.viewmodel.MainViewModel
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis.AxisDependency
@@ -27,7 +30,9 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
 
-        //监听NestedScrollView滑动事件，自动隐藏、显示底部按钮
+        RouterUtils.intent(RouterUrls.ROUTER_URL_COMPOSE)
+
+        //监听HorizontalScrollView滑动事件，联动温度折线图
         mDatabind.horizontalScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val nestedM = mDatabind.horizontalScrollView.measuredWidth
             val nestedCM = mDatabind.horizontalScrollView.getChildAt(0).measuredWidth
@@ -36,9 +41,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
             //使用ScrollView控制折线图的左右移动
             mDatabind.lineChart.moveViewToX((scrollProgress * 100 * 0.24).toFloat())
-            LogUtils.d("$nestedM,$nestedCM ,$scrollProgress")
         }
-
     }
 
     override fun initData() {
@@ -165,6 +168,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         ) {
             set = mDatabind.lineChart.data.getDataSetByIndex(0) as LineDataSet
             set.values = values
+
             mDatabind.lineChart.data.notifyDataChanged()
             mDatabind.lineChart.notifyDataSetChanged()
         } else {
@@ -176,19 +180,21 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             set.lineWidth = 2f
             set.circleRadius = 3f
             set.fillAlpha = 65
-            set.fillColor = Color.parseColor("#83BDFF")
+            set.fillColor = Color.parseColor("#A5CEFE")
             set.setDrawCircleHole(false)
 
             // create a data object with the data sets
             val data = LineData(set)
             data.setValueTextColor(Color.BLACK)
-            data.setValueTextSize(12f)
+            data.setValueTextSize(14f)
 
             //弧度路径连接
             set.mode = LineDataSet.Mode.CUBIC_BEZIER
-
             //是否绘制图表顶部数据
             set.setDrawValues(true)
+
+            //顶部数据格式
+            set.valueFormatter = TempValueFormatter()
 
             // set data
             mDatabind.lineChart.data = data

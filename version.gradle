@@ -1,7 +1,7 @@
 ext {
     android = [
             applicationId    : "com.example.baseapp",
-            compileSdkVersion: 31,
+            compileSdkVersion: 32,
             buildToolsVersion: "30.0.2",
             minSdkVersion    : 23,
             targetSdkVersion : 30,
@@ -26,6 +26,9 @@ ext {
             recyclerview        : '1.2.1',
             viewpager2          : '1.1.0-beta01',
             coroutines_core     : '1.5.1',
+            compose             : '1.1.1',
+            compose_activity    : '1.4.0',
+            compose_viewmodel   : '2.4.1',
 
             //Jetpack库
             livedata            : '2.3.1',
@@ -86,6 +89,15 @@ ext {
             //协程
             coroutines_core     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${depsVersion.coroutines_core}",
             coroutines_android  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${depsVersion.coroutines_core}",
+
+            //compose 核心
+            compose_activity    : "androidx.activity:activity-compose:${depsVersion.compose_activity}",
+            compose_viewmodel   : "androidx.lifecycle:lifecycle-viewmodel-compose:${depsVersion.compose_viewmodel}",
+            compose_ui          : "androidx.compose.ui:ui:${depsVersion.compose}",
+            compose_ui_test     : "androidx.compose.ui:ui-test-junit4:${depsVersion.compose}",
+            compose_material    : "androidx.compose.material:material:${depsVersion.compose}",
+            compose_preview     : "androidx.compose.ui:ui-tooling:${depsVersion.compose}",
+            compose_animation   : "androidx.compose.animation:animation:${depsVersion.compose}",
 
             // LiveData
             livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:${depsVersion.livedata}",
@@ -205,7 +217,7 @@ ext {
             pickerlayoutmanager : "com.github.simplepeng:PickerLayoutManager:v${depsVersion.pickerlayoutmanager}",
 
             //安卓图表
-            mpandroidchart: "com.github.PhilJay:MPAndroidChart:v${depsVersion.mpandroidchart}",
+            mpandroidchart      : "com.github.PhilJay:MPAndroidChart:v${depsVersion.mpandroidchart}",
     ]
 
 }
