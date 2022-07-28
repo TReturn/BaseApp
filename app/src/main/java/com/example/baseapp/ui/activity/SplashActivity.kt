@@ -33,7 +33,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
      */
 
     private fun toMainActivity() {
-        val waitTime: Long = if (BuildConfig.DEBUG) 3000L else MMKVKeys.SPLASH_TIME
+        val waitTime: Long = if (BuildConfig.DEBUG) 200L else MMKVKeys.SPLASH_TIME
         //绑定lifecycle的协程
         lifecycleScope.launch {
             delay(waitTime)

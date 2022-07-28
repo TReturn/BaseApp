@@ -30,7 +30,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
 
-        RouterUtils.intent(RouterUrls.ROUTER_URL_COMPOSE)
+        RouterUtils.intent(RouterUrls.ROUTER_URL_ABOUT_COMPOSE)
 
         //监听HorizontalScrollView滑动事件，联动温度折线图
         mDatabind.horizontalScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->

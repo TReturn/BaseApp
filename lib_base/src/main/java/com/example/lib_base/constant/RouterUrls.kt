@@ -25,5 +25,8 @@ object RouterUrls {
     //Compose页
     const val ROUTER_URL_COMPOSE = "/compose/test"
 
+    //关于我们Compose页
+    const val ROUTER_URL_ABOUT_COMPOSE = "/about/about"
+
 
 }
