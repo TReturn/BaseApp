@@ -4,9 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.constant.RouterUrls
-import com.example.lib_base.router.RouterUtils
-import com.example.lib_base.utils.log.LogUtils
 import com.example.lib_main.databinding.FragmentMainBinding
 import com.example.lib_main.ui.widget.LastWeekFormattedValue
 import com.example.lib_main.ui.widget.TempValueFormatter
@@ -25,12 +22,9 @@ import com.github.mikephil.charting.utils.ColorTemplate
  */
 class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
-
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
-
-        RouterUtils.intent(RouterUrls.ROUTER_URL_ABOUT_COMPOSE)
 
         //监听HorizontalScrollView滑动事件，联动温度折线图
         mDatabind.horizontalScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->

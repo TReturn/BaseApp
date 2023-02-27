@@ -265,6 +265,11 @@
                 android:orientation="vertical"
                 android:paddingBottom="64dp">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
