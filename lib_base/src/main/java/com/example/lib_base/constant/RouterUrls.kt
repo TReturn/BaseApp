@@ -34,5 +34,8 @@ object RouterUrls {
     //属性动画页
     const val ROUTER_URL_ATT_ANIMATION = "/att/animation"
 
+    //诗歌详情页
+    const val ROUTER_URL_POETRY = "/poetry/poetry"
+
 
 }

@@ -13,19 +13,20 @@
         android:layout_marginEnd="16dp"
         android:textColor="@color/text_black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvStatus"
-        app:layout_constraintEnd_toStartOf="@+id/tvStatus"
+        app:layout_constraintBottom_toBottomOf="@+id/ivStatus"
+        app:layout_constraintEnd_toStartOf="@+id/ivStatus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvStatus"
+        app:layout_constraintTop_toTopOf="@+id/ivStatus"
         tools:text="中文" />
 
-    <TextView
-        android:id="@+id/tvStatus"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivStatus"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_popup_switch"
+        android:layout_marginEnd="8dp"
+        android:padding="8dp"
+        android:src="@drawable/bg_popup_select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,8 +35,8 @@
         android:layout_height="1dp"
         android:layout_marginTop="12dp"
         android:background="@color/color_gray"
-        app:layout_constraintEnd_toEndOf="@+id/tvStatus"
+        app:layout_constraintEnd_toEndOf="@+id/ivStatus"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/ivStatus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

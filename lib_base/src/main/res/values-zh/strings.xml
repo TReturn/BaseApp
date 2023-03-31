@@ -48,4 +48,7 @@
     <!--我的页面-->
     <string name="user_switch_language">切换语言</string>
 
+    <!--诗歌相关-->
+    <string name="poetry_title">诗歌</string>
+
 </resources>

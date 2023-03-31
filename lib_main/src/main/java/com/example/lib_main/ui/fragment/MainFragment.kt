@@ -62,10 +62,9 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             add("http://pic1.win4000.com/m00/97/29/321baca0ae5c87225d48e14070219ea9.png")
             add("http://pic1.win4000.com/m00/c2/0f/7e41e8474463c32e80314970b7e5a2e2.jpg")
             add("http://pic1.win4000.com/wallpaper/2020-09-27/5f705c0022c79.jpg")
-            add("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.netbian.com%2Fuploads%2Fallimg%2F210704%2F215614-16254069745605.jpg")
             add("http://pic1.win4000.com/m00/97/29/321baca0ae5c87225d48e14070219ea9.png")
         }
-        for (i in 0..4) {
+        for (i in 0..3) {
             val inData = BaseBannerData()
             inData.setImage(imageList[i])
             bannerData.add(inData)
@@ -131,7 +130,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.include.xBanner.run {
             setOnItemClickListener { _: XBanner?, _: Any?, _: View?, position: Int ->
                 if (position == 0) {
-
+                    RouterUtils.intent(RouterUrls.ROUTER_URL_POETRY)
                 } else {
                     activity?.let { BigImageUtils.show(it, (bannerData[position].getImage())) }
                 }
@@ -148,7 +147,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                     tvContent.visibility = View.VISIBLE
                     tvAuthor.visibility = View.VISIBLE
                     activity?.let {
-                        if (!it.isDestroyed){
+                        if (!it.isDestroyed) {
                             GlideUtils.loadRoundImageTransform(
                                 it,
                                 R.drawable.banner_poetry_bg,
@@ -161,7 +160,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                 } else {
                     tvContent.visibility = View.GONE
                     activity?.let {
-                        if (!it.isDestroyed){
+                        if (!it.isDestroyed) {
                             GlideUtils.loadRoundImageTransform(
                                 it,
                                 bannerData[position].getImage(),
@@ -172,7 +171,6 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                     }
                 }
             }
-            setAutoPlayAble(bannerData.size > 1)
             setBannerData(R.layout.banner_main, bannerData)
         }
 

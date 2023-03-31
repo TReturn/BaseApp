@@ -1,6 +1,6 @@
 package com.example.lib_main.ui.adapter
 
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.lib_main.R
@@ -16,7 +16,7 @@ class SelectLanguageAdapter :
 
     override fun convert(holder: BaseViewHolder, item: SelectLanguageModel) {
         holder.run {
-            val tvStatus = getView<TextView>(R.id.tvStatus)
+            val tvStatus = getView<AppCompatImageView>(R.id.ivStatus)
             setText(R.id.tvTitle, item.title)
             tvStatus.isSelected = item.isSelect
         }

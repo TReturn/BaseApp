@@ -90,6 +90,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
             setOnItemClickListener { _, _, position ->
                 when (data[position].id) {
                     3 -> {
+                        //切换语言
                         DialogManager.showSelectLanguageDialog(mActivity)
                             .setListener(object : DialogListener {
                                 override fun onConfirm(type: String) {
@@ -98,6 +99,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
                             })
                     }
                     4 -> {
+                        //关于我们
                         RouterUtils.intent(RouterUrls.ROUTER_URL_ABOUT_COMPOSE)
                     }
                 }
