@@ -69,6 +69,7 @@ ext {
             verticaltextview    : '1.4.1',
             pickerlayoutmanager : '1.0.4',
             mpandroidchart      : '3.1.0',
+            room                : '2.3.0',
     ]
 
 
@@ -218,6 +219,11 @@ ext {
 
             //安卓图表
             mpandroidchart      : "com.github.PhilJay:MPAndroidChart:v${depsVersion.mpandroidchart}",
+
+            //ROOM数据库
+            room                : "androidx.room:room-runtime:${depsVersion.room}",
+            roomktx             : "androidx.room:room-ktx:${depsVersion.room}",
+            room_compiler        : "androidx.room:room-compiler:${depsVersion.room}",
     ]
 
 }

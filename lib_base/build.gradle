@@ -104,6 +104,12 @@ dependencies {
 
     api rootProject.depsLibs.utilcodex
 
+    //ROOM数据库
+    api rootProject.depsLibs.room
+    api rootProject.depsLibs.roomktx
+    kapt rootProject.depsLibs.room_compiler
+
+
     //第三方库（implementation：模块内可调用）
     implementation rootProject.depsLibs.xbanner
     implementation rootProject.depsLibs.mmkv
