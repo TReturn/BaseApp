@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.lib_main.viewmodel.AttributeAnimationViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.lib_main.ui.activity.AttributeAnimationActivity.ProxyClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/title_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLoading"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_pan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/btnAlpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:onClick="@{()->click.toAlpha()}"
+            android:paddingStart="32dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="16dp"
+            android:text="@string/animation_type_alpha"
+            android:textColor="@color/text_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivLoading"
+            app:shape="rectangle"
+            app:shape_radius="16dp"
+            app:shape_solidColor="@color/color_gray" />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/btnTranslation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:onClick="@{()->click.toTranslation()}"
+            android:paddingStart="32dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="16dp"
+            android:text="@string/animation_type_translation"
+            android:textColor="@color/text_black"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/btnAlpha"
+            app:shape="rectangle"
+            app:shape_radius="16dp"
+            app:shape_solidColor="@color/color_gray" />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/btnRotation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{()->click.toRotation()}"
+            android:paddingStart="32dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="16dp"
+            android:text="@string/animation_type_rotation"
+            android:textColor="@color/text_black"
+            app:layout_constraintStart_toStartOf="@+id/btnAlpha"
+            app:layout_constraintTop_toBottomOf="@+id/btnAlpha"
+            app:shape="rectangle"
+            app:shape_radius="16dp"
+            app:shape_solidColor="@color/color_gray" />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/btnScale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->click.toScale()}"
+            android:paddingStart="32dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="16dp"
+            android:text="@string/animation_type_scale"
+            android:textColor="@color/text_black"
+            app:layout_constraintStart_toStartOf="@+id/btnTranslation"
+            app:layout_constraintTop_toTopOf="@+id/btnRotation"
+            app:shape="rectangle"
+            app:shape_radius="16dp"
+            app:shape_solidColor="@color/color_gray" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

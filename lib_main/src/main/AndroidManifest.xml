@@ -17,6 +17,14 @@
             android:name=".ui.activity.AboutComposeActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.activity.MPChartActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.activity.AttributeAnimationActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="design_width_in_dp"
             android:value="360" />

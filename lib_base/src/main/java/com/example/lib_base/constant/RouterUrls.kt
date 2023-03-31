@@ -28,5 +28,11 @@ object RouterUrls {
     //关于我们Compose页
     const val ROUTER_URL_ABOUT_COMPOSE = "/about/about"
 
+    //图表库页
+    const val ROUTER_URL_MP_CHART = "/chart/chart"
+
+    //属性动画页
+    const val ROUTER_URL_ATT_ANIMATION = "/att/animation"
+
 
 }

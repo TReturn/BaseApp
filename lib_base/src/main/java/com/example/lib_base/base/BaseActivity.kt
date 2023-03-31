@@ -33,6 +33,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
                 QMUIStatusBarHelper.setStatusBarDarkMode(this)
             }
         }
+
+        initData()
     }
 
     /**
@@ -45,6 +47,10 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
      */
     override fun showLoading(message: String) {
         //showLoadingExt(message)
+    }
+
+    open fun initData(){
+
     }
 
     /**

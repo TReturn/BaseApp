@@ -12,7 +12,7 @@ import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
-import com.example.lib_main.adapter.UserAdapter
+import com.example.lib_main.ui.adapter.UserAdapter
 import com.example.lib_main.databinding.FragmentFourBinding
 import com.example.lib_main.model.UserModel
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel

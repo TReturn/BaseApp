@@ -13,6 +13,7 @@
         android:background="@color/title_bar_bg"
         app:leftIcon="@drawable/ic_finish"
         app:lineVisible="false"
+        app:titleStyle="bold"
         app:titleColor="@color/title_bar_text">
 
     </com.hjq.bar.TitleBar>

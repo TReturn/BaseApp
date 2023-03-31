@@ -13,7 +13,6 @@ import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.ext.initMain
-import com.example.lib_main.viewmodel.SecondViewModel
 import com.google.android.material.navigation.NavigationBarView
 import com.hjq.toast.ToastUtils
 

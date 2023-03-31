@@ -1,21 +1,17 @@
 package com.example.lib_main.ui.activity
 
 import android.os.Bundle
-import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.init
-import com.example.lib_base.ext.loadListData
 import com.example.lib_base.utils.image.BigImageUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
-import com.example.lib_main.adapter.BeautyAdapter
-import com.example.lib_main.adapter.BeautyDetailAdapter
+import com.example.lib_main.ui.adapter.BeautyDetailAdapter
 import com.example.lib_main.databinding.ActivityBeautyBinding
-import com.example.lib_main.viewmodel.MainViewModel
+import com.example.lib_main.viewmodel.SecondViewModel
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 
@@ -25,7 +21,7 @@ import com.hjq.bar.TitleBar
  * @Description : 妹子瀑布流页面
  */
 @Route(path = RouterUrls.ROUTER_URL_BEAUTY)
-class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
+class BeautyActivity : BaseActivity<SecondViewModel, ActivityBeautyBinding>() {
 
     private val beautyAdapter: BeautyDetailAdapter by lazy { BeautyDetailAdapter() }
     private var beautyImageList = arrayListOf<String>()

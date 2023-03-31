@@ -9,11 +9,11 @@
 
         <variable
             name="vm"
-            type="com.example.lib_main.viewmodel.MainViewModel" />
+            type="com.example.lib_main.viewmodel.SecondViewModel" />
 
         <variable
             name="click"
-            type="com.example.lib_main.ui.fragment.MainFragment.ProxyClick" />
+            type="com.example.lib_main.ui.fragment.SecondFragment.ProxyClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

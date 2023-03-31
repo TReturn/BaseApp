@@ -1,4 +1,4 @@
-package com.example.lib_main.adapter
+package com.example.lib_main.ui.adapter
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
