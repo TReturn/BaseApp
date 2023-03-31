@@ -1,14 +1,16 @@
 package com.example.lib_base.base
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
-import com.example.lib_base.utils.ui.UiUtils
+import com.hjq.language.MultiLanguages
 import me.hgj.jetpackmvvm.base.activity.BaseVmDbActivity
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+
 
 /**
  * @CreateDate : 2021/7/29
@@ -23,7 +25,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
         super.onCreate(savedInstanceState)
 
         //白天、夜间模式下设置对应状态栏颜色
-        when (MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1) ){
+        when (MMKVUtils.getInt(UserKeys.NIGHT_MODE, 1) ){
             AppCompatDelegate.MODE_NIGHT_NO ->{
                 //设置状态栏黑色字体图标
                 QMUIStatusBarHelper.setStatusBarLightMode(this)
@@ -51,6 +53,11 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
     open fun initData(){
 
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        // 绑定语种
+        super.attachBaseContext(MultiLanguages.attach(newBase))
     }
 
     /**

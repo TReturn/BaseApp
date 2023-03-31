@@ -32,7 +32,7 @@ class MPChartActivity : BaseActivity<MPChartViewModel, ActivityMpChartBinding>()
         mDatabind.vm = mViewModel
         mDatabind.click = ProxyClick()
 
-        mDatabind.include.titleBar.title = UiUtils.getString(R.string.main_type_mp_chart)
+        mDatabind.include.titleBar.title = getString(R.string.main_type_mp_chart)
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(titleBar: TitleBar) {
                 finish()

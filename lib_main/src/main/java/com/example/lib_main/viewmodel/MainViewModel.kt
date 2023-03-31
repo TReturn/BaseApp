@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.scopeNetLife
 import com.drake.net.Get
 import com.example.lib_base.constant.ApiUrls
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.constant.SdkKeys
 import com.example.lib_base.list.ListDataUiState
 import com.example.lib_base.net.PoetrySerializationConverter
@@ -117,7 +117,7 @@ class MainViewModel : BaseViewModel() {
      * 有TOKEN直接请求古诗内容，无TOKEN请求TOKEN
      */
     fun getPoetry() {
-        if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))) {
+        if (TextUtils.isEmpty(MMKVUtils.getString(UserKeys.POETRY_TOKEN))) {
             getAncientChinesePoetryToken()
         } else {
             getAncientChinesePoetry()
@@ -134,7 +134,7 @@ class MainViewModel : BaseViewModel() {
 
             }.await().data
 
-            MMKVUtils.put(MMKVKeys.POETRY_TOKEN, data)
+            MMKVUtils.put(UserKeys.POETRY_TOKEN, data)
             getAncientChinesePoetry()
         }
     }
@@ -146,7 +146,7 @@ class MainViewModel : BaseViewModel() {
         scopeNetLife {
             val data = Get<PoetryBean>(ApiUrls.ANCIENT_CHINESE_POETRY) {
                 converter = PoetrySerializationConverter()
-                setHeader("X-User-Token", MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))
+                setHeader("X-User-Token", MMKVUtils.getString(UserKeys.POETRY_TOKEN))
             }.await().data
             LogUtils.d(data)
             poetryResultDataState.value = data

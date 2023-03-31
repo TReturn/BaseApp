@@ -14,7 +14,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.lib_base.BaseApplication
 import com.example.lib_base.R
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.list.ListDataUiState
 import com.example.lib_base.magic.ScaleTransitionPagerTitleView
 import com.example.lib_base.utils.data.MMKVUtils
@@ -67,7 +67,7 @@ fun MagicIndicator.bindViewPager2(
                 //字体大小
                 textSize = 16f
                 //无法正确加载夜间主题，加个判断切换。
-                when (MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1)) {
+                when (MMKVUtils.getInt(UserKeys.NIGHT_MODE, 1)) {
                     AppCompatDelegate.MODE_NIGHT_NO -> {
                         //未选中颜色
                         normalColor = UiUtils.getColor(R.color.tab_layout_day_normal)

@@ -42,4 +42,9 @@
     <color name="profile_start_bg">#2e65c9</color>
     <color name="profile_end_bg">#263548</color>
     <color name="profile_center_bg">#2b4a80</color>
+
+    <!--弹窗颜色-->
+    <color name="dialog_confirm_button">#5b89d7</color>
+    <color name="dialog_cancel_button">#eeeeee</color>
+
 </resources>

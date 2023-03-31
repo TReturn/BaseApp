@@ -109,6 +109,8 @@ dependencies {
     api rootProject.depsLibs.roomktx
     kapt rootProject.depsLibs.room_compiler
 
+    api rootProject.depsLibs.languages
+
 
     //第三方库（implementation：模块内可调用）
     implementation rootProject.depsLibs.xbanner

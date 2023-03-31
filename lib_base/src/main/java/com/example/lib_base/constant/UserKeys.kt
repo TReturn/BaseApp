@@ -5,7 +5,7 @@ package com.example.lib_base.constant
  * @Author: 青柠
  * @Description: MMKV KEY值存储
  */
-object MMKVKeys {
+object UserKeys {
 
     //是否同意隐私协议
     const val IS_AGREE_PRIVACY = "IS_AGREE_PRIVACY"
@@ -27,6 +27,12 @@ object MMKVKeys {
 
     //诗词Token
     const val POETRY_TOKEN = "POETRY_TOKEN"
+
+    //扫描二维码回调
+    const val SCAN_REQUEST_CODE = 1001
+
+    //语言类型：0跟随系统，1中文，2英文
+    const val LANGUAGE_TYPE = "LANGUAGE_TYPE"
 
 
 }

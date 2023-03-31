@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.constant.RouterUrls
-import com.example.lib_base.constant.StaticConstants
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
 import com.example.lib_base.router.RouterUtils
@@ -189,7 +189,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                StaticConstants.SCAN_REQUEST_CODE ->
+                UserKeys.SCAN_REQUEST_CODE ->
                     handleScanResult(data)
             }
         }
@@ -235,7 +235,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
                 .request { allGranted, _, _ ->
                     if (allGranted) {
-                        XQRCode.startScan(this@MainFragment, StaticConstants.SCAN_REQUEST_CODE)
+                        XQRCode.startScan(this@MainFragment, UserKeys.SCAN_REQUEST_CODE)
                     } else {
                         ToastUtils.show(getString(R.string.main_scan_permissions_fail))
                     }

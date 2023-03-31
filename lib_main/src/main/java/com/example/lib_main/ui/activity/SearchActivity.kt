@@ -5,13 +5,12 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.ApiUrls
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.dialog.BaseConfirmDialog
 import com.example.lib_base.utils.data.MMKVUtils
@@ -79,8 +78,8 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
      * 从缓存中加载数据填充Label
      */
     private fun setLabelData() {
-        if (!TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.SEARCH_HISTORY))) {
-            val set: Set<String> = MMKVUtils.getStringSet(MMKVKeys.SEARCH_HISTORY)
+        if (!TextUtils.isEmpty(MMKVUtils.getString(UserKeys.SEARCH_HISTORY))) {
+            val set: Set<String> = MMKVUtils.getStringSet(UserKeys.SEARCH_HISTORY)
             for (s in set) {
                 searchLabel.add(s)
             }
@@ -98,17 +97,17 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
 
         val set: MutableSet<String> = HashSet()
         set.add(editContent)
-        if (!TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.SEARCH_HISTORY))) {
-            set.addAll(MMKVUtils.getStringSet(MMKVKeys.SEARCH_HISTORY))
+        if (!TextUtils.isEmpty(MMKVUtils.getString(UserKeys.SEARCH_HISTORY))) {
+            set.addAll(MMKVUtils.getStringSet(UserKeys.SEARCH_HISTORY))
         }
-        MMKVUtils.put(MMKVKeys.SEARCH_HISTORY, set)
+        MMKVUtils.put(UserKeys.SEARCH_HISTORY, set)
     }
 
     /**
      * 清空历史记录
      */
     private fun deleteAllSearchHistory() {
-        MMKVUtils.put(MMKVKeys.SEARCH_HISTORY, "")
+        MMKVUtils.put(UserKeys.SEARCH_HISTORY, "")
         searchLabel.clear()
         mDatabind.labelsView.setLabels(searchLabel)
     }

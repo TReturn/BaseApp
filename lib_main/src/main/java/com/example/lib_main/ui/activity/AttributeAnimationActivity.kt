@@ -25,7 +25,7 @@ class AttributeAnimationActivity :
         mDatabind.vm = mViewModel
         mDatabind.click = ProxyClick()
 
-        mDatabind.include.titleBar.title = UiUtils.getString(R.string.main_type_attribute_animation)
+        mDatabind.include.titleBar.title = getString(R.string.main_type_attribute_animation)
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(titleBar: TitleBar) {
                 finish()

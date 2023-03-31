@@ -2,6 +2,7 @@ package com.example.lib_base
 
 import android.app.Application
 import android.app.ProgressDialog
+import android.content.Context
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -15,12 +16,13 @@ import com.drake.net.interfaces.NetErrorHandler
 import com.drake.net.okhttp.*
 import com.drake.net.request.BaseRequest
 import com.example.lib_base.constant.ApiUrls
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.constant.SdkKeys
 import com.example.lib_base.event.AppViewModel
 import com.example.lib_base.net.WanSerializationConverter
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.log.LogUtils
+import com.hjq.language.MultiLanguages
 import com.hjq.toast.ToastUtils
 import com.hjq.toast.style.WhiteToastStyle
 import com.orhanobut.logger.AndroidLogAdapter
@@ -65,7 +67,7 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
         MMKV.initialize(this)
 
         //1：日间模式，2：夜间模式，3：跟随系统。
-        AppCompatDelegate.setDefaultNightMode(MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1))
+        AppCompatDelegate.setDefaultNightMode(MMKVUtils.getInt(UserKeys.NIGHT_MODE, 1))
 
         //阿里路由
         if (BuildConfig.DEBUG) {
@@ -135,6 +137,14 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> //指定为经典Footer，默认是 BallPulseFooter
             ClassicsFooter(context).setDrawableSize(20f)
         }
+
+        // 初始化语种切换框架
+        MultiLanguages.init(this)
+    }
+
+    override fun attachBaseContext(base: Context) {
+        // 绑定语种
+        super.attachBaseContext(MultiLanguages.attach(base))
     }
 
     /**

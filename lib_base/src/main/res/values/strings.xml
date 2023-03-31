@@ -45,4 +45,7 @@
     <string name="animation_type_rotation">Rotation</string>
     <string name="animation_type_scale">Scale</string>
 
+    <!--我的页面-->
+    <string name="user_switch_language">Switch Language</string>
+
 </resources>

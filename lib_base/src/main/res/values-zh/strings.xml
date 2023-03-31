@@ -45,4 +45,7 @@
     <string name="animation_type_rotation">旋转</string>
     <string name="animation_type_scale">缩放</string>
 
+    <!--我的页面-->
+    <string name="user_switch_language">切换语言</string>
+
 </resources>

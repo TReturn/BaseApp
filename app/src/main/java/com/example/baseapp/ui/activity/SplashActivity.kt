@@ -8,7 +8,7 @@ import com.example.baseapp.BuildConfig
 import com.example.baseapp.databinding.ActivitySplashBinding
 import com.example.baseapp.viewmodel.SplashViewModel
 import com.example.lib_base.base.BaseActivity
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
@@ -33,7 +33,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
      */
 
     private fun toMainActivity() {
-        val waitTime: Long = if (BuildConfig.DEBUG) 200L else MMKVKeys.SPLASH_TIME
+        val waitTime: Long = if (BuildConfig.DEBUG) 200L else UserKeys.SPLASH_TIME
         //绑定lifecycle的协程
         lifecycleScope.launch {
             delay(waitTime)
