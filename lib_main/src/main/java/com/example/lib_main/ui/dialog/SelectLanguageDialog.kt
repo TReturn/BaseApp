@@ -30,8 +30,11 @@ class SelectLanguageDialog(context: Context, private val confirmCallback: () -> 
 
     private val languageAdapter: SelectLanguageAdapter by lazy { SelectLanguageAdapter() }
 
+    //当前已设置的语言
+    private val nowLanguage = MMKVUtils.getInt(UserKeys.LANGUAGE_TYPE)
+
     //语言类型：0跟随系统，1中文，2英文
-    private var selectType = 0
+    private var selectType = nowLanguage
 
     // 返回自定义弹窗的布局
     override fun getImplLayoutId(): Int {
@@ -46,8 +49,10 @@ class SelectLanguageDialog(context: Context, private val confirmCallback: () -> 
             dismiss()
         }
         findViewById<ShapeTextView>(R.id.tvConfirm).setOnClickListener {
-            MMKVUtils.put(UserKeys.LANGUAGE_TYPE, selectType)
-            confirmCallback.invoke()
+            if (nowLanguage != selectType) {
+                MMKVUtils.put(UserKeys.LANGUAGE_TYPE, selectType)
+                confirmCallback.invoke()
+            }
             dismiss()
         }
 
@@ -72,7 +77,6 @@ class SelectLanguageDialog(context: Context, private val confirmCallback: () -> 
     }
 
     private fun initData() {
-        val nowLanguage = MMKVUtils.getInt(UserKeys.LANGUAGE_TYPE)
         val languageList: MutableList<SelectLanguageModel> = arrayListOf()
         languageAdapter.setList(
             languageList.apply {
