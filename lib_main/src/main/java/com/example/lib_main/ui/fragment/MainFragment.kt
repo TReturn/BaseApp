@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.constant.UserKeys
@@ -23,13 +24,15 @@ import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_base.utils.ui.TextFontUtils
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentMainBinding
-import com.example.lib_main.ui.adapter.ArticleAdapter
+import com.example.lib_main.model.PoetryBean
 import com.example.lib_main.model.getSky
+import com.example.lib_main.ui.adapter.ArticleAdapter
 import com.example.lib_main.viewmodel.MainViewModel
 import com.hjq.toast.ToastUtils
 import com.permissionx.guolindev.PermissionX
 import com.stx.xhb.androidx.XBanner
 import com.xuexiang.xqrcode.XQRCode
+
 
 /**
  * @CreateDate : 2020/12/31
@@ -130,7 +133,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.include.xBanner.run {
             setOnItemClickListener { _: XBanner?, _: Any?, _: View?, position: Int ->
                 if (position == 0) {
-                    RouterUtils.intent(RouterUrls.ROUTER_URL_POETRY)
+                    intentToPoetryDetail()
                 } else {
                     activity?.let { BigImageUtils.show(it, (bannerData[position].getImage())) }
                 }
@@ -212,6 +215,16 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                 }
             }
         }
+    }
+
+    /**
+     * 跳转到诗歌详情页
+     */
+    private fun intentToPoetryDetail() {
+        //跳转并携带参数
+        ARouter.getInstance().build(RouterUrls.ROUTER_URL_POETRY)
+            .withSerializable("intentData", mViewModel.poetryResultDataState.value)
+            .navigation()
     }
 
     inner class ProxyClick {

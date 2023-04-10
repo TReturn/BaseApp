@@ -1,5 +1,6 @@
 package com.example.lib_main.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**
@@ -8,4 +9,17 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
  * @Description:
  */
 class PoetryViewModel : BaseViewModel() {
+
+    //诗名
+    val poetryTitle = MutableLiveData<String>()
+
+    //作者
+    val poetryAuthor = MutableLiveData<String>()
+
+    //内容
+    val poetryContent = MutableLiveData<String>()
+
+    //释义
+    val poetryTranslate = MutableLiveData<String>()
+
 }
