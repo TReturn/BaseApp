@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
@@ -62,6 +63,9 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
 
         mAppViewModelStore = ViewModelStore()
         appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
+
+        //监听应用进入前台后台监听
+        ProcessLifecycleOwner.get().lifecycle.addObserver(ApplicationObserver())
 
         //MMKV键值对存储
         MMKV.initialize(this)
