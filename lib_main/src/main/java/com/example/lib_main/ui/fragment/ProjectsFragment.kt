@@ -58,11 +58,11 @@ class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     companion object {
         private const val TYPE = "TYPE"
         fun newInstance(type: String): ProjectsFragment {
-            val bundle = Bundle()
-            val fragment = ProjectsFragment()
-            bundle.putString(TYPE, type)
-            fragment.arguments = bundle
-            return fragment
+            return ProjectsFragment().apply {
+                arguments = Bundle().apply {
+                    putString(TYPE, type)
+                }
+            }
         }
     }
 }
