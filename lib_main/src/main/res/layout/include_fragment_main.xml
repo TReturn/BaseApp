@@ -44,6 +44,7 @@
             android:id="@+id/tvBeautyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="@string/main_article_title"
             android:textColor="@color/text_black"
