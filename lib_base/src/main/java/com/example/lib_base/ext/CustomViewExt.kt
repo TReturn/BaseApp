@@ -155,7 +155,7 @@ fun ViewPager2.init(
  * @receiver BottomNavigationView
  * @param ids IntArray
  */
-fun BottomNavigationView.interceptLongClick(vararg ids: Int) {
+fun BottomNavigationView.interceptLongClick(ids: Array<Int>) {
     val bottomNavigationMenuView: ViewGroup = (this.getChildAt(0) as ViewGroup)
     for (index in ids.indices) {
         bottomNavigationMenuView.getChildAt(index).findViewById<View>(ids[index])

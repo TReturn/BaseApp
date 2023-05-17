@@ -18,10 +18,17 @@ import com.hjq.toast.ToastUtils
 
 
 @Route(path = RouterUrls.ROUTER_URL_MAIN)
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private var firstTime = 0L
     private var delayTime = 2000L
     private var toolBarViewHeight = 0
+
+    private val tabs = arrayOf(
+        R.id.navigation_main,
+        R.id.navigation_second,
+        R.id.navigation_third,
+        R.id.navigation_fourth,
+    )
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
@@ -37,12 +44,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
         mDatabind.bottomNavigation.setOnItemSelectedListener(mItemSelectedListener)
 
         //拦截BottomNavigation长按事件 防止长按时出现Toast
-        mDatabind.bottomNavigation.interceptLongClick(
-            R.id.navigation_main,
-            R.id.navigation_second,
-            R.id.navigation_third,
-            R.id.navigation_four
-        )
+        mDatabind.bottomNavigation.interceptLongClick(tabs)
 
         //沉浸状态栏
         QMUIStatusBarHelper.translucent(this)
@@ -60,33 +62,39 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
         super.createObserver()
         //跳转到首页Tab
         appViewModel.intentToMainTab.observeInActivity(this) {
-            mDatabind.viewPager.setCurrentItem(0, false)
-            mDatabind.bottomNavigation.selectedItemId = R.id.navigation_main
+            if (it < tabs.size) {
+                mDatabind.viewPager.setCurrentItem(it, false)
+                mDatabind.bottomNavigation.selectedItemId = tabs[it]
+            }
+
         }
     }
 
     private val mItemSelectedListener: NavigationBarView.OnItemSelectedListener =
         NavigationBarView.OnItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_main -> {
-                mDatabind.viewPager.currentItem = 0
-                return@OnItemSelectedListener true
+            when (item.itemId) {
+                R.id.navigation_main -> {
+                    mDatabind.viewPager.currentItem = 0
+                    return@OnItemSelectedListener true
+                }
+
+                R.id.navigation_second -> {
+                    mDatabind.viewPager.currentItem = 1
+                    return@OnItemSelectedListener true
+                }
+
+                R.id.navigation_third -> {
+                    mDatabind.viewPager.currentItem = 2
+                    return@OnItemSelectedListener true
+                }
+
+                R.id.navigation_fourth -> {
+                    mDatabind.viewPager.currentItem = 3
+                    return@OnItemSelectedListener true
+                }
             }
-            R.id.navigation_second -> {
-                mDatabind.viewPager.currentItem = 1
-                return@OnItemSelectedListener true
-            }
-            R.id.navigation_third -> {
-                mDatabind.viewPager.currentItem = 2
-                return@OnItemSelectedListener true
-            }
-            R.id.navigation_four -> {
-                mDatabind.viewPager.currentItem = 3
-                return@OnItemSelectedListener true
-            }
-        }
             return@OnItemSelectedListener false
-    }
+        }
 
     inner class ProxyClick {
         fun toFruit() {

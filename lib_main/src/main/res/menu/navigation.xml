@@ -19,8 +19,8 @@
         android:title="@string/main_navigation_third" />
 
     <item
-        android:id="@+id/navigation_four"
-        android:icon="@drawable/bottom_navigation_four"
+        android:id="@+id/navigation_fourth"
+        android:icon="@drawable/bottom_navigation_fourth"
         android:title="@string/main_navigation_four" />
 
 </menu>

@@ -10,6 +10,6 @@ import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
  */
 class AppViewModel : BaseViewModel() {
 
-    //跳转到首页Tab
-    val intentToMainTab = EventLiveData<Boolean>()
+    //跳转到首页Tab，0第一个Tab，1第二个，以此类推
+    val intentToMainTab = EventLiveData<Int>()
 }
