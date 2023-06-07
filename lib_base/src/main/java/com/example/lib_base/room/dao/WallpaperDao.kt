@@ -44,5 +44,8 @@ interface WallpaperDao {
         }
         return getLogByFilter(start, end)
     }
+
+    @Query("DELETE FROM wallpaper")
+    fun deleteAll(): Int
     
 }
