@@ -23,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import me.hgj.jetpackmvvm.ext.util.toHtml
 import net.lucode.hackware.magicindicator.MagicIndicator
+import net.lucode.hackware.magicindicator.abs.IPagerNavigator
 import net.lucode.hackware.magicindicator.buildins.UIUtil
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
@@ -36,6 +37,43 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
  * @Description :项目中自定义类的拓展函数
  */
 
+/**
+ * MagicIndicator框架绑定ViewPager2
+ * @receiver MagicIndicator
+ * @param viewPager ViewPager2
+ * @param navigator IPagerNavigator
+ * @param action Function1<[@kotlin.ParameterName] Int, Unit>
+ */
+fun MagicIndicator.bindViewPager2(
+    viewPager: ViewPager2,
+    navigator: IPagerNavigator?,
+    action: (index: Int) -> Unit = {}
+) {
+    this.navigator = navigator
+
+    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+            this@bindViewPager2.onPageSelected(position)
+            action.invoke(position)
+        }
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            this@bindViewPager2.onPageScrolled(position, positionOffset, positionOffsetPixels)
+
+        }
+
+        override fun onPageScrollStateChanged(state: Int) {
+            super.onPageScrollStateChanged(state)
+            this@bindViewPager2.onPageScrollStateChanged(state)
+        }
+    })
+}
 
 /**
  * MagicIndicator框架绑定ViewPager2

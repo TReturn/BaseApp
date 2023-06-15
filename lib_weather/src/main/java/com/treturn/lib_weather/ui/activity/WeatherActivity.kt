@@ -1,4 +1,4 @@
-package com.treturn.lib_weather.ui
+package com.treturn.lib_weather.ui.activity
 
 import android.os.Bundle
 import com.example.lib_base.base.BaseActivity

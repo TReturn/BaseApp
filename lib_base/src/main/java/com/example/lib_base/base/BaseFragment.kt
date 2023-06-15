@@ -2,6 +2,7 @@ package com.example.lib_base.base
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.FragmentActivity
 import me.hgj.jetpackmvvm.base.fragment.BaseVmDbFragment
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -61,5 +62,10 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
      */
     override fun lazyLoadTime(): Long {
         return 300
+    }
+
+    open fun isFragmentDestroy(): Boolean {
+        val activity: FragmentActivity? = activity
+        return activity == null || activity.isFinishing || activity.isDestroyed || !isAdded || isDetached
     }
 }

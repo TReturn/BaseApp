@@ -3,7 +3,7 @@
     package="com.treturn.lib_weather" >
 
     <application>
-        <activity android:name=".ui.WeatherActivity"
+        <activity android:name=".ui.activity.WeatherActivity"
             android:exported="true"/>
     </application>
 

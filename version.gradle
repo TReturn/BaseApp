@@ -71,6 +71,7 @@ ext {
             mpandroidchart      : '3.1.0',
             room                : '2.3.0',
             languages           : '8.0',
+            broccoli            : '1.0.0',
     ]
 
 
@@ -227,7 +228,10 @@ ext {
             room_compiler       : "androidx.room:room-compiler:${depsVersion.room}",
 
             //语言切换
-            languages: "com.github.getActivity:MultiLanguages:${depsVersion.languages}",
+            languages           : "com.github.getActivity:MultiLanguages:${depsVersion.languages}",
+
+            //骨架屏
+            broccoli            : "me.samlss:broccoli:${depsVersion.broccoli}",
     ]
 
 }

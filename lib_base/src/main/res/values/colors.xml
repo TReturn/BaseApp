@@ -2,6 +2,7 @@
 <resources>
 
     <!--常用颜色-->
+    <color name="transparent">#00000000</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
     <color name="color_gray">#ffeeeeee</color>

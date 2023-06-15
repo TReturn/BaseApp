@@ -16,7 +16,10 @@ object TimeUtils {
 
     private val SDF_THREAD_LOCAL = ThreadLocal<SimpleDateFormat>()
 
-    private val dateFormatYMD = "yyyy-MM-dd"
+    val dateFormatYMD = "yyyy-MM-dd"
+
+    val datePointFormatHH = "HH"
+    val datePointFormatMM = "mm"
 
     //服务器(网络)时间
     @JvmStatic
