@@ -4,78 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.text.TextUtils"/>
         <variable
             name="data"
-            type="com.example.lib_main.model.ArticleBean.Data.Data" />
+            type="com.example.lib_main.model.ArticleDetail" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="6dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp">
-
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:maxLines="2"
-            android:orientation="vertical"
-            android:textColor="@color/text_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             android:text="@{data.title}"
+            android:textColor="@color/text_article_title"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvAuthor"
+            app:layout_constraintTop_toTopOf="@+id/tvAuthor"
             tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→" />
 
         <TextView
             android:id="@+id/tvSource"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/text_default"
+            android:layout_marginTop="8dp"
+            android:text="@{TextUtils.isEmpty(data.superChapterName)?``:`#`+data.superChapterName}"
+            android:textColor="@color/text_article_source"
             android:textSize="10sp"
-            app:layout_constraintEnd_toStartOf="@+id/tvTime"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            tools:text="点点医讯" />
+            tools:text="#点点医讯" />
 
-        <TextView
+        <com.hjq.shape.view.ShapeTextView
             android:id="@+id/tvAuthor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textColor="@color/text_default"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toStartOf="@+id/tvTime"
-            app:layout_constraintStart_toStartOf="@+id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvSource"
-            tools:text="点点医讯" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="4dp"
+            app:shape="oval"
+            android:ellipsize="end"
+            android:maxLength="13"
+            android:lines="3"
+            app:shape_solidColor="@color/color_gray"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@{TextUtils.isEmpty(data.author)?data.shareUser:data.author}"
+            android:textColor="@color/text_article_author"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="青柠青柠青柠青柠青柠柠青柠柠青柠" />
 
         <TextView
             android:id="@+id/tvTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{data.niceDate}"
             android:textColor="@color/text_default"
             android:textSize="10sp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/tvAuthor"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
-            app:layout_constraintTop_toTopOf="@+id/tvSource"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="2021-8-29" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="@color/color_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTime"
+            tools:layout_height="1dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

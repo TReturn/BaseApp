@@ -63,5 +63,8 @@ dependencies {
 
     //第三方库
     kapt rootProject.depsLibs.arouter_compiler
+    implementation rootProject.depsLibs.lottie
+    implementation rootProject.depsLibs.magicindicator
+    implementation rootProject.depsLibs.broccoli
 
 }

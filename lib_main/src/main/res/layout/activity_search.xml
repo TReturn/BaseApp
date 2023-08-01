@@ -25,11 +25,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:rightColor="@color/text_black"
+            app:rightTitleColor="@color/text_black"
             android:background="@color/title_bar_bg"
             app:titleColor="@color/title_bar_text"
             app:leftIcon="@drawable/ic_finish"
-            app:rightSize="12sp"
+            app:rightTitleSize="12sp"
             app:lineVisible="false"
             app:rightTitle="@string/main_search">
 

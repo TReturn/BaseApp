@@ -9,10 +9,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import com.chad.library.adapter.base.listener.GridSpanSizeLookup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.constant.RouterUrls
-import com.example.lib_base.constant.StaticConstants
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
 import com.example.lib_base.router.RouterUtils
@@ -23,10 +23,10 @@ import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_base.utils.ui.TextFontUtils
 import com.example.lib_main.R
-import com.example.lib_main.adapter.ArticleAdapter
-import com.example.lib_main.adapter.DataBindingAdapter
 import com.example.lib_main.databinding.FragmentMainBinding
-import com.example.lib_main.model.*
+import com.example.lib_main.model.PoetryBean
+import com.example.lib_main.model.getSky
+import com.example.lib_main.ui.adapter.ArticleAdapter
 import com.example.lib_main.viewmodel.MainViewModel
 import com.hjq.toast.ToastUtils
 import com.permissionx.guolindev.PermissionX
@@ -41,14 +41,9 @@ import com.xuexiang.xqrcode.XQRCode
  */
 class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
-    //private val articleAdapter: ArticleAdapter by lazy { ArticleAdapter() }
-    private val articleAdapter: DataBindingAdapter by lazy { DataBindingAdapter() }
+    private val articleAdapter: ArticleAdapter by lazy { ArticleAdapter() }
 
     private val bannerData: MutableList<BaseBannerData> = ArrayList()
-
-    override fun layoutId(): Int {
-        return R.layout.fragment_main
-    }
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
@@ -62,10 +57,6 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.refreshLayout.autoRefresh()
         mDatabind.refreshLayout.setOnRefreshListener { refreshData(true) }
         mDatabind.refreshLayout.setOnLoadMoreListener { refreshData(false) }
-
-//        mDatabind.include.scrollLayout.setOnOverScrollReleaseListener {
-//            RouterUtils.intent(RouterUrls.ROUTER_URL_BEAUTY)
-//        }
     }
 
     override fun initData() {
@@ -74,10 +65,9 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
             add("http://pic1.win4000.com/m00/97/29/321baca0ae5c87225d48e14070219ea9.png")
             add("http://pic1.win4000.com/m00/c2/0f/7e41e8474463c32e80314970b7e5a2e2.jpg")
             add("http://pic1.win4000.com/wallpaper/2020-09-27/5f705c0022c79.jpg")
-            add("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.netbian.com%2Fuploads%2Fallimg%2F210704%2F215614-16254069745605.jpg")
             add("http://pic1.win4000.com/m00/97/29/321baca0ae5c87225d48e14070219ea9.png")
         }
-        for (i in 0..4) {
+        for (i in 0..3) {
             val inData = BaseBannerData()
             inData.setImage(imageList[i])
             bannerData.add(inData)
@@ -143,7 +133,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         mDatabind.include.xBanner.run {
             setOnItemClickListener { _: XBanner?, _: Any?, _: View?, position: Int ->
                 if (position == 0) {
-
+                    intentToPoetryDetail()
                 } else {
                     activity?.let { BigImageUtils.show(it, (bannerData[position].getImage())) }
                 }
@@ -160,7 +150,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                     tvContent.visibility = View.VISIBLE
                     tvAuthor.visibility = View.VISIBLE
                     activity?.let {
-                        if (!it.isDestroyed){
+                        if (!it.isDestroyed) {
                             GlideUtils.loadRoundImageTransform(
                                 it,
                                 R.drawable.banner_poetry_bg,
@@ -173,7 +163,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                 } else {
                     tvContent.visibility = View.GONE
                     activity?.let {
-                        if (!it.isDestroyed){
+                        if (!it.isDestroyed) {
                             GlideUtils.loadRoundImageTransform(
                                 it,
                                 bannerData[position].getImage(),
@@ -184,7 +174,6 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                     }
                 }
             }
-            setAutoPlayAble(bannerData.size > 1)
             setBannerData(R.layout.banner_main, bannerData)
         }
 
@@ -201,7 +190,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                StaticConstants.SCAN_REQUEST_CODE ->
+                UserKeys.SCAN_REQUEST_CODE ->
                     handleScanResult(data)
             }
         }
@@ -228,6 +217,16 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
         }
     }
 
+    /**
+     * 跳转到诗歌详情页
+     */
+    private fun intentToPoetryDetail() {
+        //跳转并携带参数
+        ARouter.getInstance().build(RouterUrls.ROUTER_URL_POETRY)
+            .withSerializable("intentData", mViewModel.poetryResultDataState.value)
+            .navigation()
+    }
+
     inner class ProxyClick {
         fun toScan() {
             //拍照、存储权限请求
@@ -247,7 +246,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
                 .request { allGranted, _, _ ->
                     if (allGranted) {
-                        XQRCode.startScan(this@MainFragment, StaticConstants.SCAN_REQUEST_CODE)
+                        XQRCode.startScan(this@MainFragment, UserKeys.SCAN_REQUEST_CODE)
                     } else {
                         ToastUtils.show(getString(R.string.main_scan_permissions_fail))
                     }
@@ -261,4 +260,3 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
     }
 
 }
-

@@ -2,8 +2,13 @@ package com.example.lib_base
 
 import android.app.Application
 import android.app.ProgressDialog
+import android.content.Context
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ProcessLifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.LogRecordInterceptor
@@ -12,11 +17,13 @@ import com.drake.net.interfaces.NetErrorHandler
 import com.drake.net.okhttp.*
 import com.drake.net.request.BaseRequest
 import com.example.lib_base.constant.ApiUrls
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.constant.SdkKeys
+import com.example.lib_base.event.AppViewModel
 import com.example.lib_base.net.WanSerializationConverter
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.log.LogUtils
+import com.hjq.language.MultiLanguages
 import com.hjq.toast.ToastUtils
 import com.hjq.toast.style.WhiteToastStyle
 import com.orhanobut.logger.AndroidLogAdapter
@@ -34,11 +41,19 @@ import java.util.concurrent.TimeUnit
  * @Author : 青柠
  * @Description :
  */
-open class BaseApplication : Application() {
+
+val appViewModel: AppViewModel by lazy { BaseApplication.appViewModelInstance }
+
+open class BaseApplication : Application(), ViewModelStoreOwner {
+
+
+    private var mFactory: ViewModelProvider.Factory? = null
+    private lateinit var mAppViewModelStore: ViewModelStore
 
     //将Application 单例化，可供全局调用 Context
     companion object {
         lateinit var context: BaseApplication
+        lateinit var appViewModelInstance: AppViewModel
     }
 
     override fun onCreate() {
@@ -46,11 +61,17 @@ open class BaseApplication : Application() {
 
         context = this
 
+        mAppViewModelStore = ViewModelStore()
+        appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
+
+        //监听应用进入前台后台监听
+        ProcessLifecycleOwner.get().lifecycle.addObserver(ApplicationObserver())
+
         //MMKV键值对存储
         MMKV.initialize(this)
 
         //1：日间模式，2：夜间模式，3：跟随系统。
-        AppCompatDelegate.setDefaultNightMode(MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1))
+        AppCompatDelegate.setDefaultNightMode(MMKVUtils.getInt(UserKeys.NIGHT_MODE, 1))
 
         //阿里路由
         if (BuildConfig.DEBUG) {
@@ -120,6 +141,32 @@ open class BaseApplication : Application() {
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> //指定为经典Footer，默认是 BallPulseFooter
             ClassicsFooter(context).setDrawableSize(20f)
         }
+
+        // 初始化语种切换框架
+        MultiLanguages.init(this)
+    }
+
+    override fun attachBaseContext(base: Context) {
+        // 绑定语种
+        super.attachBaseContext(MultiLanguages.attach(base))
+    }
+
+    /**
+     * 获取一个全局的ViewModel
+     */
+    private fun getAppViewModelProvider(): ViewModelProvider {
+        return ViewModelProvider(this, this.getAppFactory())
+    }
+
+    private fun getAppFactory(): ViewModelProvider.Factory {
+        if (mFactory == null) {
+            mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this)
+        }
+        return mFactory as ViewModelProvider.Factory
+    }
+
+    override fun getViewModelStore(): ViewModelStore {
+        return mAppViewModelStore
     }
 
 }

@@ -9,11 +9,11 @@
 
         <variable
             name="vm"
-            type="com.example.lib_main.viewmodel.MainViewModel" />
+            type="com.example.lib_main.viewmodel.SecondViewModel" />
 
         <variable
             name="click"
-            type="com.example.lib_main.ui.fragment.MainFragment.ProxyClick" />
+            type="com.example.lib_main.ui.fragment.SecondFragment.ProxyClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +23,8 @@
         <com.stx.xhb.androidx.XBanner
             android:id="@+id/xBanner"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="200dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             app:AutoPlayTime="10000"
             app:isAutoPlay="false"
             app:isClipChildrenMode="true"
@@ -46,6 +44,7 @@
             android:id="@+id/tvBeautyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="@string/main_article_title"
             android:textColor="@color/text_black"

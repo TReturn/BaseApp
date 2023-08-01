@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.treturn.lib_weather.viewmodel.MainWeatherViewModel" />
+
+        <variable
+            name="click"
+            type="com.treturn.lib_weather.ui.fragment.MainWeatherFragment.ProxyClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clParent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EEF5FE">
+
+        <FrameLayout
+            android:id="@+id/flWeatherPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isShowMainWeatherBG()?View.VISIBLE:View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivWeatherBg"
+                android:layout_width="match_parent"
+                android:layout_height="440dp"
+                android:scaleType="centerCrop"
+                tools:visibility="gone"
+                tools:src="@drawable/pic_main_weather_qingtian" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivWeatherBg2"
+                android:layout_width="match_parent"
+                android:layout_height="440dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pic_main_weather_qingtian" />
+
+        </FrameLayout>
+
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/flWeatherPic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieWeather"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:visibility="@{vm.isShowMainWeatherLottie()?View.VISIBLE:View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="86dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srlEnableHeaderTranslationContent="true"
+            app:srlEnableLoadMore="false"
+            app:srlEnableRefresh="true">
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpWeather"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-86dp"
+                android:background="#00000000"
+                android:visibility="@{vm.isShowWeatherViewPager()?View.VISIBLE:View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+        <include
+            android:id="@+id/includeWeather"
+            layout="@layout/layout_broccoli_weather_detail"
+            tools:visibility="gone"
+            android:visibility="@{vm.isShowIncludeBg()?View.VISIBLE:View.GONE}" />
+
+        <FrameLayout
+            android:id="@+id/flTranslucent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_height="10dp" />
+
+
+        <ImageView
+            android:id="@+id/ivCityWeather"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="2dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_w_dyzq"
+            android:visibility="@{vm.isShowCityManger()?View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAddress"
+            app:layout_constraintEnd_toStartOf="@+id/tvAddress"
+            app:layout_constraintTop_toTopOf="@+id/tvAddress"
+            tools:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/ivCityManger"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{()->click.toCityManger()}"
+            android:padding="5dp"
+            android:src="@drawable/ic_add_city"
+            android:visibility="@{vm.isShowCityManger()?View.VISIBLE:View.INVISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent" />
+
+        <com.example.lib_base.widget.ScrollTextView
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawablePadding="8dp"
+            android:lines="1"
+            android:onClick="@{()->click.toCityManger()}"
+            android:text="@{vm.address}"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivCityManger"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivCityManger"
+            app:layout_constraintTop_toTopOf="@+id/ivCityManger"
+            tools:drawableEnd="@drawable/ic_location_city"
+            tools:text="天河区 车陂路天河区车陂路天河区" />
+
+        <LinearLayout
+            android:id="@+id/llRefreshStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center|start"
+            android:onClick="@{()->click.toOpenLocation()}"
+            android:orientation="horizontal"
+            android:visibility="@{vm.isShowRefreshLayout()?View.VISIBLE:View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tvAddress"
+            app:layout_constraintStart_toStartOf="@+id/tvAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddress">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMainRefreshStatus"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_main_refresh_weather" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="@{vm.refreshWeatherTime}"
+                android:textColor="#ccffffff"
+                android:textSize="12sp"
+                tools:text="刷新成功｜25分钟前发布" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMainRefreshMore"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:src="@drawable/ic_check_location_more"
+                android:visibility="@{vm.isShowLocationLayout()?View.VISIBLE:View.GONE}" />
+
+        </LinearLayout>
+
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/magicIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:visibility="@{vm.isShowMagicIndicator()?View.VISIBLE:View.INVISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/tvAddress"
+            app:layout_constraintTop_toBottomOf="@+id/llRefreshStatus"
+            tools:layout_height="10dp"
+            tools:layout_width="100dp" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

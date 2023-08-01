@@ -2,6 +2,7 @@
 <resources>
 
     <!--常用颜色-->
+    <color name="transparent">#00000000</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
     <color name="color_gray">#ffeeeeee</color>
@@ -14,6 +15,9 @@
     <color name="text_black">#d1d1d1</color>
     <color name="text_default">#7b7e87</color>
     <color name="text_white">#FFFFFF</color>
+    <color name="text_article_author">#E6A51C</color>
+    <color name="text_article_title">#d1d1d1</color>
+    <color name="text_article_source">#359FE5</color>
 
     <!--Item颜色-->
     <color name="item_white_bg">#191919</color>
@@ -39,4 +43,9 @@
     <color name="profile_start_bg">#2e65c9</color>
     <color name="profile_end_bg">#263548</color>
     <color name="profile_center_bg">#2b4a80</color>
+
+    <!--弹窗颜色-->
+    <color name="dialog_confirm_button">#5b89d7</color>
+    <color name="dialog_cancel_button">#eeeeee</color>
+
 </resources>

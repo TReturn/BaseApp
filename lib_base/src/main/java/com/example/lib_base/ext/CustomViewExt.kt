@@ -14,7 +14,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.lib_base.BaseApplication
 import com.example.lib_base.R
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.list.ListDataUiState
 import com.example.lib_base.magic.ScaleTransitionPagerTitleView
 import com.example.lib_base.utils.data.MMKVUtils
@@ -23,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import me.hgj.jetpackmvvm.ext.util.toHtml
 import net.lucode.hackware.magicindicator.MagicIndicator
+import net.lucode.hackware.magicindicator.abs.IPagerNavigator
 import net.lucode.hackware.magicindicator.buildins.UIUtil
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
@@ -36,6 +37,43 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
  * @Description :项目中自定义类的拓展函数
  */
 
+/**
+ * MagicIndicator框架绑定ViewPager2
+ * @receiver MagicIndicator
+ * @param viewPager ViewPager2
+ * @param navigator IPagerNavigator
+ * @param action Function1<[@kotlin.ParameterName] Int, Unit>
+ */
+fun MagicIndicator.bindViewPager2(
+    viewPager: ViewPager2,
+    navigator: IPagerNavigator?,
+    action: (index: Int) -> Unit = {}
+) {
+    this.navigator = navigator
+
+    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+            this@bindViewPager2.onPageSelected(position)
+            action.invoke(position)
+        }
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            this@bindViewPager2.onPageScrolled(position, positionOffset, positionOffsetPixels)
+
+        }
+
+        override fun onPageScrollStateChanged(state: Int) {
+            super.onPageScrollStateChanged(state)
+            this@bindViewPager2.onPageScrollStateChanged(state)
+        }
+    })
+}
 
 /**
  * MagicIndicator框架绑定ViewPager2
@@ -67,7 +105,7 @@ fun MagicIndicator.bindViewPager2(
                 //字体大小
                 textSize = 16f
                 //无法正确加载夜间主题，加个判断切换。
-                when (MMKVUtils.getInt(MMKVKeys.NIGHT_MODE, 1)) {
+                when (MMKVUtils.getInt(UserKeys.NIGHT_MODE, 1)) {
                     AppCompatDelegate.MODE_NIGHT_NO -> {
                         //未选中颜色
                         normalColor = UiUtils.getColor(R.color.tab_layout_day_normal)
@@ -155,7 +193,7 @@ fun ViewPager2.init(
  * @receiver BottomNavigationView
  * @param ids IntArray
  */
-fun BottomNavigationView.interceptLongClick(vararg ids: Int) {
+fun BottomNavigationView.interceptLongClick(ids: Array<Int>) {
     val bottomNavigationMenuView: ViewGroup = (this.getChildAt(0) as ViewGroup)
     for (index in ids.indices) {
         bottomNavigationMenuView.getChildAt(index).findViewById<View>(ids[index])

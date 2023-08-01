@@ -1,22 +1,19 @@
 package com.example.lib_main.ui.activity
 
 import android.os.Bundle
-import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.init
-import com.example.lib_base.ext.loadListData
 import com.example.lib_base.utils.image.BigImageUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
-import com.example.lib_main.adapter.BeautyAdapter
-import com.example.lib_main.adapter.BeautyDetailAdapter
+import com.example.lib_main.ui.adapter.BeautyDetailAdapter
 import com.example.lib_main.databinding.ActivityBeautyBinding
-import com.example.lib_main.viewmodel.MainViewModel
+import com.example.lib_main.viewmodel.SecondViewModel
 import com.hjq.bar.OnTitleBarListener
+import com.hjq.bar.TitleBar
 
 /**
  * @CreateDate : 2021/8/19 00:03
@@ -24,14 +21,10 @@ import com.hjq.bar.OnTitleBarListener
  * @Description : 妹子瀑布流页面
  */
 @Route(path = RouterUrls.ROUTER_URL_BEAUTY)
-class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
+class BeautyActivity : BaseActivity<SecondViewModel, ActivityBeautyBinding>() {
 
     private val beautyAdapter: BeautyDetailAdapter by lazy { BeautyDetailAdapter() }
     private var beautyImageList = arrayListOf<String>()
-
-    override fun layoutId(): Int {
-        return R.layout.activity_beauty
-    }
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
@@ -39,12 +32,9 @@ class BeautyActivity : BaseActivity<MainViewModel, ActivityBeautyBinding>() {
 
         mDatabind.include.titleBar.title = UiUtils.getString(R.string.main_article_title)
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(view: View?) {
+            override fun onLeftClick(titleBar: TitleBar) {
                 finish()
             }
-
-            override fun onRightClick(view: View?) {}
-            override fun onTitleClick(view: View?) {}
         })
 
         mDatabind.refreshLayout.autoRefresh()

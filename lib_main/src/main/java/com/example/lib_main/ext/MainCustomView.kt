@@ -6,8 +6,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.lib_main.R
 import com.example.lib_main.ui.fragment.FourFragment
-import com.example.lib_main.ui.fragment.MainFragment
 import com.example.lib_main.ui.fragment.SecondFragment
+import com.example.lib_main.ui.fragment.MainFragment
 import com.example.lib_main.ui.fragment.ThirdFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -29,25 +29,24 @@ fun ViewPager2.initMain(
     isUserInputEnabled: Boolean
 ): ViewPager2 {
     //是否可滑动
+    this.isUserInputEnabled  =isUserInputEnabled
+    //预加载
     this.offscreenPageLimit = 4
     //设置适配器
     adapter = object : FragmentStateAdapter(fragment) {
         override fun createFragment(position: Int): Fragment {
-            when (position) {
+            return when (position) {
                 0 -> {
-                    return MainFragment()
+                    MainFragment()
                 }
                 1 -> {
-                    return SecondFragment()
+                    SecondFragment()
                 }
                 2 -> {
-                    return ThirdFragment()
-                }
-                3 -> {
-                    return FourFragment()
+                    ThirdFragment()
                 }
                 else -> {
-                    return MainFragment()
+                    FourFragment()
                 }
             }
         }

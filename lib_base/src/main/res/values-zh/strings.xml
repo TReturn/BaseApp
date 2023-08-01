@@ -4,9 +4,9 @@
 
     <!--首页文本-->
     <string name="main_navigation_main">首页</string>
-    <string name="main_navigation_second">项目</string>
-    <string name="main_navigation_third">工具</string>
-    <string name="main_navigation_four">我的</string>
+    <string name="main_navigation_second">分类</string>
+    <string name="main_navigation_third">项目</string>
+    <string name="main_navigation_fourth">我的</string>
 
     <string name="main_article_title">文章</string>
 
@@ -35,5 +35,20 @@
     <string name="main_scan_fail_tips">扫码失败</string>
 
     <string name="main_people_reading">%s 人浏览</string>
+
+    <!--类型相关-->
+    <string name="main_type_mp_chart">图表库</string>
+    <string name="main_type_attribute_animation">属性动画</string>
+
+    <string name="animation_type_alpha">透明</string>
+    <string name="animation_type_translation">平移</string>
+    <string name="animation_type_rotation">旋转</string>
+    <string name="animation_type_scale">缩放</string>
+
+    <!--我的页面-->
+    <string name="user_switch_language">切换语言</string>
+
+    <!--诗歌相关-->
+    <string name="poetry_title">诗歌</string>
 
 </resources>

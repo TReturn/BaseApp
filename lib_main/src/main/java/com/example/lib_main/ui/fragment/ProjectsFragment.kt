@@ -7,7 +7,7 @@ import com.example.lib_base.ext.loadListData
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.router.RouterUtils
 import com.example.lib_main.R
-import com.example.lib_main.adapter.NewsAdapter
+import com.example.lib_main.ui.adapter.NewsAdapter
 import com.example.lib_main.databinding.FragmentNewsBinding
 import com.example.lib_main.viewmodel.NewsViewModel
 
@@ -23,9 +23,6 @@ class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     //项目类型
     private lateinit var projectsType: String
 
-    override fun layoutId(): Int {
-        return R.layout.fragment_news
-    }
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
@@ -61,11 +58,11 @@ class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
     companion object {
         private const val TYPE = "TYPE"
         fun newInstance(type: String): ProjectsFragment {
-            val bundle = Bundle()
-            val fragment = ProjectsFragment()
-            bundle.putString(TYPE, type)
-            fragment.arguments = bundle
-            return fragment
+            return ProjectsFragment().apply {
+                arguments = Bundle().apply {
+                    putString(TYPE, type)
+                }
+            }
         }
     }
 }

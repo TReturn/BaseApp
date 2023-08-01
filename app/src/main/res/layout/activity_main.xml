@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.baseapp.viewmodel.MainViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.baseapp.ui.activity.MainActivity.ProxyClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.baseapp.ui.activity.MainActivity">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bottom_navigation_bg"
+            android:theme="@style/BottomNavigation"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/navigation" />
+
+        <com.example.lib_base.widget.SlideImageView
+            android:id="@+id/slFruitImage"
+            android:layout_width="76dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:visibility="@{vm.isShowFruitView()?View.VISIBLE:View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivFruit"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_fruit_lemon" />
+
+            <ImageView
+                android:id="@+id/ivFruitDel"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="4dp"
+                android:onClick="@{()->click.toFruitDel()}"
+                android:src="@drawable/ic_delete" />
+        </com.example.lib_base.widget.SlideImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

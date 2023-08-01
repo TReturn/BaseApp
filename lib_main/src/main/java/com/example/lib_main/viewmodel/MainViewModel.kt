@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.scopeNetLife
 import com.drake.net.Get
 import com.example.lib_base.constant.ApiUrls
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.constant.SdkKeys
 import com.example.lib_base.list.ListDataUiState
 import com.example.lib_base.net.PoetrySerializationConverter
@@ -19,7 +19,7 @@ import com.example.lib_main.model.*
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**
- * @CreateDate : 2021/7/29
+ * @CreateDate : 2021/8/27 14:28
  * @Author : 青柠
  * @Description :
  */
@@ -29,7 +29,7 @@ class MainViewModel : BaseViewModel() {
     private var isFirstEmpty = false
 
     //首页文章列表集合数据
-    var articleDataState = MutableLiveData<ListDataUiState<ArticleBean.Data.Data>>()
+    var articleDataState = MutableLiveData<ListDataUiState<ArticleDetail>>()
 
     //天气集合数据
     val weatherDataState = MutableLiveData<WeatherBean.Result>()
@@ -39,9 +39,6 @@ class MainViewModel : BaseViewModel() {
     val weatherSky = MutableLiveData<String>()
 
     val isShowWeather = MutableLiveData<Boolean>()
-
-    //是否显示右下角可移动贴边View
-    val isShowFruitView = MutableLiveData<Boolean>()
 
     //古诗返回结果
     val poetryResultDataState = MutableLiveData<PoetryBean.Data>()
@@ -57,7 +54,7 @@ class MainViewModel : BaseViewModel() {
         }
 
         scopeNetLife {
-            val data = Get<ArticleBean>(ApiUrls.getMainArticle(pageNo)) {
+            val data = Get<ArticleModel>(ApiUrls.getMainArticle(pageNo)) {
                 param("page_size ", pageSize.toString())
             }.await().data.datas
 
@@ -81,7 +78,7 @@ class MainViewModel : BaseViewModel() {
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isFirstEmpty = false,
-                    listData = arrayListOf<ArticleBean.Data.Data>()
+                    listData = arrayListOf<ArticleDetail>()
                 )
             articleDataState.value = listDataUiState
         }
@@ -91,7 +88,7 @@ class MainViewModel : BaseViewModel() {
     /**
      * 获取天气
      */
-    fun getWeather(lng: String = "121.6544", lat: String = "25.1552") {
+    private fun getWeather(lng: String = "121.6544", lat: String = "25.1552") {
         scopeNetLife {
             val data = Get<WeatherBean>(ApiUrls.getRealTimeWeather(lng, lat)) {
                 converter = WeatherSerializationConverter()
@@ -120,7 +117,7 @@ class MainViewModel : BaseViewModel() {
      * 有TOKEN直接请求古诗内容，无TOKEN请求TOKEN
      */
     fun getPoetry() {
-        if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))) {
+        if (TextUtils.isEmpty(MMKVUtils.getString(UserKeys.POETRY_TOKEN))) {
             getAncientChinesePoetryToken()
         } else {
             getAncientChinesePoetry()
@@ -137,7 +134,7 @@ class MainViewModel : BaseViewModel() {
 
             }.await().data
 
-            MMKVUtils.set(MMKVKeys.POETRY_TOKEN, data)
+            MMKVUtils.put(UserKeys.POETRY_TOKEN, data)
             getAncientChinesePoetry()
         }
     }
@@ -149,7 +146,7 @@ class MainViewModel : BaseViewModel() {
         scopeNetLife {
             val data = Get<PoetryBean>(ApiUrls.ANCIENT_CHINESE_POETRY) {
                 converter = PoetrySerializationConverter()
-                setHeader("X-User-Token", MMKVUtils.getString(MMKVKeys.POETRY_TOKEN))
+                setHeader("X-User-Token", MMKVUtils.getString(UserKeys.POETRY_TOKEN))
             }.await().data
             LogUtils.d(data)
             poetryResultDataState.value = data
@@ -158,7 +155,5 @@ class MainViewModel : BaseViewModel() {
 
     init {
         weatherSky.value = ResourceUtils.getString(R.string.main_is_loading)
-        isShowFruitView.value = false
     }
-
 }

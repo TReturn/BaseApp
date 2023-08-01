@@ -23,7 +23,7 @@ data class PoetryBean(
     var token: String = "",
     @SerialName("warning")
     var warning: String = ""
-) {
+):java.io.Serializable  {
     @Serializable
     data class Data(
         @SerialName("cacheAt")
@@ -40,7 +40,7 @@ data class PoetryBean(
         var popularity: Int = 0,
         @SerialName("recommendedReason")
         var recommendedReason: String = ""
-    ) {
+    ):java.io.Serializable {
         @Serializable
         data class Origin(
             @SerialName("author")
@@ -53,6 +53,6 @@ data class PoetryBean(
             var title: String = "",
             @SerialName("translate")
             var translate: List<String> = listOf()
-        )
+        ):java.io.Serializable
     }
 }

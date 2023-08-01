@@ -1,7 +1,7 @@
 package com.example.lib_base.utils.language
 
 import android.text.TextUtils
-import com.example.lib_base.constant.MMKVKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.utils.data.MMKVUtils
 import java.util.*
 
@@ -16,12 +16,12 @@ object LanguageUtils {
      * 获取语言
      * @return 返回“zh”之类国家码
      */
-    fun getLanguage(): String {
-        return if (TextUtils.isEmpty(MMKVUtils.getString(MMKVKeys.LANGUAGE))) {
+    private fun getLanguage(): String {
+        return if (TextUtils.isEmpty(MMKVUtils.getString(UserKeys.LANGUAGE))) {
             //默认语言
             Locale.getDefault().language
         } else {
-            MMKVUtils.getString(MMKVKeys.LANGUAGE).toString()
+            MMKVUtils.getString(UserKeys.LANGUAGE)
         }
     }
 

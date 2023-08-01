@@ -4,9 +4,9 @@
 
     <!--首页文本-->
     <string name="main_navigation_main">Home</string>
-    <string name="main_navigation_second">Project</string>
-    <string name="main_navigation_third">Tool</string>
-    <string name="main_navigation_four">Profile</string>
+    <string name="main_navigation_second">Type</string>
+    <string name="main_navigation_third">Project</string>
+    <string name="main_navigation_fourth">Profile</string>
 
     <string name="main_article_title">Article</string>
 
@@ -35,5 +35,20 @@
     <string name="main_scan_fail_tips">Scan code failed</string>
 
     <string name="main_people_reading">%s People browsing</string>
+
+    <!--类型相关-->
+    <string name="main_type_mp_chart">MP CHART</string>
+    <string name="main_type_attribute_animation">Attribute Animation</string>
+
+    <string name="animation_type_alpha">Alpha</string>
+    <string name="animation_type_translation">Translation</string>
+    <string name="animation_type_rotation">Rotation</string>
+    <string name="animation_type_scale">Scale</string>
+
+    <!--我的页面-->
+    <string name="user_switch_language">Switch Language</string>
+
+    <!--诗歌相关-->
+    <string name="poetry_title">Poetry</string>
 
 </resources>

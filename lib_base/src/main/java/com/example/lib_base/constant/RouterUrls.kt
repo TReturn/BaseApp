@@ -11,7 +11,7 @@ object RouterUrls {
     const val ROUTER_URL_SPLASH = "/app/splash"
 
     //主页
-    const val ROUTER_URL_MAIN = "/main/home"
+    const val ROUTER_URL_MAIN = "/app/home"
 
     //搜索页
     const val ROUTER_URL_SEARCH = "/search/search"
@@ -21,6 +21,21 @@ object RouterUrls {
 
     //Web页
     const val ROUTER_URL_WEB = "/web/web"
+
+    //Compose页
+    const val ROUTER_URL_COMPOSE = "/compose/test"
+
+    //关于我们Compose页
+    const val ROUTER_URL_ABOUT_COMPOSE = "/about/about"
+
+    //图表库页
+    const val ROUTER_URL_MP_CHART = "/chart/chart"
+
+    //属性动画页
+    const val ROUTER_URL_ATT_ANIMATION = "/att/animation"
+
+    //诗歌详情页
+    const val ROUTER_URL_POETRY = "/poetry/poetry"
 
 
 }
