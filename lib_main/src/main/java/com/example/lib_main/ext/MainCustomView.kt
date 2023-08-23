@@ -68,7 +68,7 @@ fun ViewPager2.initMain(
                         bottomNavigationView.selectedItemId = R.id.navigation_third
                     }
                     else -> {
-                        bottomNavigationView.selectedItemId = R.id.navigation_four
+                        bottomNavigationView.selectedItemId = R.id.navigation_fourth
                     }
                 }
             }
