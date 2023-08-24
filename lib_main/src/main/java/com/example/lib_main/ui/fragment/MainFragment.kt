@@ -15,7 +15,7 @@ import com.google.android.material.navigation.NavigationBarView
 /**
  * @CreateDate: 2023/8/24 17:10
  * @Author: 青柠
- * @Description:
+ * @Description: 项目首页
  */
 class MainFragment: BaseFragment<MainViewModel, FragmentMainBinding>() {
 
@@ -57,22 +57,22 @@ class MainFragment: BaseFragment<MainViewModel, FragmentMainBinding>() {
         NavigationBarView.OnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_main -> {
-                    mDatabind.viewPager.currentItem = 0
+                    mDatabind.viewPager.setCurrentItem(0,false)
                     return@OnItemSelectedListener true
                 }
 
                 R.id.navigation_second -> {
-                    mDatabind.viewPager.currentItem = 1
+                    mDatabind.viewPager.setCurrentItem(1,false)
                     return@OnItemSelectedListener true
                 }
 
                 R.id.navigation_third -> {
-                    mDatabind.viewPager.currentItem = 2
+                    mDatabind.viewPager.setCurrentItem(2,false)
                     return@OnItemSelectedListener true
                 }
 
                 R.id.navigation_fourth -> {
-                    mDatabind.viewPager.currentItem = 3
+                    mDatabind.viewPager.setCurrentItem(3,false)
                     return@OnItemSelectedListener true
                 }
             }

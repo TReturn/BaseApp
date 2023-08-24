@@ -1,4 +1,4 @@
-package com.example.lib_main.ui.activity
+package com.example.lib_main.ui.fragment
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,44 +7,50 @@ import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.lib_base.base.BaseActivity
+import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.constant.ApiUrls
 import com.example.lib_base.constant.UserKeys
-import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.dialog.BaseConfirmDialog
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.KeyboardUtils
 import com.example.lib_base.utils.ui.WebUtils
 import com.example.lib_main.R
-import com.example.lib_main.databinding.ActivitySearchBinding
+import com.example.lib_main.databinding.FragmentPoetryBinding
+import com.example.lib_main.databinding.FragmentSearchBinding
+import com.example.lib_main.viewmodel.PoetryViewModel
 import com.example.lib_main.viewmodel.SearchViewModel
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
-
+import me.hgj.jetpackmvvm.ext.nav
 
 /**
- * @CreateDate : 2021/8/11 23:35
- * @Author : 青柠
- * @Description : 搜索页面
+ * @CreateDate: 2023/8/24 20:18
+ * @Author: 青柠
+ * @Description:
  */
-@Route(path = RouterUrls.ROUTER_URL_SEARCH)
-class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
+class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
 
     //搜索历史记录，填充到LabelView
     private var searchLabel: ArrayList<String> = ArrayList()
 
     override fun initView(savedInstanceState: Bundle?) {
-        mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
-        setLabelData()
+        mDatabind.click = ProxyClick()
+        setTranslucent(mDatabind.flTranslucent)
 
-        //标题栏点击事件
         mDatabind.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(titleBar: TitleBar) {
-                finish()
+                nav().navigateUp()
+            }
+
+            override fun onRightClick(titleBar: TitleBar) {
+                if ( mViewModel.isShowDeleteSearchContent.value ==  true){
+                    toSearch(mDatabind.etSearch.text.toString())
+                }
             }
         })
+
+        setLabelData()
 
         //键盘搜索键点击事件
         mDatabind.etSearch.setOnEditorActionListener { v: TextView?, actionId: Int, event: KeyEvent? ->
@@ -125,7 +131,7 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
         mViewModel.isShowSearchHistory.value = false
         KeyboardUtils.hideSoftInput(mDatabind.etSearch)
         WebUtils.load(
-            this,
+            mActivity,
             mDatabind.clSearchResult,
             "${ApiUrls.BAIDU_SEARCH_URL} $editContent"
         )
@@ -139,9 +145,10 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
         }
 
         fun toDeleteAllHistory() {
-            BaseConfirmDialog(this@SearchActivity, "", getString(R.string.main_search_delete_all)) {
+            BaseConfirmDialog(mActivity, "", getString(R.string.main_search_delete_all)) {
                 deleteAllSearchHistory()
             }.show()
         }
     }
+
 }

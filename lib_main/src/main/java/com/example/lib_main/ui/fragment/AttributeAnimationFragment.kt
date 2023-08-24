@@ -1,34 +1,30 @@
-package com.example.lib_main.ui.activity
+package com.example.lib_main.ui.fragment
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.lib_base.base.BaseActivity
-import com.example.lib_base.constant.RouterUrls
-import com.example.lib_base.utils.ui.UiUtils
+import com.example.lib_base.base.BaseFragment
 import com.example.lib_main.R
-import com.example.lib_main.databinding.ActivityAttributeAnimationBinding
+import com.example.lib_main.databinding.FragmentAttributeAnimationBinding
 import com.example.lib_main.viewmodel.AttributeAnimationViewModel
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
+import me.hgj.jetpackmvvm.ext.nav
 
 /**
- * @CreateDate: 2023/3/30 18:16
+ * @CreateDate: 2023/8/24 19:54
  * @Author: 青柠
  * @Description: 属性动画
  */
-@Route(path = RouterUrls.ROUTER_URL_ATT_ANIMATION)
-class AttributeAnimationActivity :
-    BaseActivity<AttributeAnimationViewModel, ActivityAttributeAnimationBinding>() {
-
+class AttributeAnimationFragment : BaseFragment<AttributeAnimationViewModel, FragmentAttributeAnimationBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
         mDatabind.click = ProxyClick()
+        setTranslucent(mDatabind.flTranslucent)
 
         mDatabind.include.titleBar.title = getString(R.string.main_type_attribute_animation)
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(titleBar: TitleBar) {
-                finish()
+                nav().navigateUp()
             }
         })
     }

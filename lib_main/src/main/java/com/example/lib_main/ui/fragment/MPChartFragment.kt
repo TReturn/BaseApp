@@ -1,41 +1,44 @@
-package com.example.lib_main.ui.activity
+package com.example.lib_main.ui.fragment
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.lib_base.base.BaseActivity
-import com.example.lib_base.constant.RouterUrls
-import com.example.lib_base.utils.ui.UiUtils
+import com.example.lib_base.base.BaseFragment
 import com.example.lib_main.R
-import com.example.lib_main.databinding.ActivityMpChartBinding
+import com.example.lib_main.databinding.FragmentMpChartBinding
+import com.example.lib_main.databinding.FragmentPoetryBinding
 import com.example.lib_main.ui.widget.LastWeekFormattedValue
 import com.example.lib_main.ui.widget.TempValueFormatter
 import com.example.lib_main.viewmodel.MPChartViewModel
+import com.example.lib_main.viewmodel.PoetryViewModel
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
-import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
+import me.hgj.jetpackmvvm.ext.nav
 
 /**
- * @CreateDate: 2023/3/30 16:26
+ * @CreateDate: 2023/8/24 20:07
  * @Author: 青柠
- * @Description: 图表库示例
+ * @Description:
  */
-@Route(path = RouterUrls.ROUTER_URL_MP_CHART)
-class MPChartActivity : BaseActivity<MPChartViewModel, ActivityMpChartBinding>() {
-
+class MPChartFragment : BaseFragment<MPChartViewModel, FragmentMpChartBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
         mDatabind.click = ProxyClick()
+        setTranslucent(mDatabind.flTranslucent)
 
         mDatabind.include.titleBar.title = getString(R.string.main_type_mp_chart)
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(titleBar: TitleBar) {
-                finish()
+                nav().navigateUp()
             }
         })
 
@@ -49,6 +52,7 @@ class MPChartActivity : BaseActivity<MPChartViewModel, ActivityMpChartBinding>()
             //使用ScrollView控制折线图的左右移动
             mDatabind.lineChart.moveViewToX((scrollProgress * 100 * 0.24).toFloat())
         }
+
     }
 
     override fun initData() {
@@ -58,7 +62,6 @@ class MPChartActivity : BaseActivity<MPChartViewModel, ActivityMpChartBinding>()
         setLineChartData()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun createObserver() {
 
     }

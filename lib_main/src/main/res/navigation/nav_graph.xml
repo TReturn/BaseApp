@@ -15,15 +15,57 @@
         <action
             android:id="@+id/action_main_to_user_agreement"
             app:destination="@id/userAgreementFragment" />
-    </fragment>
 
+        <action
+            android:id="@+id/action_main_to_poetry"
+            app:destination="@id/poetryFragment" />
+
+        <action
+            android:id="@+id/action_main_to_animation"
+            app:destination="@id/attributeAnimationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/action_main_to_mp_chart"
+            app:destination="@id/mpChartFragment" />
+
+        <action
+            android:id="@+id/action_main_to_search"
+            app:destination="@id/searchFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/userAgreementFragment"
         android:name="com.example.lib_main.ui.fragment.UserAgreementFragment"
-        android:label="fragment_user_agreement"
-        tools:layout="@layout/fragment_user_agreement" >
+        android:label="fragment_user_agreement">
+    </fragment>
 
+    <fragment
+        android:id="@+id/poetryFragment"
+        android:name="com.example.lib_main.ui.fragment.PoetryFragment"
+        android:label="fragment_poetry">
+    </fragment>
+
+    <fragment
+        android:id="@+id/attributeAnimationFragment"
+        android:name="com.example.lib_main.ui.fragment.AttributeAnimationFragment"
+        android:label="attributeAnimation">
+    </fragment>
+
+    <fragment
+        android:id="@+id/mpChartFragment"
+        android:name="com.example.lib_main.ui.fragment.MPChartFragment"
+        android:label="mpChartFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.lib_main.ui.fragment.SearchFragment"
+        android:label="searchFragment">
     </fragment>
 
 </navigation>

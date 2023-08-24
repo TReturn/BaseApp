@@ -3,30 +3,9 @@
     package="com.example.lib_main">
 
     <application>
-        <activity
-            android:name=".ui.activity.BeautyActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activity.SearchActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activity.ComposeActivity"
-            android:exported="true" />
 
         <activity
             android:name=".ui.activity.AboutComposeActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ui.activity.MPChartActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ui.activity.AttributeAnimationActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ui.activity.PoetryActivity"
             android:exported="true" />
 
         <meta-data

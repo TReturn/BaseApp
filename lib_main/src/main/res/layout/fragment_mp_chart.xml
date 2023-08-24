@@ -12,18 +12,29 @@
 
         <variable
             name="click"
-            type="com.example.lib_main.ui.activity.MPChartActivity.ProxyClick" />
+            type="com.example.lib_main.ui.fragment.MPChartFragment.ProxyClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/title_bar"
-            android:id="@+id/include"
+        <FrameLayout
+            android:id="@+id/flTranslucent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"

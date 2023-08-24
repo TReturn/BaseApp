@@ -16,6 +16,8 @@ import com.example.lib_main.model.DemoTypeModel
 import com.example.lib_main.ui.adapter.DemoTypeAdapter
 import com.example.lib_main.viewmodel.SecondViewModel
 import com.hjq.toast.Toaster
+import me.hgj.jetpackmvvm.ext.nav
+import me.hgj.jetpackmvvm.ext.navigateAction
 
 
 /**
@@ -73,10 +75,10 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
             setOnItemClickListener { adapter, view, position ->
                 when (data[position].title) {
                     UiUtils.getString(R.string.main_type_mp_chart) -> {
-                        RouterUtils.intent(RouterUrls.ROUTER_URL_MP_CHART)
+                        nav().navigateAction(R.id.action_main_to_mp_chart)
                     }
                     UiUtils.getString(R.string.main_type_attribute_animation) -> {
-                        RouterUtils.intent(RouterUrls.ROUTER_URL_ATT_ANIMATION)
+                        nav().navigateAction(R.id.action_main_to_animation)
                     }
                 }
             }

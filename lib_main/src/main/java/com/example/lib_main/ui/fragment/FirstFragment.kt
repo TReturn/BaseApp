@@ -31,6 +31,8 @@ import com.hjq.toast.Toaster
 import com.permissionx.guolindev.PermissionX
 import com.stx.xhb.androidx.XBanner
 import com.xuexiang.xqrcode.XQRCode
+import me.hgj.jetpackmvvm.ext.nav
+import me.hgj.jetpackmvvm.ext.navigateAction
 
 
 /**
@@ -221,9 +223,9 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
      */
     private fun intentToPoetryDetail() {
         //跳转并携带参数
-        ARouter.getInstance().build(RouterUrls.ROUTER_URL_POETRY)
-            .withSerializable("intentData", mViewModel.poetryResultDataState.value)
-            .navigation()
+        nav().navigateAction(R.id.action_main_to_poetry, Bundle().apply {
+            putSerializable("DATA",  mViewModel.poetryResultDataState.value)
+        })
     }
 
     inner class ProxyClick {
@@ -254,7 +256,7 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
         }
 
         fun toSearch() {
-            RouterUtils.intent(RouterUrls.ROUTER_URL_SEARCH)
+            nav().navigateAction(R.id.action_main_to_search)
         }
     }
 
