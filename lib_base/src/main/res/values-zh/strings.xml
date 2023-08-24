@@ -39,6 +39,7 @@
     <!--类型相关-->
     <string name="main_type_mp_chart">图表库</string>
     <string name="main_type_attribute_animation">属性动画</string>
+    <string name="main_type_note">备忘录</string>
 
     <string name="animation_type_alpha">透明</string>
     <string name="animation_type_translation">平移</string>
@@ -53,4 +54,8 @@
     <!--诗歌相关-->
     <string name="poetry_title">诗歌</string>
 
+    <!--备忘录相关-->
+    <string name="note_title_tips">标题</string>
+    <string name="note_content_tips">开始书写</string>
+    <string name="note_delete_tips">确定删除备忘录吗？</string>
 </resources>

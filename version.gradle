@@ -66,7 +66,7 @@ ext {
             verticaltextview    : '1.4.1',
             pickerlayoutmanager : '1.0.4',
             mpandroidchart      : '3.1.0',
-            room                : '2.3.0',
+            room                : '2.5.0',
             languages           : '8.0',
             broccoli            : '1.0.0',
             navigation          : '2.5.3',

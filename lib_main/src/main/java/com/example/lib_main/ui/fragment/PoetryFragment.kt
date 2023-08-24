@@ -28,6 +28,7 @@ class PoetryFragment : BaseFragment<PoetryViewModel, FragmentPoetryBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
+        mDatabind.click = ProxyClick()
         setTranslucent(mDatabind.flTranslucent)
 
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {

@@ -40,6 +40,10 @@
             android:id="@+id/action_main_to_web"
             app:destination="@id/webFragment" />
 
+        <action
+            android:id="@+id/action_main_to_note"
+            app:destination="@id/noteListFragment" />
+
     </fragment>
 
     <fragment
@@ -76,6 +80,23 @@
         android:id="@+id/webFragment"
         android:name="com.example.lib_base.web.WebFragment"
         android:label="webFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/noteListFragment"
+        android:name="com.example.lib_main.ui.fragment.NoteListFragment"
+        android:label="noteListFragment">
+
+        <action
+            android:id="@+id/action_note_to_detail"
+            app:destination="@id/noteDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/noteDetailFragment"
+        android:name="com.example.lib_main.ui.fragment.NoteDetailFragment"
+        android:label="noteDetailFragment">
     </fragment>
 
 </navigation>

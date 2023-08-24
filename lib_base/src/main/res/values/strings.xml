@@ -39,6 +39,7 @@
     <!--类型相关-->
     <string name="main_type_mp_chart">MP CHART</string>
     <string name="main_type_attribute_animation">Attribute Animation</string>
+    <string name="main_type_note">Note</string>
 
     <string name="animation_type_alpha">Alpha</string>
     <string name="animation_type_translation">Translation</string>
@@ -52,5 +53,10 @@
 
     <!--诗歌相关-->
     <string name="poetry_title">Poetry</string>
+
+    <!--备忘录相关-->
+    <string name="note_title_tips">Title</string>
+    <string name="note_content_tips">Start Writing</string>
+    <string name="note_delete_tips">Are you sure about deleting the Note?</string>
 
 </resources>

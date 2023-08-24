@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.lib_main.viewmodel.NoteDetailViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.lib_main.ui.fragment.NoteDetailFragment.ProxyClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/flTranslucent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:leftIcon="@drawable/ic_finish"
+            app:lineVisible="false"
+            app:titleStyle="bold"
+            app:barStyle="transparent"
+            app:titleColor="@color/title_bar_text"
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{()->click.toDelete()}"
+            android:src="@drawable/ic_delete_all"
+            android:visibility="@{vm.isShowDelete()?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/titleBar"
+            app:layout_constraintEnd_toEndOf="@+id/titleBar"
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_right"
+            android:onClick="@{()->click.toSave()}"
+            android:visibility="@{vm.isShowSave()?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/titleBar"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent" />
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:textSize="16sp"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            android:maxLength="20"
+            android:hint="@string/note_title_tips"
+            android:text="@{vm.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBar" />
+
+        <EditText
+            android:id="@+id/etContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:textSize="14sp"
+            android:text="@{vm.content}"
+            android:textColor="@color/text_default"
+            android:hint="@string/note_content_tips"
+            app:layout_constraintEnd_toEndOf="@+id/etTitle"
+            app:layout_constraintStart_toStartOf="@+id/etTitle"
+            app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

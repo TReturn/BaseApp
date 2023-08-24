@@ -5,7 +5,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.lib_base.room.database.WallpaperDatabase
+import com.example.lib_base.BaseApplication
+import com.example.lib_base.room.database.NoteDatabase
 import me.hgj.jetpackmvvm.base.Ktx
 
 /**
@@ -14,17 +15,17 @@ import me.hgj.jetpackmvvm.base.Ktx
  * @Description:
  */
 object DatabaseManager {
-    private const val WALLPAPER_DB_NAME = "wallpaperData.db"
+    private const val NOTE_DB_NAME = "NoteData.db"
 
     private val MIGRATIONS = arrayOf(Migration1)
-    private var application: Application = Ktx.app
+    private var application: Application = BaseApplication.context
 
 
-    val wallpaperDB: WallpaperDatabase by lazy {
+    val noteDB: NoteDatabase by lazy {
         Room.databaseBuilder(
             application.applicationContext,
-            WallpaperDatabase::class.java,
-            WALLPAPER_DB_NAME
+            NoteDatabase::class.java,
+            NOTE_DB_NAME
         )
             .addCallback(CreatedCallBack)
             .addMigrations(*MIGRATIONS)
@@ -47,7 +48,7 @@ object DatabaseManager {
     private object Migration1 : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
             // 数据库的升级语句
-            // database.execSQL("")
+             //database.execSQL("alert table note add column newTitle varchar NOT NULL")
         }
     }
 }

@@ -10,19 +10,20 @@ import androidx.room.PrimaryKey
  * @Description:
  */
 
-@Entity(tableName = "wallpaper")
-class WallpaperEntity() {
+@Entity(tableName = "note")
+class NoteEntity() {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var time: Long = 0
 
-    //壁纸ID
-    var wallpaperId: String = ""
-
+    //字段
+    var title: String = ""
+    var content: String = ""
 
     @Ignore
-    constructor(wallpaperId: String) : this() {
+    constructor(title: String, content: String) : this() {
         time = System.currentTimeMillis()
-        this.wallpaperId = wallpaperId
+        this.title = title
+        this.content = content
     }
 }

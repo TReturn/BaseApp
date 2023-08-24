@@ -48,14 +48,20 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
             typeList.apply {
                 add(
                     DemoTypeModel(
-                        UiUtils.getString(R.string.main_type_mp_chart),
+                        getString(R.string.main_type_mp_chart),
                         R.drawable.ic_mp_chart
                     )
                 )
                 add(
                     DemoTypeModel(
-                        UiUtils.getString(R.string.main_type_attribute_animation),
+                        getString(R.string.main_type_attribute_animation),
                         R.drawable.ic_attribute_animation
+                    )
+                )
+                add(
+                    DemoTypeModel(
+                        getString(R.string.main_type_note),
+                        R.drawable.ic_note
                     )
                 )
             }
@@ -70,11 +76,16 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
         typeAdapter.run {
             setOnItemClickListener { adapter, view, position ->
                 when (data[position].title) {
-                    UiUtils.getString(R.string.main_type_mp_chart) -> {
+                    getString(R.string.main_type_mp_chart) -> {
                         nav().navigateAction(R.id.action_main_to_mp_chart)
                     }
-                    UiUtils.getString(R.string.main_type_attribute_animation) -> {
+
+                    getString(R.string.main_type_attribute_animation) -> {
                         nav().navigateAction(R.id.action_main_to_animation)
+                    }
+
+                    getString(R.string.main_type_note) -> {
+                        nav().navigateAction(R.id.action_main_to_note)
                     }
                 }
             }
