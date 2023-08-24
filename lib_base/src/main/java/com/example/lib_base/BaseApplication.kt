@@ -24,7 +24,7 @@ import com.example.lib_base.net.WanSerializationConverter
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.log.LogUtils
 import com.hjq.language.MultiLanguages
-import com.hjq.toast.ToastUtils
+import com.hjq.toast.Toaster
 import com.hjq.toast.style.WhiteToastStyle
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -62,7 +62,7 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
         context = this
 
         mAppViewModelStore = ViewModelStore()
-        appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
+        appViewModelInstance = getAppViewModelProvider()[AppViewModel::class.java]
 
         //监听应用进入前台后台监听
         ProcessLifecycleOwner.get().lifecycle.addObserver(ApplicationObserver())
@@ -84,44 +84,49 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
         CrashReport.initCrashReport(this, SdkKeys.BUGLY_KEY, BuildConfig.DEBUG)
 
         //Toast初始化
-        ToastUtils.init(this)
-        ToastUtils.setGravity(Gravity.CENTER)
-        ToastUtils.setStyle(WhiteToastStyle())
+        Toaster.init(this)
+        Toaster.setGravity(Gravity.CENTER)
+        Toaster.setStyle(WhiteToastStyle())
 
         //日志打印初始化
         Logger.addLogAdapter(AndroidLogAdapter())
 
         //协程网络请求库初始化
-        NetConfig.init(ApiUrls.BASE_WAN_URL) {
+        NetConfig.initialize(ApiUrls.BASE_WAN_URL, this) {
 
             setConverter(WanSerializationConverter())
 
             // 超时设置
-            connectTimeout(2, TimeUnit.MINUTES)
-            readTimeout(2, TimeUnit.MINUTES)
-            writeTimeout(2, TimeUnit.MINUTES)
+            connectTimeout(30, TimeUnit.SECONDS)
+            readTimeout(30, TimeUnit.SECONDS)
+            writeTimeout(30, TimeUnit.SECONDS)
 
-            setLog(BuildConfig.DEBUG) // LogCat异常日志
-            addInterceptor(LogRecordInterceptor(BuildConfig.DEBUG)) // 添加日志记录器
-            setRequestInterceptor(object : RequestInterceptor { // 添加请求拦截器
+            // LogCat异常日志
+            setDebug(BuildConfig.DEBUG)
+            // 添加日志记录器
+            addInterceptor(LogRecordInterceptor(BuildConfig.DEBUG))
+            // 添加请求拦截器
+            setRequestInterceptor(object : RequestInterceptor {
                 override fun interceptor(request: BaseRequest) {
                     request.addHeader("client", "Net")
                 }
             })
 
             if (BuildConfig.DEBUG) {
-                trustSSLCertificate() // 信任所有证书
+                // 信任所有证书
+                trustSSLCertificate()
             }
 
             //全局请求错误处理
             setErrorHandler(object : NetErrorHandler {
                 override fun onError(e: Throwable) {
-                    ToastUtils.show(e.message)
+                    Toaster.show(e.message)
                     LogUtils.d("请求出错：\nMESSAGE:${e.message}\nURL:${e.localizedMessage}")
                 }
             })
 
-            setDialogFactory { // 全局加载对话框
+            setDialogFactory {
+                // 全局加载对话框
                 ProgressDialog(it).apply {
                     setMessage("我是全局自定义的加载对话框...")
                 }

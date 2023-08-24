@@ -28,7 +28,7 @@ import com.example.lib_main.model.PoetryBean
 import com.example.lib_main.model.getSky
 import com.example.lib_main.ui.adapter.ArticleAdapter
 import com.example.lib_main.viewmodel.MainViewModel
-import com.hjq.toast.ToastUtils
+import com.hjq.toast.Toaster
 import com.permissionx.guolindev.PermissionX
 import com.stx.xhb.androidx.XBanner
 import com.xuexiang.xqrcode.XQRCode
@@ -211,7 +211,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                         RouterUtils.web(result.toString())
                     }
                 } else if (getInt(XQRCode.RESULT_TYPE) == XQRCode.RESULT_FAILED) {
-                    ToastUtils.show(getString(R.string.main_scan_fail_tips))
+                    Toaster.show(getString(R.string.main_scan_fail_tips))
                 }
             }
         }
@@ -230,7 +230,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
     inner class ProxyClick {
         fun toScan() {
             //拍照、存储权限请求
-            PermissionX.init(activity)
+            PermissionX.init(mActivity)
                 .permissions(
                     Manifest.permission.CAMERA,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -248,7 +248,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                     if (allGranted) {
                         XQRCode.startScan(this@MainFragment, UserKeys.SCAN_REQUEST_CODE)
                     } else {
-                        ToastUtils.show(getString(R.string.main_scan_permissions_fail))
+                        Toaster.show(getString(R.string.main_scan_permissions_fail))
                     }
                 }
 

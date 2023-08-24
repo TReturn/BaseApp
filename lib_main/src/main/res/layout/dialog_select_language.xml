@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:shape="rectangle"
+    app:shape_type="rectangle"
     app:shape_solidColor="@color/color_white"
     app:shape_radius="16dp">
 
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rvLanguage"
-        app:shape="rectangle"
+        app:shape_type="rectangle"
         app:shape_radius="32dp"
         app:shape_solidColor="@color/dialog_cancel_button" />
 
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/tvCancel"
-        app:shape="rectangle"
+        app:shape_type="rectangle"
         app:shape_radius="32dp"
         app:shape_solidColor="@color/dialog_confirm_button" />
 

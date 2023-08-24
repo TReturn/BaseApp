@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:shape="rectangle"
+    app:shape_type="rectangle"
     app:shape_solidColor="@color/item_white_bg"
     app:shape_strokeColor="@color/color_gray"
-    app:shape_strokeWidth="2dp"
+    app:shape_strokeSize ="2dp"
     android:layout_margin="4dp"
     app:shape_radius="8dp">
 

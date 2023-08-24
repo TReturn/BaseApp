@@ -1,9 +1,9 @@
 ext {
     android = [
             applicationId    : "com.example.baseapp",
-            compileSdkVersion: 32,
+            compileSdkVersion: 33,
             buildToolsVersion: "30.0.2",
-            minSdkVersion    : 23,
+            minSdkVersion    : 24,
             targetSdkVersion : 30,
             versionCode      : 1,
             versionName      : "1.0",
@@ -13,56 +13,54 @@ ext {
 
     depsVersion = [
             //官方基础库
-            kotlinStdlib        : '1.5.30',
-            coreKtx             : '1.3.2',
-            appcompat           : '1.3.0',
-            material            : '1.3.0',
-            constraintlayout    : '2.0.4',
-            junit               : '4.13.1',
-            junitTest           : '1.1.2',
-            espressoCore        : '3.3.0',
+            coreKtx             : '1.8.0',
+            appcompat           : '1.6.1',
+            material            : '1.5.0',
+            constraintlayout    : '2.1.3',
+            junit               : '4.13.2',
+            junitTest           : '1.1.5',
+            espressoCore        : '3.5.1',
 
             //官方拓展库
             recyclerview        : '1.2.1',
             viewpager2          : '1.1.0-beta01',
-            coroutines_core     : '1.5.1',
+            coroutines_core     : '1.6.0',
             compose             : '1.1.1',
             compose_activity    : '1.4.0',
             compose_viewmodel   : '2.4.1',
 
             //Jetpack库
-            livedata            : '2.3.1',
+            lifecycle            : '2.6.1',
 
             //第三方库
             autosize            : "1.2.1",
             smartrefresh        : '2.0.3',
             xpopup              : '2.9.19',
-            mmkv                : '1.2.15',
+            mmkv                : '1.3.1',
             luBan               : '1.1.8',
-            bugly               : '3.4.4',
-            buglyndk            : '3.9.2',
-            permissionx         : '1.6.4',
+            bugly               : '4.1.9.2',
+            permissionx         : '1.7.1',
             arouter             : '1.5.2',
             magicindicator      : '1.7.0',
-            recyclerviewadapter : '3.0.7',
+            recyclerviewadapter : '3.0.14',
             xbanner             : '1.2.8',
-            glide               : '4.13.2',
+            glide               : '4.16.0',
             glidetransformations: '4.3.0',
-            lottie              : '6.0.0',
-            bigimageview        : '7.1.4',
-            pictureselector     : '3.10.2',
+            lottie              : '6.1.0',
+            bigimageview        : '7.2.3',
+            pictureselector     : '3.11.1',
             labelsview          : '1.6.5',
-            titlebar            : '10.0',
-            toastutils          : '10.5',
+            titlebar            : '10.5',
+            toastutils          : '12.3',
             jetpackmvvm         : '1.2.7',
             circleimageview     : '3.1.0',
             marqueeview         : '1.4.1',
-            okhttp              : '4.10.0',
-            net                 : '3.5.6',
+            okhttp              : '4.11.0',
+            net                 : '3.6.1',
             serialization       : '1.4.1',
-            agentweb            : '4.1.9',
+            agentweb            : '5.0.6',
             logger              : '2.2.0',
-            shapeview           : '8.0',
+            shapeview           : '9.0',
             qrcode              : '1.1.0',
             stream              : '1.2.1',
             utilcodex           : '1.30.6',
@@ -72,12 +70,12 @@ ext {
             room                : '2.3.0',
             languages           : '8.0',
             broccoli            : '1.0.0',
+            navigation          : '2.5.3',
     ]
 
 
     depsLibs = [
             //官方基础库
-            kotlinStdlib        : "org.jetbrains.kotlin:kotlin-stdlib:${depsVersion.kotlinStdlib}",
             coreKtx             : "androidx.core:core-ktx:${depsVersion.coreKtx}",
             appcompat           : "androidx.appcompat:appcompat:${depsVersion.appcompat}",
             material            : "com.google.android.material:material:${depsVersion.material}",
@@ -138,7 +136,6 @@ ext {
 
             //Bugly崩溃上报
             bugly               : "com.tencent.bugly:crashreport:${depsVersion.bugly}",
-            buglyndk            : "com.tencent.bugly:nativecrashreport:${depsVersion.buglyndk}",
 
             //权限请求
             permissionx         : "com.guolindev.permissionx:permissionx:${depsVersion.permissionx}",
@@ -151,14 +148,13 @@ ext {
             magicindicator      : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator}",
 
             //RecyclerView 适配器
-            recyclerviewadapter : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${depsVersion.recyclerviewadapter}",
+            recyclerviewadapter : "io.github.cymchad:BaseRecyclerViewAdapterHelper:${depsVersion.recyclerviewadapter}",
 
             //轮播图
             xbanner             : "com.github.xiaohaibin:XBanner:androidx_v${depsVersion.xbanner}",
 
             //Glide图片加载，图形变换
             glide               : "com.github.bumptech.glide:glide:${depsVersion.glide}",
-            glidecompiler       : "com.github.bumptech.glide:compiler:${depsVersion.glide}",
             glidetransformations: "jp.wasabeef:glide-transformations:${depsVersion.glidetransformations}",
 
             //Lottie动画
@@ -177,7 +173,7 @@ ext {
             titlebar            : "com.github.getActivity:TitleBar:${depsVersion.titlebar}",
 
             //自定义Toast
-            toastutils          : "com.github.getActivity:ToastUtils:${depsVersion.toastutils}",
+            toastutils          : "com.github.getActivity:Toaster:${depsVersion.toastutils}",
 
             //MVVM快速开发框架
             jetpackmvvm         : "com.github.hegaojian:JetpackMvvm:${depsVersion.jetpackmvvm}",
@@ -232,6 +228,10 @@ ext {
 
             //骨架屏
             broccoli            : "me.samlss:broccoli:${depsVersion.broccoli}",
+
+            //Jetpack Navigation
+            navigation          : "androidx.navigation:navigation-fragment-ktx:${depsVersion.navigation}",
+            navigation_ui       : "androidx.navigation:navigation-ui-ktx:${depsVersion.navigation}",
     ]
 
 }

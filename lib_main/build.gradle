@@ -31,7 +31,7 @@ android {
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion "1.1.1"
+            kotlinCompilerExtensionVersion '1.3.2'
         }
     }
 
@@ -53,15 +53,9 @@ android {
 dependencies {
 
     //官方基础库
-    implementation rootProject.depsLibs.kotlinStdlib
-    implementation rootProject.depsLibs.coreKtx
-    implementation rootProject.depsLibs.appcompat
-    implementation rootProject.depsLibs.material
-    implementation rootProject.depsLibs.constraintlayout
     testImplementation rootProject.depsLibs.junit
     androidTestImplementation rootProject.depsLibs.junitTest
     androidTestImplementation rootProject.depsLibs.espressoCore
-
 
     //本地库
     implementation project(path: ':lib_base')

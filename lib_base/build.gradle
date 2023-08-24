@@ -50,11 +50,10 @@ android {
 dependencies {
 
     //官方基础库
-    implementation rootProject.depsLibs.kotlinStdlib
-    implementation rootProject.depsLibs.coreKtx
-    implementation rootProject.depsLibs.appcompat
-    implementation rootProject.depsLibs.material
-    implementation rootProject.depsLibs.constraintlayout
+    api rootProject.depsLibs.coreKtx
+    api rootProject.depsLibs.appcompat
+    api rootProject.depsLibs.material
+    api rootProject.depsLibs.constraintlayout
     testImplementation rootProject.depsLibs.junit
     androidTestImplementation rootProject.depsLibs.junitTest
     androidTestImplementation rootProject.depsLibs.espressoCore
@@ -77,6 +76,10 @@ dependencies {
     api rootProject.depsLibs.compose_preview
     api rootProject.depsLibs.compose_material
     api rootProject.depsLibs.compose_animation
+
+    //navigation
+    api rootProject.depsLibs.navigation
+    api rootProject.depsLibs.navigation_ui
 
     //第三方库（api：全模块可调用）
     api rootProject.depsLibs.jetpackmvvm
@@ -116,9 +119,7 @@ dependencies {
     implementation rootProject.depsLibs.xbanner
     implementation rootProject.depsLibs.mmkv
     implementation rootProject.depsLibs.bugly
-    implementation rootProject.depsLibs.buglyndk
     implementation rootProject.depsLibs.glide
-    implementation rootProject.depsLibs.glidecompiler
     implementation rootProject.depsLibs.glidetransformations
     implementation rootProject.depsLibs.agentweb
     implementation rootProject.depsLibs.magicindicator

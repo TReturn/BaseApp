@@ -14,7 +14,7 @@ import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.ext.initMain
 import com.google.android.material.navigation.NavigationBarView
-import com.hjq.toast.ToastUtils
+import com.hjq.toast.Toaster
 
 
 @Route(path = RouterUrls.ROUTER_URL_MAIN)
@@ -98,7 +98,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     inner class ProxyClick {
         fun toFruit() {
-            ToastUtils.show("Lemon")
+            Toaster.show("Lemon")
         }
 
         fun toFruitDel() {
@@ -116,7 +116,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
             val secondTime = System.currentTimeMillis()
             if (secondTime - firstTime > delayTime) {
-                ToastUtils.show(resources.getString(R.string.main_finish))
+                Toaster.show(resources.getString(R.string.main_finish))
                 firstTime = secondTime
                 return true
             } else {

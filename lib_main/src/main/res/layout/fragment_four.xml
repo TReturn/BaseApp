@@ -39,10 +39,10 @@
                     android:layout_height="250dp"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:shape_endColor="@color/profile_end_bg"
-                    app:shape_gradientType="linear"
-                    app:shape_angle="90"
-                    app:shape_startColor="@color/profile_start_bg" />
+                    app:shape_solidGradientEndColor ="@color/profile_end_bg"
+                    app:shape_solidGradientType ="linear"
+                    app:shape_solidGradientOrientation ="bottomToTop"
+                    app:shape_solidGradientStartColor ="@color/profile_start_bg" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

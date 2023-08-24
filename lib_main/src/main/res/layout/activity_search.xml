@@ -44,7 +44,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shape="rectangle"
+                app:shape_type="rectangle"
                 app:shape_radius="16dp"
                 app:shape_solidColor="@color/search_bg">
 
