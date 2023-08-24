@@ -30,7 +30,7 @@ ext {
             compose_viewmodel   : '2.4.1',
 
             //Jetpack库
-            lifecycle            : '2.6.1',
+            lifecycle           : '2.6.1',
 
             //第三方库
             autosize            : "1.2.1",
@@ -71,6 +71,7 @@ ext {
             languages           : '8.0',
             broccoli            : '1.0.0',
             navigation          : '2.5.3',
+            bottom_navigation   : '2.0.4',
     ]
 
 
@@ -232,6 +233,9 @@ ext {
             //Jetpack Navigation
             navigation          : "androidx.navigation:navigation-fragment-ktx:${depsVersion.navigation}",
             navigation_ui       : "androidx.navigation:navigation-ui-ktx:${depsVersion.navigation}",
+
+            //BottomNavigationViewEx增强
+            bottom_navigation   : "com.github.ittianyu:BottomNavigationViewEx:${depsVersion.bottom_navigation}",
     ]
 
 }

@@ -9,11 +9,13 @@ import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_base.utils.ui.UiUtils
+import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentSecondBinding
 import com.example.lib_main.model.DemoTypeModel
 import com.example.lib_main.ui.adapter.DemoTypeAdapter
 import com.example.lib_main.viewmodel.SecondViewModel
+import com.hjq.toast.Toaster
 
 
 /**
@@ -29,12 +31,17 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
 
-        LayoutParamsUtils.setHeight(
-            mDatabind.flTranslucent,
-            QMUIStatusBarHelper.getStatusbarHeight(activity)
-        )
+        setTranslucent(mDatabind.flTranslucent)
 
         initAdapter()
+
+        //首页自动贴边View点击事件
+        mDatabind.slFruitImage.setOnDragViewClickListener(object :
+            SlideImageView.OnDrawViewClickListener {
+            override fun onDragViewClick() {
+                ProxyClick().toFruit()
+            }
+        })
     }
 
     override fun initData() {
@@ -82,7 +89,13 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
 
     inner class ProxyClick {
+        fun toFruit() {
+            Toaster.show("Lemon")
+        }
 
+        fun toFruitDel() {
+            mViewModel.isShowFruitView.value = false
+        }
     }
 
 }

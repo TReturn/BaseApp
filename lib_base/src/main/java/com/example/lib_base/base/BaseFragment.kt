@@ -1,8 +1,11 @@
 package com.example.lib_base.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
+import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
+import com.example.lib_base.utils.ui.LayoutParamsUtils
 import me.hgj.jetpackmvvm.base.fragment.BaseVmDbFragment
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -64,6 +67,18 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
         return 300
     }
 
+    /**
+     * 全局沉浸后，不需要沉浸的页面设置顶部导航栏高度
+     * @param view View
+     */
+    open fun setTranslucent(view: View) {
+        LayoutParamsUtils.setHeight(view, QMUIStatusBarHelper.getStatusbarHeight(activity))
+    }
+
+    /**
+     * isFragmentDestroy
+     * @return Boolean
+     */
     open fun isFragmentDestroy(): Boolean {
         val activity: FragmentActivity? = activity
         return activity == null || activity.isFinishing || activity.isDestroyed || !isAdded || isDetached

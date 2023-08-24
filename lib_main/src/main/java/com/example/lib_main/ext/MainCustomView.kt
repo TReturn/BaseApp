@@ -7,7 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.lib_main.R
 import com.example.lib_main.ui.fragment.FourFragment
 import com.example.lib_main.ui.fragment.SecondFragment
-import com.example.lib_main.ui.fragment.MainFragment
+import com.example.lib_main.ui.fragment.FirstFragment
 import com.example.lib_main.ui.fragment.ThirdFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -37,7 +37,7 @@ fun ViewPager2.initMain(
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> {
-                    MainFragment()
+                    FirstFragment()
                 }
                 1 -> {
                     SecondFragment()

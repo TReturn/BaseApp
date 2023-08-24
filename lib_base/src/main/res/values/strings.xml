@@ -47,6 +47,8 @@
 
     <!--我的页面-->
     <string name="user_switch_language">Switch Language</string>
+    <string name="user_agreement">User Agreement</string>
+    <string name="user_privacy_policy">Privacy Policy</string>
 
     <!--诗歌相关-->
     <string name="poetry_title">Poetry</string>

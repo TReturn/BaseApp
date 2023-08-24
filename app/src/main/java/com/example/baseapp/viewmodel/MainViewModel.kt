@@ -10,10 +10,4 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
  */
 class MainViewModel : BaseViewModel() {
 
-    //是否显示右下角可移动贴边View
-    val isShowFruitView = MutableLiveData<Boolean>()
-
-    init {
-        isShowFruitView.value = false
-    }
 }

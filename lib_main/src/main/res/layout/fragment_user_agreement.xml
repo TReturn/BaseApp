@@ -5,35 +5,35 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
-            type="com.example.lib_main.viewmodel.MainViewModel" />
+            type="com.example.lib_main.viewmodel.UserAgreementViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
+        <FrameLayout
+            android:id="@+id/flTranslucent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_height="20dp" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
+        <include
+            android:id="@+id/include"
+            layout="@layout/title_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bottom_navigation_bg"
-            android:theme="@style/BottomNavigation"
-            app:labelVisibilityMode="labeled"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/navigation" />
+            app:layout_constraintTop_toBottomOf="@+id/flTranslucent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,6 +3,7 @@ package com.example.lib_main.ui.fragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat.recreate
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.constant.RouterUrls
@@ -12,13 +13,16 @@ import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
-import com.example.lib_main.databinding.FragmentFourBinding
+import com.example.lib_main.databinding.FragmentFourthBinding
 import com.example.lib_main.manager.DialogListener
 import com.example.lib_main.manager.DialogManager
 import com.example.lib_main.model.UserModel
 import com.example.lib_main.ui.adapter.UserAdapter
 import com.hjq.language.MultiLanguages
+import com.hjq.toast.Toaster
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hgj.jetpackmvvm.ext.nav
+import me.hgj.jetpackmvvm.ext.navigateAction
 import java.util.*
 
 
@@ -27,7 +31,7 @@ import java.util.*
  * @Author : 青柠
  * @Description :
  */
-class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
+class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
 
     private val userAdapter: UserAdapter by lazy { UserAdapter() }
 
@@ -54,6 +58,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
                 mDatabind.toolbar.menu.getItem(0).icon =
                     UiUtils.getDrawable(R.drawable.ic_dark_themes)
             }
+
             AppCompatDelegate.MODE_NIGHT_YES -> {
                 mDatabind.toolbar.menu.getItem(0).icon =
                     UiUtils.getDrawable(R.drawable.ic_day_themes)
@@ -87,8 +92,20 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
     private fun initAdapter() {
         mDatabind.rvUser.init(GridLayoutManager(context, 1), userAdapter, false)
         userAdapter.run {
-            setOnItemClickListener { _, _, position ->
+            setOnItemClickListener { _, view, position ->
                 when (data[position].id) {
+                    0 -> {
+                        nav().navigateAction(R.id.action_main_to_user_agreement, Bundle().apply {
+                            putString("TITLE", getString(R.string.user_agreement))
+                        })
+                    }
+
+                    1 -> {
+                        nav().navigateAction(R.id.action_main_to_user_agreement, Bundle().apply {
+                            putString("TITLE", getString(R.string.user_privacy_policy))
+                        })
+                    }
+
                     3 -> {
                         //切换语言
                         DialogManager.showSelectLanguageDialog(mActivity)
@@ -98,6 +115,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
                                 }
                             })
                     }
+
                     4 -> {
                         //关于我们
                         RouterUtils.intent(RouterUrls.ROUTER_URL_ABOUT_COMPOSE)
@@ -134,6 +152,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourBinding>() {
                     mDatabind.toolbar.menu.getItem(0).icon =
                         UiUtils.getDrawable(R.drawable.ic_dark_themes)
                 }
+
                 AppCompatDelegate.MODE_NIGHT_YES -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     MMKVUtils.put(UserKeys.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_NO)

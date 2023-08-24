@@ -47,6 +47,8 @@
 
     <!--我的页面-->
     <string name="user_switch_language">切换语言</string>
+    <string name="user_agreement">用户协议</string>
+    <string name="user_privacy_policy">隐私政策</string>
 
     <!--诗歌相关-->
     <string name="poetry_title">诗歌</string>
