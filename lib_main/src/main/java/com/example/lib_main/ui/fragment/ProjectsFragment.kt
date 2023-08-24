@@ -5,11 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.router.RouterUtils
 import com.example.lib_main.R
 import com.example.lib_main.ui.adapter.NewsAdapter
 import com.example.lib_main.databinding.FragmentNewsBinding
 import com.example.lib_main.viewmodel.NewsViewModel
+import me.hgj.jetpackmvvm.ext.nav
+import me.hgj.jetpackmvvm.ext.navigateAction
 
 /**
  * @CreateDate : 2021/8/2 21:33
@@ -50,7 +51,10 @@ class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
         mDatabind.rvNews.init(LinearLayoutManager(context), newsAdapter, false)
         newsAdapter.run {
             setOnItemClickListener { _, _, position ->
-                RouterUtils.web(data[position].link, data[position].title)
+                nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
+                    putString("TITLE", data[position].title)
+                    putString("URL", data[position].link)
+                })
             }
         }
     }

@@ -52,23 +52,6 @@
             android:exported="true"
             android:theme="@style/NormalTheme" />
 
-        <!-- 阿里路由配置 -->
-        <activity android:name="com.example.lib_base.router.SchemeFilterActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <data
-                    android:host="base"
-                    android:scheme="router" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-        </activity>
-
-
     </application>
 
 </manifest>

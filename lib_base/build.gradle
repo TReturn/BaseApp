@@ -19,12 +19,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
-
         buildFeatures {
             dataBinding = true
         }
@@ -91,9 +85,6 @@ dependencies {
     api rootProject.depsLibs.toastutils
 
     api rootProject.depsLibs.autosize
-
-    api rootProject.depsLibs.arouter
-    kapt rootProject.depsLibs.arouter_compiler
 
     api rootProject.depsLibs.smartrefresh
     api rootProject.depsLibs.smartrefreshmaterial

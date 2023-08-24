@@ -1,15 +1,14 @@
 package com.example.lib_main.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat.recreate
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.lib_base.appViewModel
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.ext.init
-import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
@@ -17,9 +16,9 @@ import com.example.lib_main.databinding.FragmentFourthBinding
 import com.example.lib_main.manager.DialogListener
 import com.example.lib_main.manager.DialogManager
 import com.example.lib_main.model.UserModel
+import com.example.lib_main.ui.activity.AboutComposeActivity
 import com.example.lib_main.ui.adapter.UserAdapter
 import com.hjq.language.MultiLanguages
-import com.hjq.toast.Toaster
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.navigateAction
@@ -118,7 +117,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
 
                     4 -> {
                         //关于我们
-                        RouterUtils.intent(RouterUrls.ROUTER_URL_ABOUT_COMPOSE)
+                        mActivity.startActivity(Intent(mActivity, AboutComposeActivity::class.java))
                     }
                 }
             }
@@ -137,7 +136,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
             else -> false
         }
         if (restart) {
-            RouterUtils.intent(RouterUrls.ROUTER_URL_MAIN)
+            appViewModel.isRestart.value = true
             activity?.finish()
         }
     }

@@ -1,21 +1,19 @@
 package com.example.baseapp.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.lifecycle.lifecycleScope
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.baseapp.BuildConfig
 import com.example.baseapp.databinding.ActivitySplashBinding
 import com.example.baseapp.viewmodel.SplashViewModel
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.UserKeys
-import com.example.lib_base.constant.RouterUrls
-import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.utils.ui.TextFontUtils
 import kotlinx.coroutines.*
 
-@Route(path = RouterUrls.ROUTER_URL_SPLASH)
+
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -37,7 +35,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
         //绑定lifecycle的协程
         lifecycleScope.launch {
             delay(waitTime)
-            RouterUtils.intent(RouterUrls.ROUTER_URL_MAIN)
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
         }
     }

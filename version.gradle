@@ -40,7 +40,6 @@ ext {
             luBan               : '1.1.8',
             bugly               : '4.1.9.2',
             permissionx         : '1.7.1',
-            arouter             : '1.5.2',
             magicindicator      : '1.7.0',
             recyclerviewadapter : '3.0.14',
             xbanner             : '1.2.8',
@@ -140,10 +139,6 @@ ext {
 
             //权限请求
             permissionx         : "com.guolindev.permissionx:permissionx:${depsVersion.permissionx}",
-
-            //阿里路由
-            arouter             : "com.alibaba:arouter-api:${depsVersion.arouter}",
-            arouter_compiler    : "com.alibaba:arouter-compiler:${depsVersion.arouter}",
 
             //TabLayout
             magicindicator      : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator}",

@@ -1,26 +1,18 @@
 package com.example.baseapp.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.ToastUtils
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityMainBinding
 import com.example.baseapp.viewmodel.MainViewModel
 import com.example.lib_base.appViewModel
 import com.example.lib_base.base.BaseActivity
-import com.example.lib_base.constant.RouterUrls
-import com.example.lib_base.ext.interceptLongClick
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
-import com.example.lib_base.widget.SlideImageView
-import com.example.lib_main.ext.initMain
-import com.google.android.material.navigation.NavigationBarView
 import com.hjq.toast.Toaster
 
 
-@Route(path = RouterUrls.ROUTER_URL_MAIN)
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private var exitTime = 0L
 
@@ -48,6 +40,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 }
             }
         })
+    }
+
+    override fun createObserver() {
+        super.createObserver()
+        appViewModel.isRestart.observeInActivity(this) {
+            startActivity(Intent(this@MainActivity, SplashActivity::class.java))
+        }
     }
 
 }

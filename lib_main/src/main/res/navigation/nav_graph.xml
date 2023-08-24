@@ -36,6 +36,10 @@
             android:id="@+id/action_main_to_search"
             app:destination="@id/searchFragment" />
 
+        <action
+            android:id="@+id/action_main_to_web"
+            app:destination="@id/webFragment" />
+
     </fragment>
 
     <fragment
@@ -66,6 +70,12 @@
         android:id="@+id/searchFragment"
         android:name="com.example.lib_main.ui.fragment.SearchFragment"
         android:label="searchFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.example.lib_base.web.WebFragment"
+        android:label="webFragment">
     </fragment>
 
 </navigation>

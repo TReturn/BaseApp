@@ -19,12 +19,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
-
         buildFeatures {
             dataBinding = true
             compose true
@@ -61,7 +55,6 @@ dependencies {
     implementation project(path: ':lib_base')
 
     //第三方库
-    kapt rootProject.depsLibs.arouter_compiler
     implementation rootProject.depsLibs.xbanner
     implementation rootProject.depsLibs.magicindicator
     implementation rootProject.depsLibs.permissionx

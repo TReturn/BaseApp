@@ -4,18 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.ext.init
-import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_main.R
-import com.example.lib_main.manager.DialogListener
-import com.example.lib_main.manager.DialogManager
 import com.example.lib_main.model.SelectLanguageModel
-import com.example.lib_main.model.UserModel
 import com.example.lib_main.ui.adapter.SelectLanguageAdapter
-import com.example.lib_main.ui.adapter.UserAdapter
 import com.hjq.shape.view.ShapeTextView
 import com.lxj.xpopup.core.CenterPopupView
 

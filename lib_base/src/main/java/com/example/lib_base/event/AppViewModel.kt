@@ -14,6 +14,9 @@ class AppViewModel : BaseViewModel() {
     //跳转到首页Tab，0第一个Tab，1第二个，以此类推
     val intentToMainTab = EventLiveData<Int>()
 
+    //重启APP
+    val isRestart = EventLiveData<Boolean>()
+
     //切换天气Tab改变相应的背景图和动效
     val changeMainWeatherPic = EventLiveData<SunRiseAndSetModel>()
 

@@ -162,11 +162,6 @@
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
 
-#Arouter
--keep public class com.alibaba.android.arouter.routes.**{*;}
--keep public class com.alibaba.android.arouter.facade.**{*;}
--keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
-
 #XBanner 图片轮播
 -keep class com.stx.xhb.xbanner.**{*;}
 
@@ -257,6 +252,12 @@
 -keepclasseswithmembers class com.example.baseapp.** { # <-- change package name to your app's
     kotlinx.serialization.KSerializer serializer(...);
 }
+
+#BottomNavigationViewEx增强
+-keep public class com.google.android.material.bottomnavigation.BottomNavigationView { *; }
+-keep public class com.google.android.material.bottomnavigation.BottomNavigationMenuView { *; }
+-keep public class com.google.android.material.bottomnavigation.BottomNavigationPresenter { *; }
+-keep public class com.google.android.material.bottomnavigation.BottomNavigationItemView { *; }
 
 
 

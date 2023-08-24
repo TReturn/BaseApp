@@ -9,7 +9,6 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
-import com.alibaba.android.arouter.launcher.ARouter
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.LogRecordInterceptor
 import com.drake.net.interceptor.RequestInterceptor
@@ -72,13 +71,6 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
 
         //1：日间模式，2：夜间模式，3：跟随系统。
         AppCompatDelegate.setDefaultNightMode(MMKVUtils.getInt(UserKeys.NIGHT_MODE, 1))
-
-        //阿里路由
-        if (BuildConfig.DEBUG) {
-            ARouter.openLog()
-            ARouter.openDebug()
-        }
-        ARouter.init(this)
 
         //Bugly崩溃上报
         CrashReport.initCrashReport(this, SdkKeys.BUGLY_KEY, BuildConfig.DEBUG)

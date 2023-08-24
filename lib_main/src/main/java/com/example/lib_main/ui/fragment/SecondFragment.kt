@@ -3,11 +3,7 @@ package com.example.lib_main.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.ext.init
-import com.example.lib_base.router.RouterUtils
-import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
-import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_base.widget.SlideImageView
 import com.example.lib_main.R

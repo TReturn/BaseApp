@@ -9,13 +9,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import com.alibaba.android.arouter.launcher.ARouter
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.constant.RouterUrls
 import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.ext.init
 import com.example.lib_base.ext.loadListData
-import com.example.lib_base.router.RouterUtils
 import com.example.lib_base.utils.banner.BaseBannerData
 import com.example.lib_base.utils.image.BigImageUtils
 import com.example.lib_base.utils.image.GlideUtils
@@ -120,7 +117,10 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
         mDatabind.include.rvArticle.init(GridLayoutManager(activity, 1), articleAdapter, false)
         articleAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-                RouterUtils.web(data[position].link, data[position].title)
+                nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
+                    putString("TITLE", data[position].title)
+                    putString("URL", data[position].link)
+                })
             }
         }
     }
@@ -209,7 +209,10 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
                 if (getInt(XQRCode.RESULT_TYPE) == XQRCode.RESULT_SUCCESS) {
                     val result = getString(XQRCode.RESULT_DATA)
                     if (result != null) {
-                        RouterUtils.web(result.toString())
+                        nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
+                            putString("TITLE", "")
+                            putString("URL", result.toString())
+                        })
                     }
                 } else if (getInt(XQRCode.RESULT_TYPE) == XQRCode.RESULT_FAILED) {
                     Toaster.show(getString(R.string.main_scan_fail_tips))

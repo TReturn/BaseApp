@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".web.WebActivity"
+            android:name=".web.WebFragment"
             android:exported="true" />
     </application>
 
