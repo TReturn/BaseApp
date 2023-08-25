@@ -8,13 +8,9 @@ import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.ext.init
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentDeviceInfoBinding
-import com.example.lib_main.databinding.FragmentSecondBinding
-import com.example.lib_main.model.DemoTypeModel
 import com.example.lib_main.model.DeviceInfoModel
-import com.example.lib_main.ui.adapter.DemoTypeAdapter
 import com.example.lib_main.ui.adapter.DeviceInfoAdapter
 import com.example.lib_main.viewmodel.DeviceInfoViewModel
-import com.example.lib_main.viewmodel.SecondViewModel
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import me.hgj.jetpackmvvm.ext.nav

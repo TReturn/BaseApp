@@ -1,6 +1,6 @@
 ext {
     android = [
-            applicationId    : "com.example.baseapp",
+            applicationId    : "com.zyt.baseapp",
             compileSdkVersion: 33,
             buildToolsVersion: "30.0.2",
             minSdkVersion    : 24,
