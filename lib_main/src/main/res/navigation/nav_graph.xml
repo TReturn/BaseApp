@@ -44,6 +44,10 @@
             android:id="@+id/action_main_to_note"
             app:destination="@id/noteListFragment" />
 
+        <action
+            android:id="@+id/action_main_to_device"
+            app:destination="@id/deviceInfoFragment" />
+
     </fragment>
 
     <fragment
@@ -97,6 +101,12 @@
         android:id="@+id/noteDetailFragment"
         android:name="com.example.lib_main.ui.fragment.NoteDetailFragment"
         android:label="noteDetailFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/deviceInfoFragment"
+        android:name="com.example.lib_main.ui.fragment.DeviceInfoFragment"
+        android:label="deviceInfoFragment">
     </fragment>
 
 </navigation>

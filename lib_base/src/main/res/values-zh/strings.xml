@@ -40,6 +40,7 @@
     <string name="main_type_mp_chart">图表库</string>
     <string name="main_type_attribute_animation">属性动画</string>
     <string name="main_type_note">备忘录</string>
+    <string name="main_type_device">设备信息</string>
 
     <string name="animation_type_alpha">透明</string>
     <string name="animation_type_translation">平移</string>

@@ -28,7 +28,6 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
-
         setTranslucent(mDatabind.flTranslucent)
 
         initAdapter()
@@ -64,6 +63,12 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
                         R.drawable.ic_note
                     )
                 )
+                add(
+                    DemoTypeModel(
+                        getString(R.string.main_type_device),
+                        R.drawable.ic_device
+                    )
+                )
             }
         )
     }
@@ -86,6 +91,9 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
                     getString(R.string.main_type_note) -> {
                         nav().navigateAction(R.id.action_main_to_note)
+                    }
+                    getString(R.string.main_type_device) -> {
+                        nav().navigateAction(R.id.action_main_to_device)
                     }
                 }
             }

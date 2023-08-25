@@ -63,6 +63,5 @@ dependencies {
     implementation rootProject.depsLibs.lottie
     implementation rootProject.depsLibs.circleimageview
     implementation rootProject.depsLibs.mpandroidchart
-    implementation rootProject.depsLibs.bottom_navigation
 
 }

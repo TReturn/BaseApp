@@ -3,7 +3,7 @@ package com.example.lib_main.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.lib_base.room.entity.NoteEntity
-import com.example.lib_base.room.manager.DatabaseManager
+import com.example.lib_base.room.manager.NoteManager
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ class NoteDetailViewModel : BaseViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val noteEntity = NoteEntity(title.value.toString(), content.value.toString())
-                DatabaseManager.noteDB.noteDao.save(noteEntity)
+                NoteManager.noteDB.noteDao.save(noteEntity)
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 Logger.d(exception.printStackTrace())
@@ -44,10 +44,10 @@ class NoteDetailViewModel : BaseViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val noteList = DatabaseManager.noteDB.noteDao.getDataByID(noteID.value!!)
+                val noteList = NoteManager.noteDB.noteDao.getDataByID(noteID.value!!)
                 noteList[0].title = title.value.toString()
                 noteList[0].content = content.value.toString()
-                DatabaseManager.noteDB.noteDao.update(noteList[0])
+                NoteManager.noteDB.noteDao.update(noteList[0])
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }
@@ -59,8 +59,8 @@ class NoteDetailViewModel : BaseViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val noteList = DatabaseManager.noteDB.noteDao.getDataByID(noteID.value!!)
-                DatabaseManager.noteDB.noteDao.delete(noteList[0])
+                val noteList = NoteManager.noteDB.noteDao.getDataByID(noteID.value!!)
+                NoteManager.noteDB.noteDao.delete(noteList[0])
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }

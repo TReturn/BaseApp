@@ -7,19 +7,17 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.lib_base.BaseApplication
 import com.example.lib_base.room.database.NoteDatabase
-import me.hgj.jetpackmvvm.base.Ktx
 
 /**
  * @CreateDate: 2022/3/15 3:30 下午
  * @Author: 青柠
  * @Description:
  */
-object DatabaseManager {
+object NoteManager {
     private const val NOTE_DB_NAME = "NoteData.db"
 
     private val MIGRATIONS = arrayOf(Migration1)
     private var application: Application = BaseApplication.context
-
 
     val noteDB: NoteDatabase by lazy {
         Room.databaseBuilder(
@@ -33,7 +31,7 @@ object DatabaseManager {
     }
 
     fun saveApplication(application: Application) {
-        DatabaseManager.application = application
+        NoteManager.application = application
     }
 
     private object CreatedCallBack : RoomDatabase.Callback() {

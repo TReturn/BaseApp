@@ -3,7 +3,7 @@ package com.example.lib_main.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.lib_base.room.entity.NoteEntity
-import com.example.lib_base.room.manager.DatabaseManager
+import com.example.lib_base.room.manager.NoteManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -23,7 +23,7 @@ class NoteListViewModel : BaseViewModel() {
     fun getDataBase() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val noteList = DatabaseManager.noteDB.noteDao.getNoteList()
+                val noteList = NoteManager.noteDB.noteDao.getNoteList()
                 noteListData.postValue(noteList)
             } catch (exception: Exception) {
                 exception.printStackTrace()

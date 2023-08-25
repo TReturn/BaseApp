@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,11 +9,8 @@
 
         <variable
             name="vm"
-            type="com.example.lib_main.viewmodel.NoteListViewModel" />
+            type="com.example.lib_main.viewmodel.DeviceInfoViewModel" />
 
-        <variable
-            name="click"
-            type="com.example.lib_main.ui.fragment.NoteListFragment.ProxyClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,27 +35,14 @@
             app:layout_constraintTop_toBottomOf="@+id/flTranslucent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvNoteList"
+            android:id="@+id/rvDevice"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            tools:listitem="@layout/item_device_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:padding="4dp"
-            android:onClick="@{()->click.toAdd()}"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_blue_add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
