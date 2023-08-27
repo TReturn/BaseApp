@@ -16,8 +16,8 @@ import com.drake.net.interfaces.NetErrorHandler
 import com.drake.net.okhttp.*
 import com.drake.net.request.BaseRequest
 import com.example.lib_base.constant.ApiUrls
-import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.constant.SdkKeys
+import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.event.AppViewModel
 import com.example.lib_base.net.WanSerializationConverter
 import com.example.lib_base.utils.data.MMKVUtils
@@ -141,6 +141,7 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
 
         // 初始化语种切换框架
         MultiLanguages.init(this)
+
     }
 
     override fun attachBaseContext(base: Context) {

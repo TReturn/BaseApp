@@ -59,4 +59,14 @@
     <string name="note_title_tips">标题</string>
     <string name="note_content_tips">开始书写</string>
     <string name="note_delete_tips">确定删除备忘录吗？</string>
+
+    <!--崩溃相关-->
+    <string name="error_tips">出错了</string>
+    <string name="restart_app">重启APP</string>
+    <string name="see_error_info">查看错误信息</string>
+    <string name="error_info">错误信息</string>
+    <string name="error_copy">复制</string>
+    <string name="error_close">关闭</string>
+    <string name="error_copy_success">复制成功</string>
+
 </resources>

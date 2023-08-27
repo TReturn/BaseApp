@@ -128,6 +128,7 @@ dependencies {
 
     //第三方库
     implementation rootProject.depsLibs.lottie
+    implementation rootProject.depsLibs.activity_crash
     //implementation rootProject.depsLibs.verticaltextview
     //implementation "com.sjtu.yifei:vertical-textview:1.4.1"
 }

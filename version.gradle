@@ -70,6 +70,7 @@ ext {
             languages           : '8.0',
             broccoli            : '1.0.0',
             navigation          : '2.5.3',
+            activity_crash      : '2.4.0',
     ]
 
 
@@ -227,6 +228,9 @@ ext {
             //Jetpack Navigation
             navigation          : "androidx.navigation:navigation-fragment-ktx:${depsVersion.navigation}",
             navigation_ui       : "androidx.navigation:navigation-ui-ktx:${depsVersion.navigation}",
+
+            //崩溃捕获
+            activity_crash      : "cat.ereza:customactivityoncrash:${depsVersion.activity_crash}",
 
     ]
 
