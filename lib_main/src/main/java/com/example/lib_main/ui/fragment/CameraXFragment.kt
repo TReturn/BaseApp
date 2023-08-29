@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.utils.image.GlideUtils
 import com.example.lib_main.R
@@ -20,6 +21,8 @@ import com.hjq.bar.TitleBar
 import com.hjq.toast.Toaster
 import com.permissionx.guolindev.PermissionX
 import com.zyt.lib_camera.ui.activity.CameraActivity
+import com.zyt.lib_camera.utils.CompressedUtils
+import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.ext.nav
 
 
@@ -46,7 +49,15 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                     // 这里获取到对应相片，如果用于显示，建议进行相应压缩处理
                     val bitmap =
                         MediaStore.Images.Media.getBitmap(mActivity.contentResolver, Uri.parse(uri))
+
+                    //加载原图
                     GlideUtils.loadImageProtist(mActivity, bitmap, mDatabind.ivOriginal)
+                    //加载压缩图
+                    lifecycleScope.launch {
+                        val file = CompressedUtils.compressed(mActivity,bitmap)
+                        GlideUtils.loadImageProtist(mActivity, file, mDatabind.ivCompress)
+                    }
+
                 }
             }
     }

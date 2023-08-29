@@ -3,6 +3,8 @@ package com.zyt.lib_camera.ui.activity
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,6 +17,8 @@ import androidx.camera.core.Preview
 import androidx.camera.core.TorchState
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.util.PathUtils
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.hjq.bar.OnTitleBarListener
@@ -29,6 +33,13 @@ import com.orhanobut.logger.Logger
 import com.zyt.lib_camera.databinding.ActivityCameraBinding
 import com.zyt.lib_camera.utils.GlideEngine
 import com.zyt.lib_camera.viewmodel.CameraViewModel
+import id.zelory.compressor.Compressor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -118,13 +129,14 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     // 拍摄成功，saveUri就是图片的uri地址
-                    val intent = Intent()
-                    val bundle = Bundle()
-                    bundle.putString("PICTURE_URI", output.savedUri.toString())
-                    intent.putExtra("RESULT", bundle)
-                    this@CameraActivity.setResult(Activity.RESULT_OK, intent)
-                    this@CameraActivity.finish()
-                    Logger.d("Photo capture succeeded: ${output.savedUri}")
+                    val uri = output.savedUri.toString()
+                        val intent = Intent()
+                        val bundle = Bundle()
+                        bundle.putString("PICTURE_URI", uri)
+                        intent.putExtra("RESULT", bundle)
+                        this@CameraActivity.setResult(Activity.RESULT_OK, intent)
+                        this@CameraActivity.finish()
+                        Logger.d("拍摄路径: ${output.savedUri}")
                 }
             }
         )
