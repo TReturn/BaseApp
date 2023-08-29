@@ -4,10 +4,7 @@
 
     <application>
         <activity
-            android:name=".ui.activity.CustomActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.example.baseapp.ui.activity.CustomErrorActivity"
+            android:name=".web.WebActivity"
             android:exported="true" />
     </application>
 

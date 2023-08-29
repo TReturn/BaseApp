@@ -10,6 +10,12 @@ object UserKeys {
     //是否同意隐私协议
     const val IS_AGREE_PRIVACY = "IS_AGREE_PRIVACY"
 
+    //隐私政策链接
+    const val PRIVACY_URL = ""
+
+    //用户协议链接
+    const val USER_AGREEMENT_URL = ""
+
     //闪屏页时长
     const val SPLASH_TIME = 3000L
 
