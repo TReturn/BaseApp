@@ -3,9 +3,6 @@ package com.example.lib_main.ui.fragment
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Matrix
-import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -24,7 +21,6 @@ import com.hjq.toast.Toaster
 import com.permissionx.guolindev.PermissionX
 import com.zyt.lib_camera.ui.activity.CameraActivity
 import me.hgj.jetpackmvvm.ext.nav
-import java.io.IOException
 
 
 class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>() {
@@ -54,6 +50,7 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                 }
             }
     }
+
 
     inner class ProxyClick {
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)

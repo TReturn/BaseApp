@@ -6,10 +6,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.camera.core.CameraControl
+import androidx.camera.core.CameraInfo
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
+import androidx.camera.core.TorchState
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.lib_base.base.BaseActivity
@@ -17,18 +20,25 @@ import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.hjq.toast.Toaster
+import com.luck.picture.lib.basic.PictureSelector
+import com.luck.picture.lib.config.SelectMimeType
+import com.luck.picture.lib.config.SelectModeConfig
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.orhanobut.logger.Logger
 import com.zyt.lib_camera.databinding.ActivityCameraBinding
+import com.zyt.lib_camera.utils.GlideEngine
 import com.zyt.lib_camera.viewmodel.CameraViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+
 /**
  * @CreateDate : 2023/8/29
  * @Author : 青柠
- * @Description :
+ * @Description :提供CameraX拍照能力
  */
 class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
@@ -43,6 +53,9 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
     // 指定用于预览的相机，默认为后置相机，如果需要前置相机预览请使用CameraSelector.DEFAULT_FRONT_CAMERA
     private var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+    private lateinit var cameraInfo: CameraInfo
+    private lateinit var cameraControl: CameraControl
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
@@ -105,14 +118,13 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     // 拍摄成功，saveUri就是图片的uri地址
-                    val msg = "Photo capture succeeded: ${output.savedUri}"
                     val intent = Intent()
                     val bundle = Bundle()
                     bundle.putString("PICTURE_URI", output.savedUri.toString())
                     intent.putExtra("RESULT", bundle)
                     this@CameraActivity.setResult(Activity.RESULT_OK, intent)
                     this@CameraActivity.finish()
-                    Logger.d(msg)
+                    Logger.d("Photo capture succeeded: ${output.savedUri}")
                 }
             }
         )
@@ -147,10 +159,12 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
                 cameraProvider.unbindAll()
 
                 // 绑定提供者,将相机的生命周期进行绑定，因为camerax具有生命周期感知力，所以消除打开和关闭相机的任务
-                cameraProvider.bindToLifecycle(
+                val camera = cameraProvider.bindToLifecycle(
                     this, cameraSelector, preview, imageCapture
                 )
-
+                //用来聚焦、手势、闪光灯、手电等操作
+                cameraInfo = camera.cameraInfo
+                cameraControl = camera.cameraControl
             } catch (e: Exception) {
                 Logger.d("相机绑定异常 ${e.message}")
             }
@@ -169,6 +183,14 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
             takePhoto()
         }
 
+        fun toFlashLight() {
+            if (cameraInfo.torchState.value == TorchState.ON) {
+                cameraControl.enableTorch(false)
+            } else {
+                cameraControl.enableTorch(true)
+            }
+        }
+
         fun toOverTurn() {
             //翻转
             cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
@@ -181,7 +203,25 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
         fun toGallery() {
             //图库
+            PictureSelector.create(this@CameraActivity)
+                .openGallery(SelectMimeType.ofImage())
+                .setImageEngine(GlideEngine.createGlideEngine())
+                .isDisplayCamera(false)
+                .setSelectionMode(SelectModeConfig.SINGLE)
+                .forResult(object : OnResultCallbackListener<LocalMedia> {
+                    override fun onResult(result: ArrayList<LocalMedia>) {
+                        val path = result[0].path
+                        val intent = Intent()
+                        val bundle = Bundle()
+                        bundle.putString("PICTURE_URI", path)
+                        intent.putExtra("RESULT", bundle)
+                        this@CameraActivity.setResult(Activity.RESULT_OK, intent)
+                        this@CameraActivity.finish()
+                        Logger.d("Photo capture succeeded: ${path}")
+                    }
 
+                    override fun onCancel() {}
+                })
         }
     }
 }

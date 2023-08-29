@@ -60,6 +60,7 @@ dependencies {
     implementation rootProject.depsLibs.camera_lifecycle
     implementation rootProject.depsLibs.camera_view
     implementation rootProject.depsLibs.camera_extensions
-    //implementation rootProject.depsLibs.pictureselector
-
+    implementation rootProject.depsLibs.pictureselector
+    implementation rootProject.depsLibs.glide
+    implementation rootProject.depsLibs.compressor
 }
