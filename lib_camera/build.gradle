@@ -53,16 +53,13 @@ dependencies {
 
     //本地库
     implementation project(path: ':lib_base')
-    implementation project(path: ':lib_camera')
 
     //第三方库
-    implementation rootProject.depsLibs.xbanner
-    implementation rootProject.depsLibs.magicindicator
-    implementation rootProject.depsLibs.permissionx
-    implementation rootProject.depsLibs.qrcode
-    implementation rootProject.depsLibs.labelsview
-    implementation rootProject.depsLibs.lottie
-    implementation rootProject.depsLibs.circleimageview
-    implementation rootProject.depsLibs.mpandroidchart
+    implementation rootProject.depsLibs.camera_core
+    implementation rootProject.depsLibs.camera_2
+    implementation rootProject.depsLibs.camera_lifecycle
+    implementation rootProject.depsLibs.camera_view
+    implementation rootProject.depsLibs.camera_extensions
+    //implementation rootProject.depsLibs.pictureselector
 
 }

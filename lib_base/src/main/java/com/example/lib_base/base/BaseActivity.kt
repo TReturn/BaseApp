@@ -2,11 +2,13 @@ package com.example.lib_base.base
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
 import com.example.lib_base.constant.UserKeys
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
+import com.example.lib_base.utils.ui.LayoutParamsUtils
 import com.hjq.language.MultiLanguages
 import me.hgj.jetpackmvvm.base.activity.BaseVmDbActivity
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -74,4 +76,13 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
         AutoSizeCompat.autoConvertDensityOfGlobal(super.getResources())
         return super.getResources()
     }*/
+
+    /**
+     * 全局沉浸后，不需要沉浸的页面设置顶部导航栏高度
+     * @param view View
+     */
+    open fun setTranslucent(view: View) {
+        LayoutParamsUtils.setHeight(view, QMUIStatusBarHelper.getStatusbarHeight(this))
+    }
+
 }

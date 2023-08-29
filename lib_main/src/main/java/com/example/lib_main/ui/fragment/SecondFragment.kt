@@ -69,6 +69,12 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
                         R.drawable.ic_device
                     )
                 )
+                add(
+                    DemoTypeModel(
+                        getString(R.string.main_type_camera),
+                        R.drawable.ic_type_camera
+                    )
+                )
             }
         )
     }
@@ -94,6 +100,9 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
                     }
                     getString(R.string.main_type_device) -> {
                         nav().navigateAction(R.id.action_main_to_device)
+                    }
+                    getString(R.string.main_type_camera) -> {
+                        nav().navigateAction(R.id.action_main_to_camera)
                     }
                 }
             }

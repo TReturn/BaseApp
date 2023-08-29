@@ -10,11 +10,11 @@
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:leftIcon="@drawable/ic_finish"
+        app:leftIcon="@drawable/ic_finish_white"
         app:lineVisible="false"
         app:titleStyle="bold"
         app:barStyle="transparent"
-        app:titleColor="@color/title_bar_text">
+        app:titleColor="@color/text_white">
 
     </com.hjq.bar.TitleBar>
 </layout>

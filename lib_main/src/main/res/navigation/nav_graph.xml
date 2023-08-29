@@ -48,6 +48,10 @@
             android:id="@+id/action_main_to_device"
             app:destination="@id/deviceInfoFragment" />
 
+        <action
+            android:id="@+id/action_main_to_camera"
+            app:destination="@id/cameraXFragment" />
+
     </fragment>
 
     <fragment
@@ -107,6 +111,13 @@
         android:id="@+id/deviceInfoFragment"
         android:name="com.example.lib_main.ui.fragment.DeviceInfoFragment"
         android:label="deviceInfoFragment">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/cameraXFragment"
+        android:name="com.example.lib_main.ui.fragment.CameraXFragment"
+        android:label="cameraXFragment">
     </fragment>
 
 </navigation>

@@ -41,6 +41,7 @@
     <string name="main_type_attribute_animation">属性动画</string>
     <string name="main_type_note">备忘录</string>
     <string name="main_type_device">设备信息</string>
+    <string name="main_type_camera">相机</string>
 
     <string name="animation_type_alpha">透明</string>
     <string name="animation_type_translation">平移</string>
@@ -77,5 +78,13 @@
     <string name="privacy_content">我们将通过《隐私政策》和《用户协议》帮助您了解我们收集、使用、存储和共享个人信息的情况</string>
     <string name="privacy_retention_title">温馨提示</string>
     <string name="privacy_retention_content">我们将通过《隐私政策》和《用户协议》帮助您了解我们收集、使用、存储和共享个人信息的情况</string>
+
+    <!--相机相关-->
+    <string name="camera_original">原图</string>
+    <string name="camera_compress">压缩</string>
+    <string name="camera_take_photo">拍照</string>
+    <string name="camera_save_photo">保存图片</string>
+    <string name="camera_photo_overturn">翻转</string>
+    <string name="camera_photo_gallery">图库</string>
 
 </resources>
