@@ -18,16 +18,12 @@ class WebActivity : BaseActivity<BaseViewModel, ActivityWebBinding>() {
         QMUIStatusBarHelper.translucent(this)
 
         val webFragment = WebFragment().apply {
-            arguments =   Bundle().apply {
-                putString("TITLE",intent.getStringExtra("TITLE"))
-                putString("URL",intent.getStringExtra("URL"))
-            }
+            arguments = intent.extras
         }
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flContent, webFragment)
                 .commit()
         }
-
     }
 
 }
