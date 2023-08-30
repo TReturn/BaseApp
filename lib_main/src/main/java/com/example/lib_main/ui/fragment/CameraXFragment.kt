@@ -1,6 +1,7 @@
 package com.example.lib_main.ui.fragment
 
 import android.Manifest
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
@@ -45,29 +46,31 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
 
         startActivityLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                val uri = it.data?.getBundleExtra("RESULT")?.getString("PICTURE_URI")
-                // 这里获取到对应相片，如果用于显示，建议进行相应压缩处理
-                val bitmap = if (Build.VERSION.SDK_INT < 28) {
-                    MediaStore.Images.Media.getBitmap(mActivity.contentResolver, Uri.parse(uri))
-                } else {
-                    val source = ImageDecoder.createSource(
-                        mActivity.contentResolver,
-                        Uri.parse(uri)
-                    )
-                    ImageDecoder.decodeBitmap(source)
+                if (it.resultCode == RESULT_OK && it.data != null) {
+                    val uri = it.data?.getBundleExtra("RESULT")?.getString("PICTURE_URI")
+                    // 这里获取到对应相片，如果用于显示，建议进行相应压缩处理
+                    val bitmap = if (Build.VERSION.SDK_INT < 28) {
+                        MediaStore.Images.Media.getBitmap(mActivity.contentResolver, Uri.parse(uri))
+                    } else {
+                        val source = ImageDecoder.createSource(
+                            mActivity.contentResolver,
+                            Uri.parse(uri)
+                        )
+                        ImageDecoder.decodeBitmap(source)
+                    }
+
+                    //加载原图
+                    GlideUtils.loadImageProtist(mActivity, bitmap, mDatabind.ivOriginal)
+                    //加载压缩图
+                    lifecycleScope.launch {
+                        val file = CompressedUtils.compressed(mActivity, bitmap)
+                        GlideUtils.loadImageProtist(mActivity, file, mDatabind.ivCompress)
+
+                        mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
+                        mViewModel.compressPic.value = CompressedUtils.getCompressSize()
+                    }
+
                 }
-
-                //加载原图
-                GlideUtils.loadImageProtist(mActivity, bitmap, mDatabind.ivOriginal)
-                //加载压缩图
-                lifecycleScope.launch {
-                    val file = CompressedUtils.compressed(mActivity, bitmap)
-                    GlideUtils.loadImageProtist(mActivity, file, mDatabind.ivCompress)
-
-                    mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
-                    mViewModel.compressPic.value = CompressedUtils.getCompressSize()
-                }
-
             }
     }
 

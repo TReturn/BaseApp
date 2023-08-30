@@ -3,13 +3,9 @@ package com.zyt.lib_camera.ui.activity
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.Surface.ROTATION_270
-import android.view.Surface.ROTATION_90
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraControl
 import androidx.camera.core.CameraInfo
@@ -20,8 +16,6 @@ import androidx.camera.core.Preview
 import androidx.camera.core.TorchState
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.PathUtils
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.hjq.bar.OnTitleBarListener
@@ -36,13 +30,6 @@ import com.orhanobut.logger.Logger
 import com.zyt.lib_camera.databinding.ActivityCameraBinding
 import com.zyt.lib_camera.utils.GlideEngine
 import com.zyt.lib_camera.viewmodel.CameraViewModel
-import id.zelory.compressor.Compressor
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.io.BufferedOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
