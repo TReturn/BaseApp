@@ -27,7 +27,11 @@ import com.zyt.lib_camera.utils.CompressedUtils
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.ext.nav
 
-
+/**
+ * @CreateDate: 2023/8/29 17:35
+ * @Author: 青柠
+ * @Description: CameraX调用示例
+ */
 class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>() {
 
     private lateinit var startActivityLauncher: ActivityResultLauncher<Intent>
@@ -59,12 +63,10 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                         ImageDecoder.decodeBitmap(source)
                     }
 
-                    //加载原图
-                    GlideUtils.loadImageProtist(mActivity, bitmap, mDatabind.ivOriginal)
                     //加载压缩图
                     lifecycleScope.launch {
                         val file = CompressedUtils.compressed(mActivity, bitmap)
-                        GlideUtils.loadImageProtist(mActivity, file, mDatabind.ivCompress)
+                        GlideUtils.loadRoundImage(mActivity, file, mDatabind.ivCompress, 12F)
 
                         mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
                         mViewModel.compressPic.value = CompressedUtils.getCompressSize()
