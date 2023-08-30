@@ -22,19 +22,28 @@ import me.hgj.jetpackmvvm.ext.nav
 class WebFragment : BaseFragment<BaseViewModel, FragmentWebBinding>() {
 
     private var webUrl = ""
+
+    //0Fragment传入，1Activity传入
+    private var type = 0
     override fun initView(savedInstanceState: Bundle?) {
         setTranslucent(mDatabind.flTranslucent)
 
         arguments?.run {
-            val title = getString("TITLE","")
-            webUrl= getString("URL","")
+            val title = getString("TITLE", "")
+            webUrl = getString("URL", "")
+            type = getInt("TYPE", 0)
             mDatabind.include.titleBar.title = title
         }
 
         //标题栏点击事件
         mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(titleBar: TitleBar) {
-                nav().navigateUp()
+                if (type == 0) {
+                    nav().navigateUp()
+                } else {
+                    activity?.finish()
+                }
+
             }
         })
 

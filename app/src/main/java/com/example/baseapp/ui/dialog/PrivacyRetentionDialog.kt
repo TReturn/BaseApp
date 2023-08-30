@@ -50,10 +50,11 @@ class PrivacyRetentionDialog(
         TextSpannableStringUtils.textColorAndClickable(tvContent, privacyText,
             5, 11,12,18, "#007AFF", object : ClickableSpan() {
                 override fun onClick(p0: View) {
-                    context. startActivity(Intent(context, WebActivity::class.java).apply {
-                        putExtra("TITLE", context.getString(R.string.user_privacy_policy))
-                        putExtra("URL", MMKVUtils.getString(UserKeys.PRIVACY_URL))
-                    })
+                    WebActivity().start(
+                        context,
+                        context.getString(R.string.user_privacy_policy),
+                        MMKVUtils.getString(UserKeys.PRIVACY_URL)
+                    )
                 }
 
                 // 去除文本的下划线 不重写 默认会有
@@ -63,10 +64,11 @@ class PrivacyRetentionDialog(
 
             },object : ClickableSpan() {
                 override fun onClick(p0: View) {
-                    context. startActivity(Intent(context, WebActivity::class.java).apply {
-                        putExtra("TITLE", context.getString(R.string.user_agreement))
-                        putExtra("URL", MMKVUtils.getString(UserKeys.USER_AGREEMENT_URL))
-                    })
+                    WebActivity().start(
+                        context,
+                        context.getString(R.string.user_agreement),
+                        MMKVUtils.getString(UserKeys.USER_AGREEMENT_URL)
+                    )
                 }
 
                 // 去除文本的下划线 不重写 默认会有

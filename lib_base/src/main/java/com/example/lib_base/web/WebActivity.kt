@@ -1,5 +1,7 @@
 package com.example.lib_base.web
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.example.lib_base.R
 import com.example.lib_base.base.BaseActivity
@@ -23,6 +25,19 @@ class WebActivity : BaseActivity<BaseViewModel, ActivityWebBinding>() {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flContent, webFragment)
                 .commit()
+        }
+    }
+
+    /**
+     * 打开WEB
+     */
+    fun start(context: Context?, title: String, url: String) {
+        context?.let {
+            it.startActivity(Intent(it, WebActivity::class.java).apply {
+                putExtra("TITLE", title)
+                putExtra("URL", url)
+                putExtra("TYPE", 1)
+            })
         }
     }
 
