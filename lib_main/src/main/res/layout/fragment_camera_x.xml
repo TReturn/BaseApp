@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -43,22 +44,30 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivOriginal"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat3"
             android:layout_width="0dp"
             android:layout_height="300dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivCompress"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/ivOriginal" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivOriginal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCompress"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         <TextView
             android:id="@+id/textView4"
@@ -66,37 +75,37 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@{vm.originalPic}"
-            tools:text="@string/camera_original"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="@+id/ivOriginal"
-            app:layout_constraintTop_toBottomOf="@+id/ivOriginal" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3"
+            tools:text="@string/camera_original" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@{vm.compressPic}"
-            tools:text="@string/camera_compress"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/ivOriginal" />
+            app:layout_constraintTop_toTopOf="@+id/textView4"
+            tools:text="@string/camera_compress" />
 
         <com.hjq.shape.view.ShapeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:onClick="@{()->click.toTakePhoto()}"
             android:paddingStart="32dp"
             android:paddingTop="8dp"
             android:paddingEnd="32dp"
             android:paddingBottom="8dp"
-            android:onClick="@{()->click.toTakePhoto()}"
             android:text="@string/camera_take_photo"
             android:textColor="@color/white"
             android:textSize="16sp"

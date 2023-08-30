@@ -167,10 +167,8 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
             // 获取用于拍照的实例
             imageCapture = ImageCapture.Builder()
-//                //设置图像宽高比
-//                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-//                //设置图像旋转
-//                .setTargetRotation(ROTATION_90)
+                //设置图像宽高比
+                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
                 .build()
 
             try {

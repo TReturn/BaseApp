@@ -1,14 +1,13 @@
 package com.example.lib_main.ui.fragment
 
 import android.Manifest
-import android.animation.ObjectAnimator
-import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -46,41 +45,32 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
 
         startActivityLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                if (it.resultCode == RESULT_OK) {
-                    val uri = it.data?.getBundleExtra("RESULT")?.getString("PICTURE_URI")
-                    // 这里获取到对应相片，如果用于显示，建议进行相应压缩处理
-                    val bitmap =
-                        MediaStore.Images.Media.getBitmap(mActivity.contentResolver, Uri.parse(uri))
-
-                    //加载原图
-                    GlideUtils.loadImageProtist(mActivity, bitmap, mDatabind.ivOriginal)
-                    //加载压缩图
-                    lifecycleScope.launch {
-                        val file = CompressedUtils.compressed(mActivity, bitmap)
-                        GlideUtils.loadImageProtist(mActivity, file, mDatabind.ivCompress)
-
-                        mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
-                        mViewModel.compressPic.value = CompressedUtils.getCompressSize()
-                    }
-
-                    //旋转View
-                    rotationView(mDatabind.ivOriginal,mDatabind.ivCompress)
-
+                val uri = it.data?.getBundleExtra("RESULT")?.getString("PICTURE_URI")
+                // 这里获取到对应相片，如果用于显示，建议进行相应压缩处理
+                val bitmap = if (Build.VERSION.SDK_INT < 28) {
+                    MediaStore.Images.Media.getBitmap(mActivity.contentResolver, Uri.parse(uri))
+                } else {
+                    val source = ImageDecoder.createSource(
+                        mActivity.contentResolver,
+                        Uri.parse(uri)
+                    )
+                    ImageDecoder.decodeBitmap(source)
                 }
+
+                //加载原图
+                GlideUtils.loadImageProtist(mActivity, bitmap, mDatabind.ivOriginal)
+                //加载压缩图
+                lifecycleScope.launch {
+                    val file = CompressedUtils.compressed(mActivity, bitmap)
+                    GlideUtils.loadImageProtist(mActivity, file, mDatabind.ivCompress)
+
+                    mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
+                    mViewModel.compressPic.value = CompressedUtils.getCompressSize()
+                }
+
             }
     }
 
-    /**
-     * 把View旋转90度
-     */
-    private fun rotationView(vararg views: View) {
-        for (view in views) {
-            ObjectAnimator.ofFloat(view, "rotation", 0F, 90F).run {
-                duration = 0
-                start()
-            }
-        }
-    }
 
     inner class ProxyClick {
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)
