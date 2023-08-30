@@ -13,10 +13,6 @@
         tools:layout="@layout/fragment_main" >
 
         <action
-            android:id="@+id/action_main_to_user_agreement"
-            app:destination="@id/userAgreementFragment" />
-
-        <action
             android:id="@+id/action_main_to_poetry"
             app:destination="@id/poetryFragment" />
 
@@ -52,12 +48,6 @@
             android:id="@+id/action_main_to_camera"
             app:destination="@id/cameraXFragment" />
 
-    </fragment>
-
-    <fragment
-        android:id="@+id/userAgreementFragment"
-        android:name="com.example.lib_main.ui.fragment.UserAgreementFragment"
-        android:label="fragment_user_agreement">
     </fragment>
 
     <fragment

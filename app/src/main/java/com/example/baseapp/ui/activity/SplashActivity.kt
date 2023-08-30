@@ -7,7 +7,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.baseapp.BuildConfig
 import com.example.baseapp.databinding.ActivitySplashBinding
 import com.example.baseapp.ui.dialog.PrivacyDialog
-import com.example.baseapp.ui.dialog.PrivacyRetentionDialog
 import com.example.baseapp.viewmodel.SplashViewModel
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.UserKeys

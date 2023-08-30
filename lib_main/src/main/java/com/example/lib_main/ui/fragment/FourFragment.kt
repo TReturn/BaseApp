@@ -94,14 +94,16 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
             setOnItemClickListener { _, view, position ->
                 when (data[position].id) {
                     0 -> {
-                        nav().navigateAction(R.id.action_main_to_user_agreement, Bundle().apply {
-                            putString("TITLE", getString(R.string.user_agreement))
+                        nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
+                            putString("TITLE", data[position].title)
+                            putString("URL", "")
                         })
                     }
 
                     1 -> {
-                        nav().navigateAction(R.id.action_main_to_user_agreement, Bundle().apply {
-                            putString("TITLE", getString(R.string.user_privacy_policy))
+                        nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
+                            putString("TITLE", data[position].title)
+                            putString("URL", "")
                         })
                     }
 

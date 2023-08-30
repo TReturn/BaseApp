@@ -1,7 +1,6 @@
 package com.example.baseapp.ui.dialog
 
 import android.content.Context
-import android.content.Intent
 import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View

@@ -1,9 +1,7 @@
 package com.example.lib_base.web
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.LinearLayout
-import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.databinding.FragmentWebBinding
 import com.example.lib_base.utils.log.LogUtils
