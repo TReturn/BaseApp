@@ -1,12 +1,14 @@
 package com.example.lib_main.ui.fragment
 
 import android.Manifest
+import android.animation.ObjectAnimator
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -61,10 +63,24 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                         mViewModel.compressPic.value = CompressedUtils.getCompressSize()
                     }
 
+                    //旋转View
+                    rotationView(mDatabind.ivOriginal,mDatabind.ivCompress)
+
                 }
             }
     }
 
+    /**
+     * 把View旋转90度
+     */
+    private fun rotationView(vararg views: View) {
+        for (view in views) {
+            ObjectAnimator.ofFloat(view, "rotation", 0F, 90F).run {
+                duration = 0
+                start()
+            }
+        }
+    }
 
     inner class ProxyClick {
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)

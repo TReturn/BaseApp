@@ -8,6 +8,9 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Surface.ROTATION_270
+import android.view.Surface.ROTATION_90
+import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraControl
 import androidx.camera.core.CameraInfo
 import androidx.camera.core.CameraSelector
@@ -130,13 +133,13 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     // 拍摄成功，saveUri就是图片的uri地址
                     val uri = output.savedUri.toString()
-                        val intent = Intent()
-                        val bundle = Bundle()
-                        bundle.putString("PICTURE_URI", uri)
-                        intent.putExtra("RESULT", bundle)
-                        this@CameraActivity.setResult(Activity.RESULT_OK, intent)
-                        this@CameraActivity.finish()
-                        Logger.d("拍摄路径: ${output.savedUri}")
+                    val intent = Intent()
+                    val bundle = Bundle()
+                    bundle.putString("PICTURE_URI", uri)
+                    intent.putExtra("RESULT", bundle)
+                    this@CameraActivity.setResult(Activity.RESULT_OK, intent)
+                    this@CameraActivity.finish()
+                    Logger.d("拍摄路径: ${output.savedUri}")
                 }
             }
         )
@@ -164,6 +167,10 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
             // 获取用于拍照的实例
             imageCapture = ImageCapture.Builder()
+//                //设置图像宽高比
+//                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+//                //设置图像旋转
+//                .setTargetRotation(ROTATION_90)
                 .build()
 
             try {
