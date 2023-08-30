@@ -9,6 +9,8 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.DeviceUtils
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.LogRecordInterceptor
 import com.drake.net.interceptor.RequestInterceptor
@@ -30,6 +32,7 @@ import com.orhanobut.logger.Logger
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.tencent.bugly.BuglyStrategy
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 import java.util.concurrent.TimeUnit
@@ -73,7 +76,22 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
         AppCompatDelegate.setDefaultNightMode(MMKVUtils.getInt(UserKeys.NIGHT_MODE, 1))
 
         //Bugly崩溃上报
-        CrashReport.initCrashReport(this, SdkKeys.BUGLY_KEY, BuildConfig.DEBUG)
+        //设置开发设备
+        CrashReport.setIsDevelopmentDevice(this, BuildConfig.DEBUG)
+
+        //配置参数
+        val strategy = CrashReport.UserStrategy(this).apply {
+            //型号
+            deviceModel = "${DeviceUtils.getManufacturer()} ${DeviceUtils.getModel()}"
+            //版本号
+            appVersion = AppUtils.getAppVersionName()
+            //渠道号
+            appChannel = "myChannel"
+            //包名
+            appPackageName = AppUtils.getAppPackageName()
+        }
+        CrashReport.initCrashReport(this, SdkKeys.BUGLY_KEY, BuildConfig.DEBUG, strategy)
+
 
         //Toast初始化
         Toaster.init(this)
