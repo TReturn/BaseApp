@@ -54,8 +54,11 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                     GlideUtils.loadImageProtist(mActivity, bitmap, mDatabind.ivOriginal)
                     //加载压缩图
                     lifecycleScope.launch {
-                        val file = CompressedUtils.compressed(mActivity,bitmap)
+                        val file = CompressedUtils.compressed(mActivity, bitmap)
                         GlideUtils.loadImageProtist(mActivity, file, mDatabind.ivCompress)
+
+                        mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
+                        mViewModel.compressPic.value = CompressedUtils.getCompressSize()
                     }
 
                 }

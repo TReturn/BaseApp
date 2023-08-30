@@ -1,8 +1,6 @@
 package com.example.baseapp.ui.activity
 
 import android.os.Bundle
-import android.util.TypedValue
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.blankj.utilcode.util.ClipboardUtils

@@ -1,10 +1,7 @@
 package com.zyt.lib_camera.utils
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
-import android.os.Bundle
 import com.blankj.utilcode.util.PathUtils
 import com.orhanobut.logger.Logger
 import id.zelory.compressor.Compressor
@@ -24,16 +21,25 @@ object CompressedUtils {
     // 时间戳，用于给图片命令防止重复
     private val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
 
+    //原图大小
+    private var originalSize = ""
+
+    //压缩后大小
+    private var compressSize = ""
+
     /**
      *
      * @param context Context
      * @param bitmap Bitmap
      * @return String
      */
-    suspend fun compressed(context: Context, bitmap: Bitmap):String{
-        val compressedImageFile =
-            Compressor.compress(context, saveBitmapFile(bitmap))
-        Logger.d("压缩路径: ${compressedImageFile.absolutePath}")
+    suspend fun compressed(context: Context, bitmap: Bitmap): String {
+        val file = saveBitmapFile(bitmap)
+        val compressedImageFile = Compressor.compress(context, file)
+        originalSize = "原图大小：${file.length() / 1024}KB"
+        compressSize = "压缩后大小：${File(compressedImageFile.absolutePath).length() / 1024}KB"
+        Logger.d("压缩路径: ${compressedImageFile.absolutePath},$originalSize,$compressSize")
+
         return compressedImageFile.absolutePath
     }
 
@@ -57,6 +63,20 @@ object CompressedUtils {
             e.printStackTrace()
         }
         return file
+    }
+
+    /**
+     * 获取原图大小
+     */
+    fun getOriginalSize(): String {
+        return originalSize
+    }
+
+    /**
+     * 获取压缩图大小
+     */
+    fun getCompressSize(): String {
+        return compressSize
     }
 
 }
