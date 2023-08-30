@@ -96,6 +96,8 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                 .request { allGranted, _, _ ->
                     if (allGranted) {
                         val intent = Intent(requireActivity(), CameraActivity::class.java)
+                        //可选择直接打开图库
+                        intent.putExtra("IS_OPEN_GALLERY", false)
                         startActivityLauncher.launch(intent)
                     } else {
                         Toaster.show(getString(R.string.main_scan_permissions_fail))

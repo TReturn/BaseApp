@@ -70,6 +70,11 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
             }
         })
 
+        //传参可直接打开图库
+        if (intent.getBooleanExtra("IS_OPEN_GALLERY", false)) {
+            ProxyClick().toGallery()
+        }
+
         startCamera()
 
         // 实例化相机执行器，用于或许相机资源
