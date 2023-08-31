@@ -10,10 +10,10 @@ import com.example.baseapp.ui.dialog.PrivacyDialog
 import com.example.baseapp.viewmodel.SplashViewModel
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.constant.UserKeys
+import com.example.lib_base.dialog.BaseDialog
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.utils.ui.TextFontUtils
-import com.lxj.xpopup.XPopup
 import kotlinx.coroutines.*
 
 
@@ -37,9 +37,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
         if (MMKVUtils.getBool(UserKeys.IS_AGREE_PRIVACY)) {
             toMainActivity()
         } else {
-            XPopup.Builder(this)
-                .dismissOnBackPressed(false)
-                .dismissOnTouchOutside(false)
+            BaseDialog.get(this, false)
                 .asCustom(PrivacyDialog(this, {
                     //已同意，进入首页逻辑
                     MMKVUtils.put(UserKeys.IS_AGREE_PRIVACY, true)

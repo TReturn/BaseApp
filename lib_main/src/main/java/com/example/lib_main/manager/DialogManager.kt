@@ -1,9 +1,8 @@
 package com.example.lib_main.manager
 
 import android.app.Activity
-import com.example.lib_base.BaseApplication
+import com.example.lib_base.dialog.BaseDialog
 import com.example.lib_main.ui.dialog.SelectLanguageDialog
-import com.lxj.xpopup.XPopup
 
 /**
  * @CreateDate: 2023/3/31 15:43
@@ -27,8 +26,8 @@ object DialogManager {
      * 选择语音弹窗
      * @return DialogManager
      */
-    fun showSelectLanguageDialog(context:Activity): DialogManager {
-        XPopup.Builder(context).asCustom(SelectLanguageDialog(context) {
+    fun showSelectLanguageDialog(context: Activity): DialogManager {
+        BaseDialog.get(context).asCustom(SelectLanguageDialog(context) {
             lister?.onConfirm()
         }).show()
 

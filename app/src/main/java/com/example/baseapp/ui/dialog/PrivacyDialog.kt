@@ -7,11 +7,11 @@ import android.view.View
 import android.widget.TextView
 import com.example.baseapp.R
 import com.example.lib_base.constant.UserKeys
+import com.example.lib_base.dialog.BaseDialog
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.TextSpannableStringUtils
 import com.example.lib_base.web.WebActivity
 import com.hjq.shape.view.ShapeTextView
-import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.CenterPopupView
 
 /**
@@ -42,9 +42,7 @@ class PrivacyDialog(
 
         findViewById<ShapeTextView>(R.id.tvCancel).setOnClickListener {
             //挽留弹窗
-            XPopup.Builder(context)
-                .dismissOnBackPressed(false)
-                .dismissOnTouchOutside(false)
+            BaseDialog.get(context, false)
                 .asCustom(PrivacyRetentionDialog(context, {
                     confirmCallback.invoke()
                     dismiss()
