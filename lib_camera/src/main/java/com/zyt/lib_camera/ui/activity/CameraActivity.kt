@@ -18,6 +18,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
+import com.example.lib_base.utils.time.TimeUtils
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.hjq.toast.Toaster
@@ -42,9 +43,6 @@ import java.util.concurrent.Executors
  * @Description :提供CameraX拍照能力
  */
 class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
-
-    // 时间戳，用于给图片命令防止重复
-    private val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
 
     // 相片拍摄器
     private var imageCapture: ImageCapture? = null
@@ -88,8 +86,10 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
     private fun takePhoto() {
         // 校验是否有可用的相机拍摄器
         val imageCapture = imageCapture ?: return
+        // 时间戳，用于给图片命令防止重复
+        val timeFormat = TimeUtils.dateFormatYMDHMS
         // 定义拍摄相片名称
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.CHINA)
+        val name = SimpleDateFormat(timeFormat, Locale.CHINA)
             .format(System.currentTimeMillis())
 
         // 使用MediaStore操作相片文件
@@ -161,6 +161,9 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
             imageCapture = ImageCapture.Builder()
                 //设置图像宽高比
                 .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+                //设置图像质量
+                //.setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                //.setJpegQuality(70)
                 .build()
 
             try {

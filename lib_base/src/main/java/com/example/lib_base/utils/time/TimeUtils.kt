@@ -16,6 +16,8 @@ object TimeUtils {
 
     private val SDF_THREAD_LOCAL = ThreadLocal<SimpleDateFormat>()
 
+    val dateFormatYMDHMS ="yyyy-MM-dd-HH-mm-ss-SSS"
+
     val dateFormatYMD = "yyyy-MM-dd"
 
     val datePointFormatHH = "HH"

@@ -78,15 +78,19 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
 
 
     inner class ProxyClick {
-        @RequiresApi(Build.VERSION_CODES.TIRAMISU)
         fun toTakePhoto() {
             //拍照、存储权限请求
+
+            val permission: MutableList<String> = arrayListOf(
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                permission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+
             PermissionX.init(mActivity)
-                .permissions(
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
+                .permissions(permission)
                 .explainReasonBeforeRequest()
                 .onExplainRequestReason { scope, deniedList ->
                     scope.showRequestReasonDialog(
