@@ -72,6 +72,7 @@ ext {
             navigation          : '2.5.3',
             activity_crash      : '2.4.0',
             camerax             : '1.3.0-alpha04',
+            round_progressbar   : '3.0.0',
     ]
 
 
@@ -240,6 +241,9 @@ ext {
             camera_view         : "androidx.camera:camera-view:${depsVersion.camerax}",
             camera_extensions   : "androidx.camera:camera-extensions:${depsVersion.camerax}",
             camera_video        : "androidx.camera:camera-video:${depsVersion.camerax}",
+
+            //圆角进度条
+            round_progressbar   : "com.github.MackHartley:RoundedProgressBar:${depsVersion.round_progressbar}",
 
     ]
 
