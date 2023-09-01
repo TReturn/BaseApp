@@ -51,28 +51,16 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
         startActivityLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK && it.data != null) {
+                    //拍摄原图的URI，可转Bitmap
                     val uri = it.data?.getBundleExtra("RESULT")?.getString("PICTURE_URI")
-                    // 这里获取到对应相片，如果用于显示，建议进行相应压缩处理
-                    val bitmap = if (Build.VERSION.SDK_INT < 28) {
-                        MediaStore.Images.Media.getBitmap(mActivity.contentResolver, Uri.parse(uri))
-                    } else {
-                        val source = ImageDecoder.createSource(
-                            mActivity.contentResolver,
-                            Uri.parse(uri)
-                        )
-                        ImageDecoder.decodeBitmap(source)
-                    }
+                    //压缩后的图片路径
+                    val path = it.data?.getBundleExtra("RESULT")?.getString("PICTURE_PATH")
 
-                    //加载压缩图
-                    lifecycleScope.launch {
-                        val file = CompressedUtils.compressed(mActivity, bitmap)
-                        GlideUtils.loadRoundImage(mActivity, file, mDatabind.ivCompress, 12F)
-
-                        mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
-                        mViewModel.compressPic.value = CompressedUtils.getCompressSize()
-                    }
-
+                    GlideUtils.loadRoundImage(mActivity, path.toString(), mDatabind.ivCompress, 12F)
+                    mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
+                    mViewModel.compressPic.value = CompressedUtils.getCompressSize()
                 }
+                
             }
     }
 

@@ -3,6 +3,8 @@ package com.zyt.lib_camera.ui.activity
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
+import android.graphics.ImageDecoder
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,7 +18,9 @@ import androidx.camera.core.Preview
 import androidx.camera.core.TorchState
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.lib_base.base.BaseActivity
+import com.example.lib_base.utils.image.GlideUtils
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
 import com.example.lib_base.utils.time.TimeUtils
 import com.hjq.bar.OnTitleBarListener
@@ -29,8 +33,13 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.orhanobut.logger.Logger
 import com.zyt.lib_camera.databinding.ActivityCameraBinding
+import com.zyt.lib_camera.utils.CompressedUtils
 import com.zyt.lib_camera.utils.GlideEngine
 import com.zyt.lib_camera.viewmodel.CameraViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -40,7 +49,7 @@ import java.util.concurrent.Executors
 /**
  * @CreateDate : 2023/8/29
  * @Author : 青柠
- * @Description :提供CameraX拍照能力
+ * @Description :提供CameraX拍照能力,提供原始URI和压缩后的路径返回
  */
 class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
@@ -55,6 +64,7 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
     private lateinit var cameraInfo: CameraInfo
     private lateinit var cameraControl: CameraControl
+
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
@@ -125,13 +135,7 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     // 拍摄成功，saveUri就是图片的uri地址
                     val uri = output.savedUri.toString()
-                    val intent = Intent()
-                    val bundle = Bundle()
-                    bundle.putString("PICTURE_URI", uri)
-                    intent.putExtra("RESULT", bundle)
-                    this@CameraActivity.setResult(Activity.RESULT_OK, intent)
-                    this@CameraActivity.finish()
-                    Logger.d("拍摄路径: ${output.savedUri}")
+                    intentData(uri)
                 }
             }
         )
@@ -161,9 +165,6 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
             imageCapture = ImageCapture.Builder()
                 //设置图像宽高比
                 .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                //设置图像质量
-                //.setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
-                //.setJpegQuality(70)
                 .build()
 
             try {
@@ -183,6 +184,46 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+    /**
+     * 跳转返回数据，通过await获取压缩耗时任务后的结果
+     * @param uri String
+     */
+    private fun intentData(uri: String) {
+        runBlocking {
+            val intent = Intent()
+            val bundle = Bundle()
+            bundle.putString("PICTURE_URI", uri)
+            val compressedPath = async { bitmapToFileCompressed(uri) }
+            bundle.putString("PICTURE_PATH", compressedPath.await())
+            intent.putExtra("RESULT", bundle)
+            this@CameraActivity.setResult(Activity.RESULT_OK, intent)
+            this@CameraActivity.finish()
+            Logger.d("Photo capture succeeded: $uri")
+        }
+    }
+
+    /**
+     * Bitmap转为File再压缩
+     * @param uri String
+     * @return String 返回压缩后的图片路径
+     */
+    private suspend fun bitmapToFileCompressed(uri: String): String {
+        // 这里获取到对应相片，如果用于显示，建议进行相应压缩处理
+        val bitmap = if (Build.VERSION.SDK_INT < 28) {
+            MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(uri))
+        } else {
+            val source = ImageDecoder.createSource(
+                contentResolver,
+                Uri.parse(uri)
+            )
+            ImageDecoder.decodeBitmap(source)
+        }
+
+        //返回压缩图
+        return CompressedUtils.compressed(this@CameraActivity, bitmap)
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         // 页面销毁时关闭相机执行器
@@ -193,6 +234,7 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
         fun toTakePhoto() {
             //拍照
             takePhoto()
+            mViewModel.isButtonClickable.value = false
         }
 
         fun toFlashLight() {
@@ -222,14 +264,7 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
                 .setSelectionMode(SelectModeConfig.SINGLE)
                 .forResult(object : OnResultCallbackListener<LocalMedia> {
                     override fun onResult(result: ArrayList<LocalMedia>) {
-                        val path = result[0].path
-                        val intent = Intent()
-                        val bundle = Bundle()
-                        bundle.putString("PICTURE_URI", path)
-                        intent.putExtra("RESULT", bundle)
-                        this@CameraActivity.setResult(Activity.RESULT_OK, intent)
-                        this@CameraActivity.finish()
-                        Logger.d("Photo capture succeeded: ${path}")
+                        intentData(result[0].path)
                     }
 
                     override fun onCancel() {}
