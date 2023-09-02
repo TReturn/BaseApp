@@ -27,7 +27,7 @@ import me.hgj.jetpackmvvm.ext.nav
  */
 class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>() {
 
-    private lateinit var startActivityLauncher: ActivityResultLauncher<Intent>
+    private lateinit var startCameraLauncher: ActivityResultLauncher<Intent>
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
@@ -41,7 +41,7 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
             }
         })
 
-        startActivityLauncher =
+        startCameraLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK && it.data != null) {
                     //拍摄原图的URI，可转Bitmap
@@ -85,7 +85,7 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                         val intent = Intent(requireActivity(), CameraActivity::class.java)
                         //可选择直接打开图库
                         intent.putExtra("IS_OPEN_GALLERY", false)
-                        startActivityLauncher.launch(intent)
+                        startCameraLauncher.launch(intent)
                     } else {
                         Toaster.show(getString(R.string.main_scan_permissions_fail))
                     }

@@ -115,7 +115,6 @@ dependencies {
     implementation rootProject.depsLibs.agentweb
     implementation rootProject.depsLibs.magicindicator
     implementation rootProject.depsLibs.lottie
-    implementation rootProject.depsLibs.stream
     implementation(rootProject.depsLibs.bigimageview, {
         exclude group: 'com.davemorrissey.labs'
     })

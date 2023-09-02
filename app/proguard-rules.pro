@@ -255,11 +255,12 @@
     kotlinx.serialization.KSerializer serializer(...);
 }
 
-#BottomNavigationViewEx增强
--keep public class com.google.android.material.bottomnavigation.BottomNavigationView { *; }
--keep public class com.google.android.material.bottomnavigation.BottomNavigationMenuView { *; }
--keep public class com.google.android.material.bottomnavigation.BottomNavigationPresenter { *; }
--keep public class com.google.android.material.bottomnavigation.BottomNavigationItemView { *; }
+#二维码解析，生成
+-dontwarn com.google.zxing.**
+-keep class com.google.zxing.**{*;}
+
+
+
 
 
 

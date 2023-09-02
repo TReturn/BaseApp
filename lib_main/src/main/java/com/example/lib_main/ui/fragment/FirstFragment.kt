@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.constant.UserKeys
@@ -28,6 +30,7 @@ import com.hjq.toast.Toaster
 import com.permissionx.guolindev.PermissionX
 import com.stx.xhb.androidx.XBanner
 import com.xuexiang.xqrcode.XQRCode
+import com.xuexiang.xqrcode.ui.CaptureActivity
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.navigateAction
 
@@ -43,6 +46,8 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
 
     private val bannerData: MutableList<BaseBannerData> = ArrayList()
 
+    private lateinit var startQRCodeLauncher: ActivityResultLauncher<Intent>
+
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.click = ProxyClick()
         mDatabind.vm = mViewModel
@@ -55,6 +60,14 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
         mDatabind.refreshLayout.autoRefresh()
         mDatabind.refreshLayout.setOnRefreshListener { refreshData(true) }
         mDatabind.refreshLayout.setOnLoadMoreListener { refreshData(false) }
+
+        startQRCodeLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+                    handleScanResult(it.data)
+                }
+
+            }
     }
 
     override fun initData() {
@@ -181,43 +194,23 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
 
     }
 
-
-    /**
-     * 相机扫描数据返回
-     * @param requestCode Int
-     * @param resultCode Int
-     * @param data Intent?
-     */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                UserKeys.SCAN_REQUEST_CODE ->
-                    handleScanResult(data)
-            }
-        }
-    }
-
     /**
      * 处理相机返回的二维码扫描结果
      *
      * @param data
      */
     private fun handleScanResult(data: Intent?) {
-        data?.run {
-            val bundle = extras
-            bundle?.run {
-                if (getInt(XQRCode.RESULT_TYPE) == XQRCode.RESULT_SUCCESS) {
-                    val result = getString(XQRCode.RESULT_DATA)
-                    if (result != null) {
-                        nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
-                            putString("TITLE", "")
-                            putString("URL", result.toString())
-                        })
-                    }
-                } else if (getInt(XQRCode.RESULT_TYPE) == XQRCode.RESULT_FAILED) {
-                    Toaster.show(getString(R.string.main_scan_fail_tips))
+        data?.extras?.run {
+            if (getInt(XQRCode.RESULT_TYPE) == XQRCode.RESULT_SUCCESS) {
+                val result = getString(XQRCode.RESULT_DATA)
+                if (result != null) {
+                    nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
+                        putString("TITLE", "")
+                        putString("URL", result.toString())
+                    })
                 }
+            } else if (getInt(XQRCode.RESULT_TYPE) == XQRCode.RESULT_FAILED) {
+                Toaster.show(getString(R.string.main_scan_fail_tips))
             }
         }
     }
@@ -237,9 +230,7 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
             //拍照、存储权限请求
             PermissionX.init(mActivity)
                 .permissions(
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    Manifest.permission.CAMERA
                 )
                 .explainReasonBeforeRequest()
                 .onExplainRequestReason { scope, deniedList ->
@@ -251,12 +242,14 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
 
                 .request { allGranted, _, _ ->
                     if (allGranted) {
-                        XQRCode.startScan(this@FirstFragment, UserKeys.SCAN_REQUEST_CODE)
+                        val theme = com.xuexiang.xqrcode.R.style.XQRCodeTheme
+                        val intent = Intent(mActivity, CaptureActivity::class.java)
+                        intent.putExtra(CaptureActivity.KEY_CAPTURE_THEME, theme)
+                        startQRCodeLauncher.launch(intent)
                     } else {
                         Toaster.show(getString(R.string.main_scan_permissions_fail))
                     }
                 }
-
         }
 
         fun toSearch() {
