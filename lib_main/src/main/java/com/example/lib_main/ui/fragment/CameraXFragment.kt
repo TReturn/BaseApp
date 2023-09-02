@@ -3,18 +3,12 @@ package com.example.lib_main.ui.fragment
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
-import androidx.lifecycle.lifecycleScope
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.utils.image.GlideUtils
+import com.example.lib_base.utils.image.BigImageUtils
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentCameraXBinding
 import com.example.lib_main.viewmodel.CameraXViewModel
@@ -24,7 +18,6 @@ import com.hjq.toast.Toaster
 import com.permissionx.guolindev.PermissionX
 import com.zyt.lib_camera.ui.activity.CameraActivity
 import com.zyt.lib_camera.utils.CompressedUtils
-import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.ext.nav
 
 /**
@@ -56,11 +49,11 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                     //压缩后的图片路径
                     val path = it.data?.getBundleExtra("RESULT")?.getString("PICTURE_PATH")
 
-                    GlideUtils.loadRoundImage(mActivity, path.toString(), mDatabind.ivCompress, 12F)
+                    mViewModel.imageUrl.value = path.toString()
                     mViewModel.originalPic.value = CompressedUtils.getOriginalSize()
                     mViewModel.compressPic.value = CompressedUtils.getCompressSize()
                 }
-                
+
             }
     }
 
@@ -97,6 +90,11 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
                         Toaster.show(getString(R.string.main_scan_permissions_fail))
                     }
                 }
+        }
+
+        fun toOpenPhoto() {
+            if (mViewModel.imageUrl.value.isNullOrEmpty()) return
+            BigImageUtils.show(mActivity, mViewModel.imageUrl.value.toString())
         }
 
     }

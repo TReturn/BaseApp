@@ -5,6 +5,8 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 class CameraXViewModel : BaseViewModel() {
 
+    val imageUrl = MutableLiveData("")
+
     val originalPic = MutableLiveData<String>()
 
     val compressPic = MutableLiveData<String>()
