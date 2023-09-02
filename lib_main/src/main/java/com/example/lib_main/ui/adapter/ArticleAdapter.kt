@@ -1,8 +1,10 @@
 package com.example.lib_main.ui.adapter
 
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
-import com.example.lib_main.R
 import com.example.lib_main.databinding.ItemArticleLayoutBinding
 import com.example.lib_main.model.ArticleDetail
 
@@ -12,18 +14,29 @@ import com.example.lib_main.model.ArticleDetail
  * @Description:
  */
 class ArticleAdapter :
-    BaseQuickAdapter<ArticleDetail, BaseDataBindingHolder<ItemArticleLayoutBinding>>(R.layout.item_article_layout) {
-    override fun convert(
-        holder: BaseDataBindingHolder<ItemArticleLayoutBinding>,
-        item: ArticleDetail
-    ) {
-        holder.run {
-            //绑定dataBinding
-            dataBinding?.let {
-                it.data = item
-                it.executePendingBindings()
-            }
-        }
+    BaseQuickAdapter<ArticleDetail, ArticleAdapter.VH>() {
 
+    // 自定义ViewHolder类
+    class VH(
+        parent: ViewGroup,
+        val binding: ItemArticleLayoutBinding = ItemArticleLayoutBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        ),
+    ) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VH {
+        // 返回一个 ViewHolder
+        return VH(parent)
     }
+
+    override fun onBindViewHolder(holder: VH, position: Int, item: ArticleDetail?) {
+        if (item == null) return
+        // 设置item数据
+        holder.binding.run {
+            //绑定dataBinding
+            data = item
+            executePendingBindings()
+        }
+    }
+
 }

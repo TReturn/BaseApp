@@ -48,11 +48,15 @@ class NoteListFragment : BaseFragment<NoteListViewModel, FragmentNoteListBinding
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mDatabind.rvNoteList.init(layoutManager, noteListAdapter, false)
         noteListAdapter.run {
+            //打开空布局功能
+            isEmptyViewEnable = true
+            //点击事件
             setOnItemClickListener { adapter, view, position ->
+                val data = getItem(position) ?: return@setOnItemClickListener
                 nav().navigateAction(R.id.action_note_to_detail, Bundle().apply {
-                    putInt("ID", data[position].id)
-                    putString("TITLE", data[position].title)
-                    putString("CONTENT", data[position].content)
+                    putInt("ID", data.id)
+                    putString("TITLE", data.title)
+                    putString("CONTENT", data.content)
                 })
             }
         }
@@ -61,10 +65,10 @@ class NoteListFragment : BaseFragment<NoteListViewModel, FragmentNoteListBinding
     override fun createObserver() {
         mViewModel.noteListData.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
-                noteListAdapter.setEmptyView(R.layout.empty_view)
+                noteListAdapter.setEmptyViewLayout(mActivity, R.layout.empty_view)
             } else {
                 //列表倒序
-                noteListAdapter.setList(it.reversed())
+                noteListAdapter.submitList(it.reversed())
             }
         }
     }

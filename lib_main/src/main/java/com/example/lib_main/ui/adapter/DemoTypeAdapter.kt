@@ -1,9 +1,12 @@
 package com.example.lib_main.ui.adapter
 
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.lib_base.utils.image.GlideUtils
-import com.example.lib_main.R
+import com.example.lib_main.databinding.ItemDemoTypeBinding
 import com.example.lib_main.model.DemoTypeModel
 
 /**
@@ -12,12 +15,28 @@ import com.example.lib_main.model.DemoTypeModel
  * @Description :
  */
 class DemoTypeAdapter :
-    BaseQuickAdapter<DemoTypeModel, BaseViewHolder>(R.layout.item_demo_type) {
+    BaseQuickAdapter<DemoTypeModel, DemoTypeAdapter.VH>() {
 
-    override fun convert(holder: BaseViewHolder, item: DemoTypeModel) {
-        holder.setText(R.id.tvTitle, item.title)
-        GlideUtils.loadImageProtist(context, item.pic, holder.getView(R.id.ivPic))
+    // 自定义ViewHolder类
+    class VH(
+        parent: ViewGroup,
+        val binding: ItemDemoTypeBinding = ItemDemoTypeBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        ),
+    ) : RecyclerView.ViewHolder(binding.root)
 
+    override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VH {
+        // 返回一个 ViewHolder
+        return VH(parent)
+    }
+
+    override fun onBindViewHolder(holder: VH, position: Int, item: DemoTypeModel?) {
+        if (item == null) return
+        // 设置item数据
+        holder.binding.run {
+            tvTitle.text = item.title
+            GlideUtils.loadImageProtist(context, item.pic, ivPic)
+        }
     }
 
 }

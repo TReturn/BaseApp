@@ -60,10 +60,11 @@ class SelectLanguageDialog(context: Context, private val confirmCallback: () -> 
         rv.init(GridLayoutManager(context, 1), languageAdapter, false)
         languageAdapter.run {
             setOnItemClickListener { _, _, position ->
-                for (i in data) {
+                val data = getItem(position) ?: return@setOnItemClickListener
+                for (i in items) {
                     i.isSelect = false
                 }
-                data[position].isSelect = true
+                data.isSelect = true
                 selectType = position
                 notifyDataSetChanged()
             }
@@ -72,7 +73,7 @@ class SelectLanguageDialog(context: Context, private val confirmCallback: () -> 
 
     private fun initData() {
         val languageList: MutableList<SelectLanguageModel> = arrayListOf()
-        languageAdapter.setList(
+        languageAdapter.submitList(
             languageList.apply {
                 add(SelectLanguageModel("跟随系统", nowLanguage == 0))
                 add(SelectLanguageModel("中文", nowLanguage == 1))

@@ -19,7 +19,6 @@ import me.hgj.jetpackmvvm.ext.nav
  * @Author: 青柠
  * @Description: 诗歌详情页
  */
-@Suppress("DEPRECATION")
 class PoetryFragment : BaseFragment<PoetryViewModel, FragmentPoetryBinding>() {
 
     private var intentData: PoetryBean.Data? = null
@@ -42,10 +41,9 @@ class PoetryFragment : BaseFragment<PoetryViewModel, FragmentPoetryBinding>() {
         initAdapter()
 
         arguments?.run {
-            var data: PoetryBean.Data? = null
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 //Android13的序列化获取方式
-                data = getSerializable("DATA", PoetryBean.Data::class.java)
+                getSerializable("DATA", PoetryBean.Data::class.java)
             } else {
                 getSerializable("DATA") as PoetryBean.Data
             }
@@ -53,7 +51,7 @@ class PoetryFragment : BaseFragment<PoetryViewModel, FragmentPoetryBinding>() {
                 mViewModel.poetryTitle.value = origin.title
                 mViewModel.poetryAuthor.value = "${origin.author}(${origin.dynasty})"
                 mViewModel.poetryContent.value = origin.content.toString()
-                poetryAdapter.setList(origin.content)
+                poetryAdapter.submitList(origin.content)
             }
         }
     }
@@ -63,7 +61,7 @@ class PoetryFragment : BaseFragment<PoetryViewModel, FragmentPoetryBinding>() {
             mViewModel.poetryTitle.value = origin.title
             mViewModel.poetryAuthor.value = "${origin.author}(${origin.dynasty})"
             mViewModel.poetryContent.value = origin.content.toString()
-            poetryAdapter.setList(origin.content)
+            poetryAdapter.submitList(origin.content)
         }
     }
 

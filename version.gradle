@@ -41,7 +41,7 @@ ext {
             bugly               : '4.1.9.2',
             permissionx         : '1.7.1',
             magicindicator      : '1.7.0',
-            recyclerviewadapter : '3.0.14',
+            recyclerviewadapter : '4.0.1',
             xbanner             : '1.2.8',
             glide               : '4.16.0',
             glidetransformations: '4.3.0',

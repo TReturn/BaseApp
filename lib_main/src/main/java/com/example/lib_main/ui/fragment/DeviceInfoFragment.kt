@@ -42,7 +42,7 @@ class DeviceInfoFragment : BaseFragment<DeviceInfoViewModel, FragmentDeviceInfoB
     @SuppressLint("MissingPermission")
     override fun initData() {
         val typeList: MutableList<DeviceInfoModel> = arrayListOf()
-        deviceInfoAdapter.setList(
+        deviceInfoAdapter.submitList(
             typeList.apply {
                 add(DeviceInfoModel("判断设备是否 rooted", DeviceUtils.isDeviceRooted().toString()))
                 add(DeviceInfoModel("判断设备 ADB 是否可用", DeviceUtils.isAdbEnabled().toString()))

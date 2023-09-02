@@ -70,7 +70,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
 
     override fun initData() {
         val userList: MutableList<UserModel> = arrayListOf()
-        userAdapter.setList(
+        userAdapter.submitList(
             userList.apply {
                 add(UserModel(0, "用户协议", "", R.drawable.ic_user_line))
                 add(UserModel(1, "隐私政策", "", R.drawable.ic_user_book))
@@ -92,17 +92,18 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
         mDatabind.rvUser.init(GridLayoutManager(context, 1), userAdapter, false)
         userAdapter.run {
             setOnItemClickListener { _, view, position ->
-                when (data[position].id) {
+                val data = getItem(position) ?: return@setOnItemClickListener
+                when (data.id) {
                     0 -> {
                         nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
-                            putString("TITLE", data[position].title)
+                            putString("TITLE", data.title)
                             putString("URL", "")
                         })
                     }
 
                     1 -> {
                         nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
-                            putString("TITLE", data[position].title)
+                            putString("TITLE", data.title)
                             putString("URL", "")
                         })
                     }

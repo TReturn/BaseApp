@@ -76,7 +76,7 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
     override fun createObserver() {
         //首页文章列表监听
         mViewModel.articleDataState.observe(viewLifecycleOwner) {
-            loadListData(it, articleAdapter, mDatabind.refreshLayout)
+            loadListData(mActivity, it, articleAdapter, mDatabind.refreshLayout)
 
         }
 
@@ -117,9 +117,10 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
         mDatabind.include.rvArticle.init(GridLayoutManager(activity, 1), articleAdapter, false)
         articleAdapter.run {
             setOnItemClickListener { adapter, view, position ->
+                val data = getItem(position) ?: return@setOnItemClickListener
                 nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
-                    putString("TITLE", data[position].title)
-                    putString("URL", data[position].link)
+                    putString("TITLE", data.title)
+                    putString("URL", data.link)
                 })
             }
         }
@@ -227,7 +228,7 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
     private fun intentToPoetryDetail() {
         //跳转并携带参数
         nav().navigateAction(R.id.action_main_to_poetry, Bundle().apply {
-            putSerializable("DATA",  mViewModel.poetryResultDataState.value)
+            putSerializable("DATA", mViewModel.poetryResultDataState.value)
         })
     }
 

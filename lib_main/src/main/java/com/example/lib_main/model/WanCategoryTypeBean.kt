@@ -1,6 +1,5 @@
 package com.example.lib_main.model
 
-import com.chad.library.adapter.base.entity.MultiItemEntity
 import kotlinx.serialization.Serializable
 
 import kotlinx.serialization.SerialName
@@ -107,8 +106,8 @@ data class WanCategoryTypeBean(
             var visible: Int = 0,
             @SerialName("zan")
             var zan: Int = 0,
-            override var itemType: Int = 0
-        ) : MultiItemEntity {
+            var itemType: Int = 0
+        )  {
             @Serializable
             data class Tag(
                 @SerialName("name")

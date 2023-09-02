@@ -1,83 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/item_white_bg">
 
-    <data>
 
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvNewsTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/item_white_bg">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:maxLines="2"
+        android:orientation="vertical"
+        android:textColor="@color/text_black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→" />
 
 
-        <TextView
-            android:id="@+id/tvNewsTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:maxLines="2"
-            android:textStyle="bold"
-            android:orientation="vertical"
-            tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→"
-            android:textSize="14sp"
-            android:textColor="@color/text_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvNewsDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:maxLines="3"
+        android:src="@drawable/ic_list_check"
+        android:textColor="@color/text_default"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle" />
 
 
-        <TextView
-            android:id="@+id/tvNewsDesc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:textSize="13sp"
-            android:maxLines="3"
-            android:textColor="@color/text_default"
-            android:src="@drawable/ic_list_check"
-            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
-            app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"/>
+    <TextView
+        android:id="@+id/tvNewsSource"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/text_default"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvNewsTime"
+        app:layout_constraintStart_toStartOf="@+id/tvNewsDesc"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc"
+        tools:text="点点医讯" />
 
+    <TextView
+        android:id="@+id/tvNewsTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/text_default"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc"
+        tools:text="2021-8-29" />
 
-        <TextView
-            android:id="@+id/tvNewsSource"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="10sp"
-            android:textColor="@color/text_default"
-            app:layout_constraintEnd_toStartOf="@+id/tvNewsTime"
-            app:layout_constraintStart_toStartOf="@+id/tvNewsDesc"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc"
-            tools:text="点点医讯" />
-
-        <TextView
-            android:id="@+id/tvNewsTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            tools:text="2021-8-29"
-            android:textSize="10sp"
-            android:textColor="@color/text_default"
-            app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/color_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsSource" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/color_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewsSource" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,12 @@
 package com.example.lib_main.ui.adapter
 
-import android.widget.TextView
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.lib_base.utils.ui.TextFontUtils
-import com.example.lib_main.R
+import com.example.lib_main.databinding.ItemPoetryBinding
 
 /**
  * @CreateDate : 2023/3/30 17:42
@@ -12,12 +14,27 @@ import com.example.lib_main.R
  * @Description :
  */
 class PoetryAdapter :
-    BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_poetry) {
+    BaseQuickAdapter<String, PoetryAdapter.VH>() {
 
-    override fun convert(holder: BaseViewHolder, item: String) {
-        holder.run {
-            setText(R.id.tvPoetry, item)
-            TextFontUtils.load(TextFontUtils.getLiuGQTypeFace(), getView<TextView>(R.id.tvPoetry))
+    // 自定义ViewHolder类
+    class VH(
+        parent: ViewGroup,
+        val binding: ItemPoetryBinding = ItemPoetryBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        ),
+    ) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VH {
+        // 返回一个 ViewHolder
+        return VH(parent)
+    }
+
+    override fun onBindViewHolder(holder: VH, position: Int, item: String?) {
+        if (item == null) return
+        // 设置item数据
+        holder.binding.run {
+            tvPoetry.text = item
+            TextFontUtils.load(TextFontUtils.getLiuGQTypeFace(), tvPoetry)
         }
     }
 

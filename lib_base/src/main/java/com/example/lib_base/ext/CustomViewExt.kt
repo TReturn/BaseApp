@@ -112,6 +112,7 @@ fun MagicIndicator.bindViewPager2(
                         //选中颜色
                         selectedColor = UiUtils.getColor(R.color.tab_layout_day_selected)
                     }
+
                     AppCompatDelegate.MODE_NIGHT_YES -> {
                         normalColor = UiUtils.getColor(R.color.tab_layout_night_normal)
                         selectedColor = UiUtils.getColor(R.color.tab_layout_night_selected)
@@ -220,6 +221,7 @@ fun RecyclerView.init(
  * 加载带刷新功能的列表数据
  */
 fun <T> loadListData(
+    context: Context,
     data: ListDataUiState<T>,
     baseQuickAdapter: BaseQuickAdapter<T, *>,
     refreshLayout: SmartRefreshLayout
@@ -231,30 +233,34 @@ fun <T> loadListData(
     }
 
     //成功
-    if (data.isSuccess) {
-        when {
-            //第一页并没有数据 显示空布局界面
-            data.isFirstEmpty -> {
-                baseQuickAdapter.setList(data.listData)
-                baseQuickAdapter.setEmptyView(R.layout.empty_view)
+    baseQuickAdapter.run {
+        if (data.isSuccess) {
+            when {
+                //第一页并没有数据 显示空布局界面
+                data.isFirstEmpty -> {
+                    submitList(data.listData)
+                    isEmptyViewEnable = true
+                    setEmptyViewLayout(context, R.layout.empty_view)
+                }
+                //是第一页
+                data.isRefresh -> {
+                    submitList(data.listData)
+                }
+                //不是第一页，增加数据
+                else -> {
+                    addAll(data.listData)
+                }
             }
-            //是第一页
-            data.isRefresh -> {
-                baseQuickAdapter.setList(data.listData)
+        } else {
+            //失败
+            if (data.isRefresh) {
+                //如果是第一页，则显示错误界面，并提示错误信息
+                submitList(data.listData)
+                isEmptyViewEnable = true
+                setEmptyViewLayout(context, R.layout.empty_view)
             }
-            //不是第一页，增加数据
-            else -> {
-                baseQuickAdapter.addData(data.listData)
-            }
+            notifyDataSetChanged()
         }
-    } else {
-        //失败
-        if (data.isRefresh) {
-            //如果是第一页，则显示错误界面，并提示错误信息
-            baseQuickAdapter.setList(data.listData)
-            baseQuickAdapter.setEmptyView(R.layout.empty_view)
-        }
-        baseQuickAdapter.notifyDataSetChanged()
     }
 }
 

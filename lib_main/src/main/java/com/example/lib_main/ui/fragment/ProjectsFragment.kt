@@ -39,7 +39,7 @@ class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
 
     override fun createObserver() {
         mViewModel.categoryTypeDataState.observe(viewLifecycleOwner) {
-            loadListData(it, newsAdapter, mDatabind.refreshLayout)
+            loadListData(mActivity, it, newsAdapter, mDatabind.refreshLayout)
         }
     }
 
@@ -51,9 +51,10 @@ class ProjectsFragment : BaseFragment<NewsViewModel, FragmentNewsBinding>() {
         mDatabind.rvNews.init(LinearLayoutManager(context), newsAdapter, false)
         newsAdapter.run {
             setOnItemClickListener { _, _, position ->
+                val data = getItem(position) ?: return@setOnItemClickListener
                 nav().navigateAction(R.id.action_main_to_web, Bundle().apply {
-                    putString("TITLE", data[position].title)
-                    putString("URL", data[position].link)
+                    putString("TITLE", data.title)
+                    putString("URL", data.link)
                 })
             }
         }

@@ -53,7 +53,7 @@
     <fragment
         android:id="@+id/poetryFragment"
         android:name="com.example.lib_main.ui.fragment.PoetryFragment"
-        android:label="fragment_poetry">
+        android:label="poetryFragment">
     </fragment>
 
     <fragment

@@ -43,7 +43,7 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
     override fun initData() {
         val typeList: MutableList<DemoTypeModel> = arrayListOf()
-        typeAdapter.setList(
+        typeAdapter.submitList(
             typeList.apply {
                 add(
                     DemoTypeModel(
@@ -86,7 +86,8 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
         mDatabind.rvType.init(GridLayoutManager(mActivity, 3), typeAdapter, false)
         typeAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-                when (data[position].title) {
+                val data = getItem(position) ?: return@setOnItemClickListener
+                when (data.title) {
                     getString(R.string.main_type_mp_chart) -> {
                         nav().navigateAction(R.id.action_main_to_mp_chart)
                     }
@@ -98,9 +99,11 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
                     getString(R.string.main_type_note) -> {
                         nav().navigateAction(R.id.action_main_to_note)
                     }
+
                     getString(R.string.main_type_device) -> {
                         nav().navigateAction(R.id.action_main_to_device)
                     }
+
                     getString(R.string.main_type_camera) -> {
                         nav().navigateAction(R.id.action_main_to_camera)
                     }
