@@ -32,7 +32,6 @@ import com.orhanobut.logger.Logger
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.tencent.bugly.BuglyStrategy
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 import java.util.concurrent.TimeUnit

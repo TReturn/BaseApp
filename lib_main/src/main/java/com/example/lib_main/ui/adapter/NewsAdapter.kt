@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseMultiItemAdapter
-import com.example.lib_base.utils.image.GlideUtils
 import com.example.lib_main.databinding.ItemProjectsNoPicBinding
 import com.example.lib_main.databinding.ItemProjectsOnePicBinding
-import com.example.lib_main.model.WanCategoryTypeBean
+import com.example.lib_main.model.CategoryTypeData
 
 /**
  * @CreateDate : 2021/8/1 1:49
@@ -16,7 +15,7 @@ import com.example.lib_main.model.WanCategoryTypeBean
  * @Description :
  */
 class NewsAdapter :
-    BaseMultiItemAdapter<WanCategoryTypeBean.Data.Data>() {
+    BaseMultiItemAdapter<CategoryTypeData>() {
 
     class NoPicVH(val viewBinding: ItemProjectsNoPicBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
@@ -27,7 +26,7 @@ class NewsAdapter :
     init {
         addItemType(
             NO_PIC_TYPE,
-            object : OnMultiItemAdapterListener<WanCategoryTypeBean.Data.Data, NoPicVH> {
+            object : OnMultiItemAdapterListener<CategoryTypeData, NoPicVH> {
                 override fun onCreate(context: Context, parent: ViewGroup, viewType: Int): NoPicVH {
                     // 创建 viewHolder
                     val viewBinding =
@@ -42,20 +41,16 @@ class NewsAdapter :
                 override fun onBind(
                     holder: NoPicVH,
                     position: Int,
-                    item: WanCategoryTypeBean.Data.Data?
+                    item: CategoryTypeData?
                 ) {
-                    if (item == null) return
-                    // 绑定 item 数据
                     holder.viewBinding.run {
-                        tvNewsTitle.text = item.title
-                        tvNewsSource.text = item.author
-                        tvNewsTime.text = item.niceDate
-                        tvNewsDesc.text = item.desc
+                        data = item
+                        executePendingBindings()
                     }
                 }
             }).addItemType(
             ONE_PIC_TYPE,
-            object : OnMultiItemAdapterListener<WanCategoryTypeBean.Data.Data, OnePicVH> {
+            object : OnMultiItemAdapterListener<CategoryTypeData, OnePicVH> {
                 override fun onCreate(
                     context: Context,
                     parent: ViewGroup,
@@ -74,16 +69,13 @@ class NewsAdapter :
                 override fun onBind(
                     holder: OnePicVH,
                     position: Int,
-                    item: WanCategoryTypeBean.Data.Data?
+                    item: CategoryTypeData?
                 ) {
                     if (item == null) return
                     // 绑定 item 数据
                     holder.viewBinding.run {
-                        tvNewsTitle.text = item.title
-                        tvNewsSource.text = item.author
-                        tvNewsTime.text = item.niceDate
-                        tvNewsDesc.text = item.desc
-                        GlideUtils.loadRoundImageTransform(context, item.envelopePic, ivNewsPic, 12)
+                        data = item
+                        executePendingBindings()
                     }
 
                 }

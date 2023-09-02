@@ -5,6 +5,7 @@ import androidx.lifecycle.scopeNetLife
 import com.drake.net.Get
 import com.example.lib_base.constant.ApiUrls
 import com.example.lib_base.list.ListDataUiState
+import com.example.lib_main.model.CategoryTypeData
 import com.example.lib_main.model.WanCategoryTypeBean
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -20,7 +21,7 @@ class NewsViewModel : BaseViewModel() {
 
 
     //具体子分类下的列表
-    var categoryTypeDataState = MutableLiveData<ListDataUiState<WanCategoryTypeBean.Data.Data>>()
+    var categoryTypeDataState = MutableLiveData<ListDataUiState<CategoryTypeData>>()
 
 
     /**
@@ -75,7 +76,7 @@ class NewsViewModel : BaseViewModel() {
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isFirstEmpty = false,
-                    listData = arrayListOf<WanCategoryTypeBean.Data.Data>()
+                    listData = arrayListOf<CategoryTypeData>()
                 )
             categoryTypeDataState.value = listDataUiState
         }

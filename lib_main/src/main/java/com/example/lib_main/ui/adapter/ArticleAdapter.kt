@@ -15,8 +15,6 @@ import com.example.lib_main.model.ArticleDetail
  */
 class ArticleAdapter :
     BaseQuickAdapter<ArticleDetail, ArticleAdapter.VH>() {
-
-    // 自定义ViewHolder类
     class VH(
         parent: ViewGroup,
         val binding: ItemArticleLayoutBinding = ItemArticleLayoutBinding.inflate(
@@ -25,15 +23,11 @@ class ArticleAdapter :
     ) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VH {
-        // 返回一个 ViewHolder
         return VH(parent)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int, item: ArticleDetail?) {
-        if (item == null) return
-        // 设置item数据
         holder.binding.run {
-            //绑定dataBinding
             data = item
             executePendingBindings()
         }

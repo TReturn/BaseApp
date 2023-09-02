@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.example.lib_base.utils.image.GlideUtils
-import com.example.lib_main.R
 import com.example.lib_main.databinding.ItemUserBinding
 import com.example.lib_main.model.UserModel
 
@@ -18,8 +16,6 @@ import com.example.lib_main.model.UserModel
  */
 class UserAdapter :
     BaseQuickAdapter<UserModel, UserAdapter.VH>() {
-
-    // 自定义ViewHolder类
     class VH(
         parent: ViewGroup,
         val binding: ItemUserBinding = ItemUserBinding.inflate(
@@ -28,20 +24,13 @@ class UserAdapter :
     ) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VH {
-        // 返回一个 ViewHolder
         return VH(parent)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int, item: UserModel?) {
-        if (item == null) return
-        // 设置item数据
         holder.binding.run {
-            tvUserTitle.text =  item.title
-            tvSubTitle.text =  item.subTitle
-            GlideUtils.loadImage(context, item.imageRes, ivUserSetting)
-
-            //是否显示分割线
-            vLine.visibility = if (holder.layoutPosition != itemCount-1) View.VISIBLE else View.INVISIBLE
+            data = item
+            executePendingBindings()
         }
     }
 

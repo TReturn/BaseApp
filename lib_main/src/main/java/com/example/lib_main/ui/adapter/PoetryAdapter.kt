@@ -33,7 +33,8 @@ class PoetryAdapter :
         if (item == null) return
         // 设置item数据
         holder.binding.run {
-            tvPoetry.text = item
+            data = item
+            executePendingBindings()
             TextFontUtils.load(TextFontUtils.getLiuGQTypeFace(), tvPoetry)
         }
     }

@@ -83,7 +83,7 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
                         R.drawable.ic_user_language
                     )
                 )
-                add(UserModel(4, "关于我们", "", R.drawable.ic_user_about))
+                add(UserModel(4, "关于我们", "", R.drawable.ic_user_about, true))
             }
         )
     }

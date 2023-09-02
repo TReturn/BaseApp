@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.example.lib_main.model.CategoryTypeData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,19 +17,19 @@
 
         <TextView
             android:id="@+id/tvNewsTitle"
-            android:textColor="@color/text_black"
-            android:textSize="14sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:maxLines="2"
-            android:orientation="vertical"
-            tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→"
+            android:text="@{data.title}"
+            android:textColor="@color/text_black"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivNewsPic"
-            app:layout_constraintTop_toTopOf="@+id/ivNewsPic" />
+            app:layout_constraintTop_toTopOf="@+id/ivNewsPic"
+            tools:text="广州发出警示信：非必要不出省！惠州公布1例密接者轨迹→" />
 
 
         <TextView
@@ -34,30 +37,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textSize="12sp"
-            android:maxLines="3"
             android:lines="3"
+            android:maxLines="3"
             android:src="@drawable/ic_list_check"
+            android:text="@{data.desc}"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
             app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle" />
 
         <TextView
             android:id="@+id/tvNewsSource"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="点点医讯"
+            android:text="@{data.author}"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/ivNewsPic"
             app:layout_constraintEnd_toStartOf="@+id/tvNewsTime"
             app:layout_constraintStart_toStartOf="@+id/tvNewsTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsDesc"
+            tools:text="点点医讯" />
 
         <TextView
             android:id="@+id/tvNewsTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{data.niceDate}"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/tvNewsTitle"
             app:layout_constraintTop_toTopOf="@+id/tvNewsSource"
@@ -66,6 +72,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivNewsPic"
+            app:imageUrl="@{data.envelopePic}"
+            app:imageRadius="@{12}"
             android:layout_width="80dp"
             android:layout_height="120dp"
             android:layout_marginStart="16dp"

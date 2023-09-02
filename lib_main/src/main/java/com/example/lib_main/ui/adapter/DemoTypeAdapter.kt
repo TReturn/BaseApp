@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.example.lib_base.utils.image.GlideUtils
 import com.example.lib_main.databinding.ItemDemoTypeBinding
 import com.example.lib_main.model.DemoTypeModel
 
@@ -26,16 +25,13 @@ class DemoTypeAdapter :
     ) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VH {
-        // 返回一个 ViewHolder
         return VH(parent)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int, item: DemoTypeModel?) {
-        if (item == null) return
-        // 设置item数据
         holder.binding.run {
-            tvTitle.text = item.title
-            GlideUtils.loadImageProtist(context, item.pic, ivPic)
+            data = item
+            executePendingBindings()
         }
     }
 

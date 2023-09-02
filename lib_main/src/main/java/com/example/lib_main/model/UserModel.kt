@@ -9,5 +9,6 @@ data class UserModel(
     var id: Int = 0,
     var title: String = "",
     var subTitle: String = "",
-    var imageRes: Int = 0
+    var imageRes: Int = 0,
+    var isEnd: Boolean = false
 )

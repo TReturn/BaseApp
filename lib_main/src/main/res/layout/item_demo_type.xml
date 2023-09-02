@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hjq.shape.layout.ShapeConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:shape_type="rectangle"
-    app:shape_solidColor="@color/item_white_bg"
-    app:shape_strokeColor="@color/color_refresh_text"
-    app:shape_strokeSize ="2dp"
-    android:layout_margin="4dp"
-    app:shape_radius="8dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivPic"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        tools:src="@drawable/ic_attribute_animation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="0dp"
+        <variable
+            name="data"
+            type="com.example.lib_main.model.DemoTypeModel" />
+    </data>
+
+    <com.hjq.shape.layout.ShapeConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="2"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp"
-        android:textColor="@color/text_black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPic"
-        tools:text="图标库演示" />
+        android:layout_margin="4dp"
+        app:shape_radius="8dp"
+        app:shape_solidColor="@color/item_white_bg"
+        app:shape_strokeColor="@color/color_refresh_text"
+        app:shape_strokeSize="2dp"
+        app:shape_type="rectangle">
 
-</com.hjq.shape.layout.ShapeConstraintLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            app:imageUrl="@{data.pic}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_attribute_animation" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@{data.title}"
+            android:textColor="@color/text_black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivPic"
+            tools:text="图标库演示" />
+
+    </com.hjq.shape.layout.ShapeConstraintLayout>
+</layout>
