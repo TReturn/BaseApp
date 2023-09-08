@@ -46,7 +46,7 @@ object NoteManager {
     private object Migration1 : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
             // 数据库的升级语句
-             //database.execSQL("alert table note add column newTitle varchar NOT NULL")
+            //database.execSQL("alert table note add column newTitle varchar NOT NULL")
         }
     }
 }

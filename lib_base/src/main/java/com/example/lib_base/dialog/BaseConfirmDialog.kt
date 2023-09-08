@@ -23,12 +23,9 @@ class BaseConfirmDialog(
     CenterPopupView(context) {
 
     override fun show(): BasePopupView {
-        return XPopup.Builder(context).asConfirm(title, content,
-            object : OnConfirmListener {
-                override fun onConfirm() {
-                    confirmCallback.invoke()
-                }
-            })
+        return XPopup.Builder(context).asConfirm(
+            title, content
+        ) { confirmCallback.invoke() }
             .show()
     }
 }

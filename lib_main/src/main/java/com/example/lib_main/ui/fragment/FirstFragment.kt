@@ -66,7 +66,6 @@ class FirstFragment : BaseFragment<FirstViewModel, FragmentFirstBinding>() {
                 if (it.resultCode == Activity.RESULT_OK && it.data != null) {
                     handleScanResult(it.data)
                 }
-
             }
     }
 
