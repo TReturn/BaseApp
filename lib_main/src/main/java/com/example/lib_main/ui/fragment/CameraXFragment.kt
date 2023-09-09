@@ -17,8 +17,11 @@ import com.hjq.bar.TitleBar
 import com.hjq.toast.Toaster
 import com.permissionx.guolindev.PermissionX
 import com.zyt.lib_camera.ui.activity.CameraActivity
+import com.zyt.lib_camera.ui.activity.CameraCropActivity
 import com.zyt.lib_camera.utils.CompressedUtils
+import com.zyt.lib_camera.utils.GlideEngine
 import me.hgj.jetpackmvvm.ext.nav
+import java.util.ArrayList
 
 /**
  * @CreateDate: 2023/8/29 17:35
@@ -59,7 +62,7 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
 
 
     inner class ProxyClick {
-        fun toTakePhoto() {
+        fun toTakePhoto(type: Int) {
             //拍照、存储权限请求
 
             val permission: MutableList<String> = arrayListOf(
@@ -82,10 +85,33 @@ class CameraXFragment : BaseFragment<CameraXViewModel, FragmentCameraXBinding>()
 
                 .request { allGranted, _, _ ->
                     if (allGranted) {
-                        val intent = Intent(requireActivity(), CameraActivity::class.java)
-                        //可选择直接打开图库
-                        intent.putExtra("IS_OPEN_GALLERY", false)
-                        startCameraLauncher.launch(Intent(requireActivity(), CameraActivity::class.java))
+                        when (type) {
+                            1 -> {
+                                val intent = Intent(requireActivity(), CameraActivity::class.java)
+                                //可选择直接打开图库
+                                intent.putExtra("IS_OPEN_GALLERY", false)
+                                startCameraLauncher.launch(
+                                    Intent(
+                                        requireActivity(),
+                                        CameraActivity::class.java
+                                    )
+                                )
+                            }
+
+                            else -> {
+                                val intent =
+                                    Intent(requireActivity(), CameraCropActivity::class.java)
+                                //可选择直接打开图库
+                                intent.putExtra("IS_OPEN_GALLERY", false)
+                                startCameraLauncher.launch(
+                                    Intent(
+                                        requireActivity(),
+                                        CameraCropActivity::class.java
+                                    )
+                                )
+                            }
+
+                        }
                     } else {
                         Toaster.show(getString(R.string.main_scan_permissions_fail))
                     }

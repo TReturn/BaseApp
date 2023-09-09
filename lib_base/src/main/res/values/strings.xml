@@ -83,6 +83,7 @@
     <string name="camera_original">Original</string>
     <string name="camera_compress">Compress</string>
     <string name="camera_take_photo">Take Photo</string>
+    <string name="camera_take_photo_crop">Take Photo Crop</string>
     <string name="camera_save_photo">Save Photo</string>
     <string name="camera_photo_overturn">Over Turn</string>
     <string name="camera_photo_gallery">Gallery</string>

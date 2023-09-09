@@ -83,6 +83,7 @@
     <string name="camera_original">原图</string>
     <string name="camera_compress">压缩</string>
     <string name="camera_take_photo">拍照</string>
+    <string name="camera_take_photo_crop">拍照裁剪</string>
     <string name="camera_save_photo">保存图片</string>
     <string name="camera_photo_overturn">翻转</string>
     <string name="camera_photo_gallery">图库</string>

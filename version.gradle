@@ -72,6 +72,7 @@ ext {
             activity_crash      : '2.4.0',
             camerax             : '1.3.0-alpha04',
             round_progressbar   : '3.0.0',
+            ucrop               : '2.2.8-native',
     ]
 
 
@@ -240,6 +241,9 @@ ext {
 
             //圆角进度条
             round_progressbar   : "com.github.MackHartley:RoundedProgressBar:${depsVersion.round_progressbar}",
+
+            //图像裁剪
+            ucrop               : "com.github.yalantis:ucrop:${depsVersion.ucrop}",
 
     ]
 

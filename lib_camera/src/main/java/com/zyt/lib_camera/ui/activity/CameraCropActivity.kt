@@ -3,9 +3,15 @@ package com.zyt.lib_camera.ui.activity
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.ImageDecoder
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraControl
 import androidx.camera.core.CameraInfo
@@ -16,12 +22,9 @@ import androidx.camera.core.Preview
 import androidx.camera.core.TorchState
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
+import androidx.core.net.toUri
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.utils.qmui.QMUIStatusBarHelper
-import com.example.lib_base.utils.time.TimeUtils
-import com.hjq.bar.OnTitleBarListener
-import com.hjq.bar.TitleBar
 import com.hjq.toast.Toaster
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.SelectMimeType
@@ -29,16 +32,17 @@ import com.luck.picture.lib.config.SelectModeConfig
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.orhanobut.logger.Logger
-import com.zyt.lib_camera.databinding.ActivityCameraBinding
+import com.yalantis.ucrop.UCrop
+import com.yalantis.ucrop.UCropActivity
+import com.zyt.lib_camera.databinding.ActivityCameraCropBinding
 import com.zyt.lib_camera.utils.CompressedUtils
+import com.zyt.lib_camera.utils.CreateFileSuffixUtils
 import com.zyt.lib_camera.utils.GlideEngine
-import com.zyt.lib_camera.viewmodel.CameraViewModel
+import com.zyt.lib_camera.viewmodel.CameraCropViewModel
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.text.SimpleDateFormat
-import java.util.*
+import me.hgj.jetpackmvvm.ext.nav
+import me.hgj.jetpackmvvm.ext.navigateAction
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -48,7 +52,7 @@ import java.util.concurrent.Executors
  * @Author : 青柠
  * @Description :提供CameraX拍照能力,提供原始URI和压缩后的路径返回
  */
-class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
+class CameraCropActivity : BaseActivity<CameraCropViewModel, ActivityCameraCropBinding>() {
 
     // 相片拍摄器
     private var imageCapture: ImageCapture? = null
@@ -62,18 +66,19 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
     private lateinit var cameraInfo: CameraInfo
     private lateinit var cameraControl: CameraControl
 
+    private lateinit var uCropLauncher: ActivityResultLauncher<Intent>
+
+    //裁剪后的路径
+    private var cropPath = ""
+
+    //裁剪后的文件名
+    private var cropName = ""
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.vm = mViewModel
         mDatabind.click = ProxyClick()
         QMUIStatusBarHelper.translucent(this)
         setTranslucent(mDatabind.flTranslucent)
-
-        mDatabind.include.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(titleBar: TitleBar) {
-                finish()
-            }
-        })
 
         //传参可直接打开图库
         if (intent.getBooleanExtra("IS_OPEN_GALLERY", false)) {
@@ -85,6 +90,36 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
         // 实例化相机执行器，用于或许相机资源
         cameraExecutor = Executors.newSingleThreadExecutor()
 
+        uCropLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+                    it.data?.let { success ->
+                        runBlocking {
+                            val uri: String = UCrop.getOutput(success).toString()
+                            val context = this@CameraCropActivity
+                            context.setResult(Activity.RESULT_OK, Intent().apply {
+                                putExtra("RESULT", Bundle().apply {
+                                    putString("PICTURE_URI", uri)
+                                    val bitmap = CompressedUtils.uriToBitmap(context, uri)
+                                    val compressedPath =
+                                        async { CompressedUtils.compressed(context, bitmap) }
+                                    putString("PICTURE_PATH", compressedPath.await())
+                                    putString("PICTURE_NAME", CompressedUtils.getPicName())
+                                })
+                            })
+                            context.finish()
+                            Logger.d("Photo capture succeeded: $uri")
+                        }
+                    }
+
+                } else {
+                    it.data?.let { error ->
+                        Toaster.show(UCrop.getError(error))
+                    }
+
+                }
+
+            }
     }
 
     /**
@@ -93,15 +128,10 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
     private fun takePhoto() {
         // 校验是否有可用的相机拍摄器
         val imageCapture = imageCapture ?: return
-        // 时间戳，用于给图片命令防止重复
-        val timeFormat = TimeUtils.dateFormatYMDHMS
-        // 定义拍摄相片名称
-        val name = SimpleDateFormat(timeFormat, Locale.CHINA)
-            .format(System.currentTimeMillis())
 
         // 使用MediaStore操作相片文件
         val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+            put(MediaStore.MediaColumns.DISPLAY_NAME, CreateFileSuffixUtils.name())
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
@@ -186,20 +216,49 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
      * @param uri String
      */
     private fun intentData(uri: String) {
-        runBlocking {
-            val context = this@CameraActivity
-            context.setResult(Activity.RESULT_OK, Intent().apply {
-                putExtra("RESULT", Bundle().apply {
-                    putString("PICTURE_URI", uri)
-                    val bitmap = CompressedUtils.uriToBitmap(context, uri)
-                    val compressedPath = async { CompressedUtils.compressed(context, bitmap) }
-                    putString("PICTURE_PATH", compressedPath.await())
-                    putString("PICTURE_NAME", CompressedUtils.getPicName())
-                })
-            })
-            context.finish()
-            Logger.d("Photo capture succeeded: $uri")
+        mViewModel.isButtonClickable.value = true
+        //裁剪
+        cropRawPhoto(uri.toUri())
+    }
+
+    /**
+     * 使用UCrop进行图片剪裁
+     *
+     * @param uri
+     */
+    private fun cropRawPhoto(uri: Uri) {
+        val options = UCrop.Options().apply {
+            // 修改标题栏颜色
+            //setToolbarColor(Color.parseColor("#FFFFFF"))
+            // 修改状态栏颜色
+            setStatusBarColor(Color.parseColor("#000000"))
+            // 隐藏底部工具
+            setHideBottomControls(false)
+            // 图片格式
+            setCompressionFormat(Bitmap.CompressFormat.JPEG)
+            // 设置图片压缩质量
+            //setCompressionQuality(100)
+            // 是否让用户调整范围(默认false)，如果开启，可能会造成剪切的图片的长宽比不是设定的
+            // 如果不开启，用户不能拖动选框，只能缩放图片
+            setFreeStyleCropEnabled(true)
+            // 圆
+            setCircleDimmedLayer(false)
+            // 不显示网格线
+            setShowCropGrid(false)
         }
+        //存储路径
+        val file = CreateFileSuffixUtils.file(".jpeg")
+        cropPath = file.absolutePath
+        cropName = file.name
+
+        // 设置源uri及目标uri
+        val intent = Intent(this, UCropActivity::class.java)
+        val cropOptionsBundle = Bundle()
+        cropOptionsBundle.putParcelable(UCrop.EXTRA_INPUT_URI, uri)
+        cropOptionsBundle.putParcelable(UCrop.EXTRA_OUTPUT_URI, Uri.fromFile(file))
+        cropOptionsBundle.putAll(options.optionBundle)
+        intent.putExtras(cropOptionsBundle)
+        uCropLauncher.launch(intent)
     }
 
     override fun onDestroy() {
@@ -235,7 +294,7 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
         fun toGallery() {
             //图库
-            PictureSelector.create(this@CameraActivity)
+            PictureSelector.create(this@CameraCropActivity)
                 .openGallery(SelectMimeType.ofImage())
                 .setImageEngine(GlideEngine.createGlideEngine())
                 .isDisplayCamera(false)
@@ -247,6 +306,10 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
                     override fun onCancel() {}
                 })
+        }
+
+        fun toFinish() {
+            finish()
         }
     }
 }

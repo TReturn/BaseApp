@@ -63,4 +63,5 @@ dependencies {
     implementation rootProject.depsLibs.pictureselector
     implementation rootProject.depsLibs.glide
     implementation rootProject.depsLibs.compressor
+    implementation rootProject.depsLibs.ucrop
 }
