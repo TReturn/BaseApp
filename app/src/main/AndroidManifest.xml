@@ -62,6 +62,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/NormalTheme" />
 
+        <activity
+            android:name="com.example.baseapp.ui.activity.CustomErrorActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>
