@@ -58,7 +58,6 @@ dependencies {
     api(rootProject.depsLibs.viewpager2, {
         exclude module: 'recyclerview'
     })
-    api rootProject.depsLibs.viewpager2
     api rootProject.depsLibs.coroutines_core
     api rootProject.depsLibs.coroutines_android
     api rootProject.depsLibs.livedata
