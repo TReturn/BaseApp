@@ -179,9 +179,9 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
         }
         return mFactory as ViewModelProvider.Factory
     }
+    
 
-    override fun getViewModelStore(): ViewModelStore {
-        return mAppViewModelStore
-    }
+    override val viewModelStore: ViewModelStore
+        get() = mAppViewModelStore
 
 }

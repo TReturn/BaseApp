@@ -1,10 +1,10 @@
 ext {
     android = [
             applicationId    : "com.zyt.baseapp",
-            compileSdkVersion: 33,
-            buildToolsVersion: "30.0.2",
-            minSdkVersion    : 24,
-            targetSdkVersion : 30,
+            compileSdkVersion: 34,
+            buildToolsVersion: "30.0.3",
+            minSdkVersion    : 28,
+            targetSdkVersion : 33,
             versionCode      : 1,
             versionName      : "1.0",
             multiDexEnabled  : false
@@ -13,237 +13,245 @@ ext {
 
     depsVersion = [
             //官方基础库
-            coreKtx             : '1.8.0',
-            appcompat           : '1.6.1',
-            material            : '1.5.0',
-            constraintlayout    : '2.1.3',
-            junit               : '4.13.2',
-            junitTest           : '1.1.5',
-            espressoCore        : '3.5.1',
+            coreKtx                 : '1.9.0',
+            appcompat               : '1.6.1',
+            material                : '1.5.0',
+            constraintlayout        : '2.1.4',
+            junit                   : '4.13.2',
+            junitTest               : '1.1.5',
+            espressoCore            : '3.5.1',
 
             //官方拓展库
-            recyclerview        : '1.2.1',
-            viewpager2          : '1.1.0-beta01',
-            coroutines_core     : '1.6.0',
-            compose             : '1.1.1',
-            compose_activity    : '1.4.0',
-            compose_viewmodel   : '2.4.1',
+            recyclerview            : '1.2.1',
+            viewpager2              : '1.1.0-beta01',
+            coroutines_core         : '1.6.0',
+
+            compose                 : '1.3.3',
+            compose_material        : '1.3.1',
+            compose_material3       : '1.2.1',
+            compose_activity        : '1.6.1',
+            compose_viewmodel       : '2.5.1',
+            compose_constraintlayout: '1.0.1',
+            compose_icons           : '1.6.8',
 
             //Jetpack库
-            lifecycle           : '2.6.1',
+            lifecycle               : '2.6.1',
 
             //第三方库
-            autosize            : "1.2.1",
-            smartrefresh        : '2.0.6',
-            xpopup              : '2.9.19',
-            mmkv                : '1.3.1',
-            compressor          : '3.0.1',
-            bugly               : '4.1.9.2',
-            permissionx         : '1.7.1',
-            magicindicator      : '1.7.0',
-            recyclerviewadapter : '4.0.1',
-            xbanner             : '1.2.8',
-            glide               : '4.16.0',
-            glidetransformations: '4.3.0',
-            lottie              : '6.1.0',
-            bigimageview        : '7.2.3',
-            pictureselector     : '3.11.1',
-            labelsview          : '1.6.5',
-            titlebar            : '10.5',
-            toastutils          : '12.3',
-            jetpackmvvm         : '1.2.7',
-            circleimageview     : '3.1.0',
-            marqueeview         : '1.4.1',
-            okhttp              : '4.11.0',
-            net                 : '3.6.1',
-            serialization       : '1.4.1',
-            agentweb            : '5.0.6',
-            logger              : '2.2.0',
-            shapeview           : '9.0',
-            qrcode              : '1.1.1',
-            utilcodex           : '1.31.1',
-            verticaltextview    : '1.4.1',
-            pickerlayoutmanager : '1.0.4',
-            mpandroidchart      : '3.1.0',
-            room                : '2.5.0',
-            languages           : '8.0',
-            broccoli            : '1.0.0',
-            navigation          : '2.5.3',
-            activity_crash      : '2.4.0',
-            camerax             : '1.3.0-alpha04',
-            round_progressbar   : '3.0.0',
-            ucrop               : '2.2.8-native',
+            autosize                : "1.2.1",
+            smartrefresh            : '2.0.6',
+            xpopup                  : '2.10.0',
+            mmkv                    : '1.3.1',
+            compressor              : '3.0.1',
+            bugly                   : '4.1.9.2',
+            permissionx             : '1.7.1',
+            magicindicator          : '1.7.0',
+            recyclerviewadapter     : '4.0.1',
+            xbanner                 : '1.2.8',
+            glide                   : '4.16.0',
+            glidetransformations    : '4.3.0',
+            lottie                  : '6.1.0',
+            bigimageview            : '7.2.3',
+            pictureselector         : '3.11.1',
+            labelsview              : '1.6.5',
+            titlebar                : '10.5',
+            toastutils              : '12.3',
+            jetpackmvvm             : '1.2.7',
+            circleimageview         : '3.1.0',
+            marqueeview             : '1.4.1',
+            okhttp                  : '4.11.0',
+            net                     : '3.6.4',
+            serialization           : '1.6.0',
+            agentweb                : '5.0.6',
+            logger                  : '2.2.0',
+            shapeview               : '9.0',
+            qrcode                  : '1.1.1',
+            utilcodex               : '1.31.1',
+            verticaltextview        : '1.4.1',
+            pickerlayoutmanager     : '1.0.4',
+            mpandroidchart          : '3.1.0',
+            room                    : '2.5.0',
+            languages               : '8.0',
+            broccoli                : '1.0.0',
+            navigation              : '2.5.3',
+            activity_crash          : '2.4.0',
+            camerax                 : '1.3.0-alpha04',
+            round_progressbar       : '3.0.0',
+            ucrop                   : '2.2.8-native',
     ]
 
 
     depsLibs = [
             //官方基础库
-            coreKtx             : "androidx.core:core-ktx:${depsVersion.coreKtx}",
-            appcompat           : "androidx.appcompat:appcompat:${depsVersion.appcompat}",
-            material            : "com.google.android.material:material:${depsVersion.material}",
-            constraintlayout    : "androidx.constraintlayout:constraintlayout:${depsVersion.constraintlayout}",
-            junit               : "junit:junit:${depsVersion.junit}",
-            junitTest           : "androidx.test.ext:junit:${depsVersion.junitTest}",
-            espressoCore        : "androidx.test.espresso:espresso-core:${depsVersion.espressoCore}",
+            coreKtx                 : "androidx.core:core-ktx:${depsVersion.coreKtx}",
+            appcompat               : "androidx.appcompat:appcompat:${depsVersion.appcompat}",
+            material                : "com.google.android.material:material:${depsVersion.material}",
+            constraintlayout        : "androidx.constraintlayout:constraintlayout:${depsVersion.constraintlayout}",
+            junit                   : "junit:junit:${depsVersion.junit}",
+            junitTest               : "androidx.test.ext:junit:${depsVersion.junitTest}",
+            espressoCore            : "androidx.test.espresso:espresso-core:${depsVersion.espressoCore}",
 
             //官方拓展库
-            recyclerview        : "androidx.recyclerview:recyclerview:${depsVersion.recyclerview}",
-            viewpager2          : "androidx.viewpager2:viewpager2:${depsVersion.viewpager2}",
+            recyclerview            : "androidx.recyclerview:recyclerview:${depsVersion.recyclerview}",
+            viewpager2              : "androidx.viewpager2:viewpager2:${depsVersion.viewpager2}",
             //协程
-            coroutines_core     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${depsVersion.coroutines_core}",
-            coroutines_android  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${depsVersion.coroutines_core}",
+            coroutines_core         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${depsVersion.coroutines_core}",
+            coroutines_android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${depsVersion.coroutines_core}",
 
             //compose 核心
-            compose_activity    : "androidx.activity:activity-compose:${depsVersion.compose_activity}",
-            compose_viewmodel   : "androidx.lifecycle:lifecycle-viewmodel-compose:${depsVersion.compose_viewmodel}",
-            compose_ui          : "androidx.compose.ui:ui:${depsVersion.compose}",
-            compose_ui_test     : "androidx.compose.ui:ui-test-junit4:${depsVersion.compose}",
-            compose_material    : "androidx.compose.material:material:${depsVersion.compose}",
-            compose_preview     : "androidx.compose.ui:ui-tooling:${depsVersion.compose}",
-            compose_animation   : "androidx.compose.animation:animation:${depsVersion.compose}",
+            compose_activity        : "androidx.activity:activity-compose:${depsVersion.compose_activity}",
+            compose_viewmodel       : "androidx.lifecycle:lifecycle-viewmodel-compose:${depsVersion.compose_viewmodel}",
+            compose_ui              : "androidx.compose.ui:ui:${depsVersion.compose}",
+            compose_ui_test         : "androidx.compose.ui:ui-test-junit4:${depsVersion.compose}",
+            compose_material        : "androidx.compose.material:material:${depsVersion.compose_material}",
+            compose_material3       : "androidx.compose.material3:material3:${depsVersion.compose_material3}",
+            compose_preview         : "androidx.compose.ui:ui-tooling:${depsVersion.compose}",
+            compose_animation       : "androidx.compose.animation:animation:${depsVersion.compose}",
+            compose_constraintlayout: "androidx.constraintlayout:constraintlayout-compose:${depsVersion.compose_constraintlayout}",
+            compose_icons           : "androidx.compose.material:material-icons-extended:${depsVersion.compose_icons}",
 
-            // LiveData
-            livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:${depsVersion.livedata}",
+            // Lifecycle
+            lifecycle               : "androidx.lifecycle:lifecycle-livedata-ktx:${depsVersion.lifecycle}",
 
             //第三方库
 
             //今日头条屏幕适配方案
-            autosize            : "com.github.JessYanCoding:AndroidAutoSize:v${depsVersion.autosize}",
+            autosize                : "com.github.JessYanCoding:AndroidAutoSize:v${depsVersion.autosize}",
 
             //下拉刷新核心
-            smartrefresh        : "io.github.scwang90:refresh-layout-kernel:${depsVersion.smartrefresh}",
+            smartrefresh            : "io.github.scwang90:refresh-layout-kernel:${depsVersion.smartrefresh}",
             //经典刷新头
-            smartrefreshclassics: "io.github.scwang90:refresh-header-classics:${depsVersion.smartrefresh}",
+            smartrefreshclassics    : "io.github.scwang90:refresh-header-classics:${depsVersion.smartrefresh}",
             //雷达刷新头
-            smartrefreshradar   : "io.github.scwang90:refresh-header-radar:${depsVersion.smartrefresh}",
+            smartrefreshradar       : "io.github.scwang90:refresh-header-radar:${depsVersion.smartrefresh}",
             //虚拟刷新头
-            smartrefreshfalsify : "io.github.scwang90:refresh-header-falsify:${depsVersion.smartrefresh}",
+            smartrefreshfalsify     : "io.github.scwang90:refresh-header-falsify:${depsVersion.smartrefresh}",
             //谷歌刷新头
-            smartrefreshmaterial: "io.github.scwang90:refresh-header-material:${depsVersion.smartrefresh}",
+            smartrefreshmaterial    : "io.github.scwang90:refresh-header-material:${depsVersion.smartrefresh}",
             //二级刷新头
-            smartrefreshtwolevel: "io.github.scwang90:refresh-header-two-level:${depsVersion.smartrefresh}",
+            smartrefreshtwolevel    : "io.github.scwang90:refresh-header-two-level:${depsVersion.smartrefresh}",
             //球脉冲加载
-            smartrefreshball    : "io.github.scwang90:refresh-footer-ball:${depsVersion.smartrefresh}",
+            smartrefreshball        : "io.github.scwang90:refresh-footer-ball:${depsVersion.smartrefresh}",
             //经典加载更多
-            smartrefreshfooter  : "io.github.scwang90:refresh-footer-classics:${depsVersion.smartrefresh}",
+            smartrefreshfooter      : "io.github.scwang90:refresh-footer-classics:${depsVersion.smartrefresh}",
 
             //弹窗
-            xpopup              : "com.github.li-xiaojun:XPopup:${depsVersion.xpopup}",
+            xpopup                  : "com.github.li-xiaojun:XPopup:${depsVersion.xpopup}",
 
             //键值对存储
-            mmkv                : "com.tencent:mmkv-static:${depsVersion.mmkv}",
+            mmkv                    : "com.tencent:mmkv-static:${depsVersion.mmkv}",
 
             //图片压缩
-            compressor          : "id.zelory:compressor:${depsVersion.compressor}",
+            compressor              : "id.zelory:compressor:${depsVersion.compressor}",
 
             //Bugly崩溃上报
-            bugly               : "com.tencent.bugly:crashreport:${depsVersion.bugly}",
+            bugly                   : "com.tencent.bugly:crashreport:${depsVersion.bugly}",
 
             //权限请求
-            permissionx         : "com.guolindev.permissionx:permissionx:${depsVersion.permissionx}",
+            permissionx             : "com.guolindev.permissionx:permissionx:${depsVersion.permissionx}",
 
             //TabLayout
-            magicindicator      : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator}",
+            magicindicator          : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator}",
 
             //RecyclerView 适配器
-            recyclerviewadapter : "io.github.cymchad:BaseRecyclerViewAdapterHelper:${depsVersion.recyclerviewadapter}",
+            recyclerviewadapter     : "io.github.cymchad:BaseRecyclerViewAdapterHelper:${depsVersion.recyclerviewadapter}",
 
             //轮播图
-            xbanner             : "com.github.xiaohaibin:XBanner:androidx_v${depsVersion.xbanner}",
+            xbanner                 : "com.github.xiaohaibin:XBanner:androidx_v${depsVersion.xbanner}",
 
             //Glide图片加载，图形变换
-            glide               : "com.github.bumptech.glide:glide:${depsVersion.glide}",
-            glidetransformations: "jp.wasabeef:glide-transformations:${depsVersion.glidetransformations}",
+            glide                   : "com.github.bumptech.glide:glide:${depsVersion.glide}",
+            glidetransformations    : "jp.wasabeef:glide-transformations:${depsVersion.glidetransformations}",
 
             //Lottie动画
-            lottie              : "com.airbnb.android:lottie:${depsVersion.lottie}",
+            lottie                  : "com.airbnb.android:lottie:${depsVersion.lottie}",
 
             //大图浏览
-            bigimageview        : "com.github.SherlockGougou:BigImageViewPager:androidx-${depsVersion.bigimageview}",
+            bigimageview            : "com.github.SherlockGougou:BigImageViewPager:androidx-${depsVersion.bigimageview}",
 
             //图片选择（包含拍照按钮）
-            pictureselector     : "io.github.lucksiege:pictureselector:v${depsVersion.pictureselector}",
+            pictureselector         : "io.github.lucksiege:pictureselector:v${depsVersion.pictureselector}",
 
             //标签列表
-            labelsview          : "com.github.donkingliang:LabelsView:${depsVersion.labelsview}",
+            labelsview              : "com.github.donkingliang:LabelsView:${depsVersion.labelsview}",
 
             //导航栏
-            titlebar            : "com.github.getActivity:TitleBar:${depsVersion.titlebar}",
+            titlebar                : "com.github.getActivity:TitleBar:${depsVersion.titlebar}",
 
             //自定义Toast
-            toastutils          : "com.github.getActivity:Toaster:${depsVersion.toastutils}",
+            toastutils              : "com.github.getActivity:Toaster:${depsVersion.toastutils}",
 
             //MVVM快速开发框架
-            jetpackmvvm         : "com.github.hegaojian:JetpackMvvm:${depsVersion.jetpackmvvm}",
+            jetpackmvvm             : "com.github.hegaojian:JetpackMvvm:${depsVersion.jetpackmvvm}",
 
             //圆角头像
-            circleimageview     : "de.hdodenhof:circleimageview:${depsVersion.circleimageview}",
+            circleimageview         : "de.hdodenhof:circleimageview:${depsVersion.circleimageview}",
 
             //文本跑马灯
-            marqueeview         : "com.sunfusheng:MarqueeView:${depsVersion.marqueeview}",
+            marqueeview             : "com.sunfusheng:MarqueeView:${depsVersion.marqueeview}",
 
             //日志打印
-            logger              : "com.orhanobut:logger:${depsVersion.logger}",
+            logger                  : "com.orhanobut:logger:${depsVersion.logger}",
 
             //OkHttp网络请求
-            okhttp              : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp}",
+            okhttp                  : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp}",
             //Kotlin协程网络请求
-            net                 : "com.github.liangjingkanji:Net:${depsVersion.net}",
+            net                     : "com.github.liangjingkanji:Net:${depsVersion.net}",
             //Kotlin系列化Json
-            serialization       : "org.jetbrains.kotlinx:kotlinx-serialization-json:${depsVersion.serialization}",
+            serialization           : "org.jetbrains.kotlinx:kotlinx-serialization-json:${depsVersion.serialization}",
 
             //Web交互
-            agentweb            : "com.github.Justson.AgentWeb:agentweb-core:v${depsVersion.agentweb}-androidx",
+            agentweb                : "com.github.Justson.AgentWeb:agentweb-core:v${depsVersion.agentweb}-androidx",
 
             //控件定义ShapeView
-            shapeview           : "com.github.getActivity:ShapeView:${depsVersion.shapeview}",
+            shapeview               : "com.github.getActivity:ShapeView:${depsVersion.shapeview}",
 
             //二维码扫描
-            qrcode              : "com.github.xuexiangjys:XQRCode:${depsVersion.qrcode}",
+            qrcode                  : "com.github.xuexiangjys:XQRCode:${depsVersion.qrcode}",
 
             //工具类集合
-            utilcodex           : "com.blankj:utilcodex:${depsVersion.utilcodex}",
+            utilcodex               : "com.blankj:utilcodex:${depsVersion.utilcodex}",
 
             //垂直文本
-            verticaltextview    : "com.sjtu.yifei:vertical-textview:${depsVersion.verticaltextview}",
+            verticaltextview        : "com.sjtu.yifei:vertical-textview:${depsVersion.verticaltextview}",
 
             //基于自定义LayoutManager的PickerView,滑动选择列表
-            pickerlayoutmanager : "com.github.simplepeng:PickerLayoutManager:v${depsVersion.pickerlayoutmanager}",
+            pickerlayoutmanager     : "com.github.simplepeng:PickerLayoutManager:v${depsVersion.pickerlayoutmanager}",
 
             //安卓图表
-            mpandroidchart      : "com.github.PhilJay:MPAndroidChart:v${depsVersion.mpandroidchart}",
+            mpandroidchart          : "com.github.PhilJay:MPAndroidChart:v${depsVersion.mpandroidchart}",
 
             //ROOM数据库
-            room                : "androidx.room:room-runtime:${depsVersion.room}",
-            roomktx             : "androidx.room:room-ktx:${depsVersion.room}",
-            room_compiler       : "androidx.room:room-compiler:${depsVersion.room}",
+            room                    : "androidx.room:room-runtime:${depsVersion.room}",
+            roomktx                 : "androidx.room:room-ktx:${depsVersion.room}",
+            room_compiler           : "androidx.room:room-compiler:${depsVersion.room}",
 
             //语言切换
-            languages           : "com.github.getActivity:MultiLanguages:${depsVersion.languages}",
+            languages               : "com.github.getActivity:MultiLanguages:${depsVersion.languages}",
 
             //骨架屏
-            broccoli            : "me.samlss:broccoli:${depsVersion.broccoli}",
+            broccoli                : "me.samlss:broccoli:${depsVersion.broccoli}",
 
             //Jetpack Navigation
-            navigation          : "androidx.navigation:navigation-fragment-ktx:${depsVersion.navigation}",
-            navigation_ui       : "androidx.navigation:navigation-ui-ktx:${depsVersion.navigation}",
+            navigation              : "androidx.navigation:navigation-fragment-ktx:${depsVersion.navigation}",
+            navigation_ui           : "androidx.navigation:navigation-ui-ktx:${depsVersion.navigation}",
 
             //崩溃捕获
-            activity_crash      : "cat.ereza:customactivityoncrash:${depsVersion.activity_crash}",
+            activity_crash          : "cat.ereza:customactivityoncrash:${depsVersion.activity_crash}",
 
             //CameraX
-            camera_core         : "androidx.camera:camera-core:${depsVersion.camerax}",
-            camera_2            : "androidx.camera:camera-camera2:${depsVersion.camerax}",
-            camera_lifecycle    : "androidx.camera:camera-lifecycle:${depsVersion.camerax}",
-            camera_view         : "androidx.camera:camera-view:${depsVersion.camerax}",
-            camera_extensions   : "androidx.camera:camera-extensions:${depsVersion.camerax}",
-            camera_video        : "androidx.camera:camera-video:${depsVersion.camerax}",
+            camera_core             : "androidx.camera:camera-core:${depsVersion.camerax}",
+            camera_2                : "androidx.camera:camera-camera2:${depsVersion.camerax}",
+            camera_lifecycle        : "androidx.camera:camera-lifecycle:${depsVersion.camerax}",
+            camera_view             : "androidx.camera:camera-view:${depsVersion.camerax}",
+            camera_extensions       : "androidx.camera:camera-extensions:${depsVersion.camerax}",
+            camera_video            : "androidx.camera:camera-video:${depsVersion.camerax}",
 
             //圆角进度条
-            round_progressbar   : "com.github.MackHartley:RoundedProgressBar:${depsVersion.round_progressbar}",
+            round_progressbar       : "com.github.MackHartley:RoundedProgressBar:${depsVersion.round_progressbar}",
 
             //图像裁剪
-            ucrop               : "com.github.yalantis:ucrop:${depsVersion.ucrop}",
+            ucrop                   : "com.github.yalantis:ucrop:${depsVersion.ucrop}",
 
     ]
 

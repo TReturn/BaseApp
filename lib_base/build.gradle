@@ -60,7 +60,7 @@ dependencies {
     })
     api rootProject.depsLibs.coroutines_core
     api rootProject.depsLibs.coroutines_android
-    api rootProject.depsLibs.livedata
+    api rootProject.depsLibs.lifecycle
 
     //compose
     api rootProject.depsLibs.compose_activity
@@ -68,7 +68,10 @@ dependencies {
     api rootProject.depsLibs.compose_ui
     api rootProject.depsLibs.compose_preview
     api rootProject.depsLibs.compose_material
+    api rootProject.depsLibs.compose_material3
     api rootProject.depsLibs.compose_animation
+    api rootProject.depsLibs.compose_constraintlayout
+    api rootProject.depsLibs.compose_icons
 
     //navigation
     api rootProject.depsLibs.navigation

@@ -45,9 +45,9 @@ class NoteDetailViewModel : BaseViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val noteList = NoteManager.noteDB.noteDao.getDataByID(noteID.value!!)
-                noteList[0].title = title.value.toString()
-                noteList[0].content = content.value.toString()
-                NoteManager.noteDB.noteDao.update(noteList[0])
+                noteList.title = title.value.toString()
+                noteList.content = content.value.toString()
+                NoteManager.noteDB.noteDao.update(noteList)
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }
@@ -60,7 +60,7 @@ class NoteDetailViewModel : BaseViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val noteList = NoteManager.noteDB.noteDao.getDataByID(noteID.value!!)
-                NoteManager.noteDB.noteDao.delete(noteList[0])
+                NoteManager.noteDB.noteDao.delete(noteList)
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }
