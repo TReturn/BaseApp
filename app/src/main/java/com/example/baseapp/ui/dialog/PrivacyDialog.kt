@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.TextView
 import com.example.baseapp.R
 import com.example.lib_base.constant.UserKeys
-import com.example.lib_base.dialog.BaseDialog
+import com.example.lib_base.dialog.DialogManager
 import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.TextSpannableStringUtils
 import com.example.lib_base.web.WebActivity
@@ -42,7 +42,7 @@ class PrivacyDialog(
 
         findViewById<ShapeTextView>(R.id.tvCancel).setOnClickListener {
             //挽留弹窗
-            BaseDialog.get(context, false)
+            DialogManager.get(context, false)
                 .asCustom(PrivacyRetentionDialog(context, {
                     confirmCallback.invoke()
                     dismiss()

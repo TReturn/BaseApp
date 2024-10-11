@@ -1,4 +1,4 @@
-package com.example.lib_main.manager
+package com.example.lib_base.dialog
 
 import android.content.Context
 import androidx.annotation.LayoutRes

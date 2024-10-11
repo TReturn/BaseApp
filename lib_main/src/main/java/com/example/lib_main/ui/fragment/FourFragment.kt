@@ -1,6 +1,5 @@
 package com.example.lib_main.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat.recreate
@@ -13,10 +12,8 @@ import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentFourthBinding
-import com.example.lib_main.manager.DialogManager
+import com.example.lib_base.dialog.DialogManager
 import com.example.lib_main.model.UserModel
-import com.example.lib_main.ui.activity.AboutComposeActivity
-import com.example.lib_main.ui.activity.ListComposeActivity
 import com.example.lib_main.ui.adapter.UserAdapter
 import com.example.lib_main.ui.dialog.SelectLanguageDialog
 import com.hjq.language.MultiLanguages

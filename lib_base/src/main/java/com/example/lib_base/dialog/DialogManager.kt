@@ -8,7 +8,7 @@ import com.lxj.xpopup.XPopup
  * @Author: 青柠
  * @Description:
  */
-object BaseDialog {
+object DialogManager {
     /**
      * 获取一个默认的Dialog
      * @param context Context
@@ -21,5 +21,19 @@ object BaseDialog {
             .dismissOnTouchOutside(isDismissOnTouch)
             .dismissOnBackPressed(isDismissOnTouch)
 
+    }
+
+    /**
+     * 获取一个View实现的Dialog
+     * @param context Context
+     * @param isDismissOnTouch Boolean
+     * @return XPopup.Builder
+     */
+    fun getViewModel(context: Context, isDismissOnTouch: Boolean = true): XPopup.Builder {
+        return XPopup.Builder(context)
+            .isViewMode(true)
+            .isDestroyOnDismiss(true)
+            .dismissOnTouchOutside(isDismissOnTouch)
+            .dismissOnBackPressed(isDismissOnTouch)
     }
 }
