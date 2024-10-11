@@ -75,6 +75,12 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
                         R.drawable.ic_type_camera
                     )
                 )
+                add(
+                    DemoTypeModel(
+                        getString(R.string.main_type_radio_controlled_meter),
+                        R.drawable.ic_type_camera
+                    )
+                )
             }
         )
     }
@@ -106,6 +112,9 @@ class SecondFragment : BaseFragment<SecondViewModel, FragmentSecondBinding>() {
 
                     getString(R.string.main_type_camera) -> {
                         nav().navigateAction(R.id.action_main_to_camera)
+                    }
+                    getString(R.string.main_type_radio_controlled_meter) -> {
+                        nav().navigateAction(R.id.action_main_to_radio_controlled_meter)
                     }
                 }
             }

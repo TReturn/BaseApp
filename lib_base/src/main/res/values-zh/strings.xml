@@ -42,6 +42,7 @@
     <string name="main_type_note">备忘录</string>
     <string name="main_type_device">设备信息</string>
     <string name="main_type_camera">相机</string>
+    <string name="main_type_radio_controlled_meter">电波表</string>
 
     <string name="animation_type_alpha">透明</string>
     <string name="animation_type_translation">平移</string>

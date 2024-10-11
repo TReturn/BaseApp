@@ -42,6 +42,7 @@
     <string name="main_type_note">Note</string>
     <string name="main_type_device">DeviceInfo</string>
     <string name="main_type_camera">CameraX</string>
+    <string name="main_type_radio_controlled_meter">Radio Controlled Meter</string>
 
     <string name="animation_type_alpha">Alpha</string>
     <string name="animation_type_translation">Translation</string>

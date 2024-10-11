@@ -13,11 +13,12 @@ import com.example.lib_base.utils.data.MMKVUtils
 import com.example.lib_base.utils.ui.UiUtils
 import com.example.lib_main.R
 import com.example.lib_main.databinding.FragmentFourthBinding
-import com.example.lib_main.manager.DialogListener
 import com.example.lib_main.manager.DialogManager
 import com.example.lib_main.model.UserModel
 import com.example.lib_main.ui.activity.AboutComposeActivity
+import com.example.lib_main.ui.activity.ListComposeActivity
 import com.example.lib_main.ui.adapter.UserAdapter
+import com.example.lib_main.ui.dialog.SelectLanguageDialog
 import com.hjq.language.MultiLanguages
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.nav
@@ -110,17 +111,16 @@ class FourFragment : BaseFragment<BaseViewModel, FragmentFourthBinding>() {
 
                     3 -> {
                         //切换语言
-                        DialogManager.showSelectLanguageDialog(mActivity)
-                            .setListener(object : DialogListener {
-                                override fun onConfirm(type: String) {
-                                    setLanguage()
-                                }
-                            })
+                        DialogManager.get(mActivity).asCustom(SelectLanguageDialog(mActivity) {
+                            setLanguage()
+                        }).show()
+
                     }
 
                     4 -> {
                         //关于我们
-                        mActivity.startActivity(Intent(mActivity, AboutComposeActivity::class.java))
+                        //mActivity.startActivity(Intent(mActivity, ListComposeActivity::class.java))
+                        nav().navigateAction(R.id.action_main_to_project_compose)
                     }
                 }
             }

@@ -16,7 +16,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".ui.activity.RewardTipsViewActivity"
+            android:name=".ui.activity.ListComposeActivity"
             android:exported="true" />
 
     </application>

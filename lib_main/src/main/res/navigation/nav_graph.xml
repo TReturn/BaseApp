@@ -48,6 +48,14 @@
             android:id="@+id/action_main_to_camera"
             app:destination="@id/cameraXFragment" />
 
+        <action
+            android:id="@+id/action_main_to_radio_controlled_meter"
+            app:destination="@id/radioControlledMeterFragment" />
+
+        <action
+            android:id="@+id/action_main_to_project_compose"
+            app:destination="@id/projectsComposeFragment" />
+
     </fragment>
 
     <fragment
@@ -108,6 +116,19 @@
         android:id="@+id/cameraXFragment"
         android:name="com.example.lib_main.ui.fragment.CameraXFragment"
         android:label="cameraXFragment">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/projectsComposeFragment"
+        android:name="com.example.lib_main.ui.fragment.ProjectsMainCompose"
+        android:label="projectsComposeFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/radioControlledMeterFragment"
+        android:name="com.example.lib_main.ui.fragment.RadioControlledMeterFragment"
+        android:label="radioControlledMeterFragment">
     </fragment>
 
 </navigation>

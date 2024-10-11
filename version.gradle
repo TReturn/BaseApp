@@ -33,6 +33,7 @@ ext {
             compose_viewmodel       : '2.5.1',
             compose_constraintlayout: '1.0.1',
             compose_icons           : '1.6.8',
+            compose_coil            : '2.6.0',
 
             //Jetpack库
             lifecycle               : '2.6.1',
@@ -109,6 +110,7 @@ ext {
             compose_animation       : "androidx.compose.animation:animation:${depsVersion.compose}",
             compose_constraintlayout: "androidx.constraintlayout:constraintlayout-compose:${depsVersion.compose_constraintlayout}",
             compose_icons           : "androidx.compose.material:material-icons-extended:${depsVersion.compose_icons}",
+            compose_coil            : "io.coil-kt:coil-compose:${depsVersion.compose_coil}",
 
             // Lifecycle
             lifecycle               : "androidx.lifecycle:lifecycle-livedata-ktx:${depsVersion.lifecycle}",

@@ -38,7 +38,7 @@ class ThirdFragment : BaseFragment<ThirdViewModel, FragmentThirdBinding>() {
     }
 
     override fun initData() {
-
+        mViewModel.getCategoryData()
     }
 
     @SuppressLint("NotifyDataSetChanged")

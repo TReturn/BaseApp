@@ -1,37 +1,39 @@
 package com.example.lib_main.manager
 
-import android.app.Activity
-import com.example.lib_base.dialog.BaseDialog
-import com.example.lib_main.ui.dialog.SelectLanguageDialog
+import android.content.Context
+import com.lxj.xpopup.XPopup
 
 /**
- * @CreateDate: 2023/3/31 15:43
+ * @CreateDate: 2023/8/31 15:53
  * @Author: 青柠
  * @Description:
  */
 object DialogManager {
-
-    //弹窗按钮回调
-    private var lister: DialogListener? = null
-
     /**
-     * 设置回调
-     * @param listener DialogListener?
+     * 获取一个默认的Dialog
+     * @param context Context
+     * @param isDismissOnTouch Boolean
+     * @return XPopup.Builder
      */
-    fun setListener(listener: DialogListener?) {
-        lister = listener
+    fun get(context: Context, isDismissOnTouch: Boolean = true): XPopup.Builder {
+        return XPopup.Builder(context)
+            .isDestroyOnDismiss(true)
+            .dismissOnTouchOutside(isDismissOnTouch)
+            .dismissOnBackPressed(isDismissOnTouch)
+
     }
 
     /**
-     * 选择语音弹窗
-     * @return DialogManager
+     * 获取一个View实现的Dialog
+     * @param context Context
+     * @param isDismissOnTouch Boolean
+     * @return XPopup.Builder
      */
-    fun showSelectLanguageDialog(context: Activity): DialogManager {
-        BaseDialog.get(context).asCustom(SelectLanguageDialog(context) {
-            lister?.onConfirm()
-        }).show()
-
-        return this
+    fun getViewModel(context: Context, isDismissOnTouch: Boolean = true): XPopup.Builder {
+        return XPopup.Builder(context)
+            .isViewMode(true)
+            .isDestroyOnDismiss(true)
+            .dismissOnTouchOutside(isDismissOnTouch)
+            .dismissOnBackPressed(isDismissOnTouch)
     }
-
 }
